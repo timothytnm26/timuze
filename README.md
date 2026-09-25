@@ -1,70 +1,78 @@
-# timuze — Spotify stats cho người mê nhạc
+# timuze — Spotify stats for music lovers
 
-React 19 + TypeScript · **Feature-Sliced Design** · TanStack Router / Query / Table / Store · GSAP (ScrollTrigger, SplitText) · Tailwind CSS 4 + tailwind-merge.
+React 19 + TypeScript · **Feature-Sliced Design** · TanStack Router / Query / Table / Store · GSAP (ScrollTrigger, SplitText, Flip) · three.js · Tailwind CSS 4 + tailwind-merge.
 
-## Chạy thử
+## Getting started
 
 ```bash
 npm install
-cp .env.example .env   # điền VITE_SPOTIFY_CLIENT_ID
+cp .env.example .env   # fill in VITE_SPOTIFY_CLIENT_ID
 npm run dev            # http://127.0.0.1:5173
 ```
 
-### Tạo app Spotify
-1. Vào <https://developer.spotify.com/dashboard> → **Create app**, tick **Web API**.
-2. Redirect URI: `http://127.0.0.1:5173/callback` (Spotify **không còn chấp nhận `localhost`** – phải dùng `127.0.0.1`; khi deploy dùng `https://…/callback`).
-3. Copy **Client ID** vào `.env`. Không cần Client Secret — app dùng **Authorization Code + PKCE** thuần front-end.
-4. App ở *Development Mode* (từ 02/2026): chủ app cần Spotify Premium, tối đa 5 user — thêm email người dùng ở tab **User Management**.
+### Create a Spotify app
 
-## Tính năng
+1. Go to <https://developer.spotify.com/dashboard> → **Create app**, tick **Web API** (and **Web Playback SDK** for the in-browser player).
+2. Redirect URI: `http://127.0.0.1:5173/callback` (Spotify **no longer accepts `localhost`** – use `127.0.0.1`; in production use `https://…/callback`).
+3. Copy the **Client ID** into `.env`. No Client Secret needed — the app uses **Authorization Code + PKCE**, front-end only.
+4. Apps in *Development Mode* (since 02/2026): the app owner needs Spotify Premium and at most 5 users are allowed — add their emails under **User Management**.
 
-| Trang | Nguồn dữ liệu |
-|---|---|
-| Tổng quan – hero, KPI, top 9 nghệ sĩ (bục vinh danh), góc nhìn (độ chung thuỷ, gu thập niên, cú đêm), top bài, top album, thể loại, đồng hồ nghe | `/me`, `/me/top/*`, `/me/player/recently-played`, `/me/tracks`, `/me/albums`, `/me/following` |
-| Nghệ sĩ / Bài hát – tới 99 mục, 3 khoảng thời gian (4 tuần · 6 tháng · 1 năm) | `/me/top/{artists,tracks}` (2 trang: offset 0 + 49) |
-| Album – **tự tính** vì Spotify không có endpoint top album | 99 top tracks, chấm điểm theo thứ hạng |
-| Gần đây – timeline theo ngày | `/me/player/recently-played` (tối đa 50) |
-| **Lượt stream** – số lượt stream thật, phút nghe, Wrapped theo năm, biểu đồ tháng, heatmap thứ×giờ, thiết bị, bảng xếp hạng sort/search/phân trang (TanStack Table v9) | File *Extended streaming history* từ spotify.com/account/privacy (.zip hoặc .json), xử lý 100% trong trình duyệt, lưu IndexedDB |
+## Features
 
-> Spotify Web API **không** trả về số lượt stream/play count. Vì vậy “lượt stream” lấy từ file xuất dữ liệu cá nhân; ngưỡng tính 1 stream là ≥ 30 giây.
-> Từ 02/2026 các trường `popularity`, `followers`, `email`, `country`… bị bỏ với app Dev Mode — code không phụ thuộc vào chúng.
+| Page | Data source |
+| --- | --- |
+| Overview – hero, KPIs, top 9 artists (podium), insights (loyalty, decade taste, night owl), top tracks, top albums, genres, listening clock | `/me`, `/me/top/*`, `/me/player/recently-played`, `/me/tracks`, `/me/albums`, `/me/following` |
+| Artists / Tracks – up to 99 items, 3 time ranges (4 weeks · 6 months · 1 year) | `/me/top/{artists,tracks}` (2 pages: offset 0 + 49) |
+| Albums – **derived**, since Spotify has no top-albums endpoint | 99 top tracks, scored by rank |
+| Recent – day-by-day timeline | `/me/player/recently-played` (max 50) |
+| **Streams** – real stream counts, minutes listened, yearly Wrapped, monthly chart, weekday×hour heatmap, devices, sortable/searchable/paginated table (TanStack Table v9) | *Extended streaming history* export from spotify.com/account/privacy (.zip or .json), processed 100% in the browser, stored in IndexedDB |
+| **Ranking** – pick an album (search or recently played), drag its tracks into your order, leave some out, rename the ranking, then export a 1080×1920 story image (colours detected from the cover, optional background photo) and share it | `/search`, `/albums/{id}`, `/me/player/recently-played` |
 
-## Cấu trúc FSD
+- **Now playing & turntable** – the sidebar card and the landing-page turntable mirror whatever you're playing on Spotify. An app or device that's already playing keeps priority (controlled via the Web API); only when nothing is playing does timuze start its own in-browser player (Web Playback SDK, Premium only).
+- **Skins** – Minimal, Retro, Pixel and Glass: colours, fonts, corners, panels and motion style (calm · lively · stepped) all switch together.
 
-```
+> The Spotify Web API does **not** return stream / play counts, so “streams” come from your personal data export; a stream counts from ≥ 30 seconds.
+> Since 02/2026 fields like `popularity`, `followers`, `email`, `country`… are dropped for Dev Mode apps, and search returns at most 10 results per page — the code doesn't rely on them.
+> There is no server: tokens, imported history and rankings live in your browser only. Rankings aren't saved — export the image to keep one.
+
+## FSD structure
+
+```text
 src/
-├─ app/          # entry, providers (QueryClient, Router), styles (Tailwind @theme), routes/ (file-based TanStack Router)
-├─ pages/        # landing, callback, dashboard, top-artists, top-tracks, top-albums, recent, history, not-found
-├─ widgets/      # app-shell, profile-hero, top-artists, top-tracks, top-albums, listening-insights,
-│                # genre-breakdown, listening-clock, recent-timeline, history-dashboard, now-playing, page-header
-├─ features/     # auth (PKCE login/logout), time-range, import-history, switch-locale
+├─ app/          # entry, providers (QueryClient, Router), styles (Tailwind @theme + skins), routes/ (file-based TanStack Router)
+├─ pages/        # landing, callback, dashboard, top-artists, top-tracks, top-albums, recent, history, rank, not-found
+├─ widgets/      # app-shell, profile-hero, top-artists, top-tracks, top-albums, listening-insights, genre-breakdown,
+│                # listening-clock, recent-timeline, history-dashboard, now-playing, hero-turntable, page-header
+├─ features/     # auth (PKCE login/logout), time-range, top-filter, import-history, switch-locale, switch-skin,
+│                # web-player (SDK + Spotify Connect remote), rank-album (search, drag-to-rank, share image)
 ├─ entities/     # user, artist, track, album, library (types + requests), stream-history (parse + aggregate)
-└─ shared/       # api (client, session, paging), i18n, config, lib (cn, gsap, pkce, idb, format), ui (Button, Card, charts…)
+└─ shared/       # api (client, session, paging), i18n, theme (skins, motion), config, lib (cn, gsap, pkce, idb, format), ui (Button, Island, charts…)
 ```
 
-Quy tắc import: chỉ import từ layer thấp hơn (`app → pages → widgets → features → entities → shared`), qua `index.ts` public API của mỗi slice.
+Import rule: only import from lower layers (`app → pages → widgets → features → entities → shared`), through each slice's public API (`index.ts`).
 
-- Router: `src/app/routes` → sinh `src/app/routeTree.gen.ts`; `_app.tsx` là layout guard, `?range=` được validate bằng `validateSearch`, loader prefetch qua TanStack Query.
-- Style: utility inline, gộp bằng `cn()` = `clsx` + `tailwind-merge`; design token trong `@theme` ở `app/styles/index.css`.
-- Animation: `useGSAP` (tự cleanup), SplitText cho tiêu đề, ScrollTrigger cho reveal/biểu đồ, tôn trọng `prefers-reduced-motion`.
+- Router: `src/app/routes` → generates `src/app/routeTree.gen.ts`; `_app.tsx` is the auth-guarded layout, search params (`?range=`, `?album=`) are validated with `validateSearch`, loaders prefetch through TanStack Query.
+- Styling: inline utilities, merged with `cn()` = `clsx` + `tailwind-merge`; design tokens in `@theme` in `app/styles/index.css`, each skin in `app/styles/skins/*.css` sets the raw `--skin-*` variables.
+- Animation: `useGSAP` (auto cleanup), SplitText for headings, ScrollTrigger for reveals/charts, Flip for layout changes, every tween tuned to the skin's motion style via `tune()`; `prefers-reduced-motion` is respected.
 
-## Đa ngôn ngữ (i18next)
+## Internationalisation (i18next)
 
-Hỗ trợ **Tiếng Việt · English · 日本語** bằng `i18next` + `react-i18next`. Ngôn ngữ lấy theo lựa chọn đã lưu → ngôn ngữ trình duyệt → English, đổi bằng nút VI · EN · JA.
+Supports **Tiếng Việt · English · 日本語** with `i18next` + `react-i18next`. The language comes from the saved choice → the browser language → English, and is switched from the language menu.
 
-```
+```text
 src/shared/i18n/locales/<vi|en|ja>/
-├─ common.json              # text dùng lại ở nhiều nơi: nút (back, login, logout, retry…), lỗi, đơn vị, lịch, khoảng thời gian, nhãn chung
-├─ pages/<page>.json        # text riêng của từng page   → useTranslation('pages/landing')
-├─ widgets/<widget>.json    # text riêng của từng widget → useTranslation('widgets/history-dashboard')
-└─ features/<feature>.json  # text riêng của feature     → useTranslation('features/import-history')
+├─ common.json              # text shared across screens: buttons (back, login, logout, retry…), errors, units, calendar, time ranges, common labels
+├─ pages/<page>.json        # text for one page      → useTranslation('pages/landing')
+├─ widgets/<widget>.json    # text for one widget    → useTranslation('widgets/history-dashboard')
+└─ features/<feature>.json  # text for one feature   → useTranslation('features/import-history')
 ```
 
-- Mỗi namespace trùng tên slice FSD. Text chỉ dùng ở một chỗ thì để trong namespace của slice đó; dùng từ 2 slice trở lên thì chuyển vào `common`.
-- Cần cả `common`: `useTranslation(['widgets/app-shell', 'common'])` rồi `t('common:actions.retry')`.
-- Số nhiều: `key_one` / `key_other` + `{ count }` (vi, ja chỉ cần `_other`). Rich text: `<Trans components={{ link: <a … /> }} />` với thẻ `<link>…</link>` trong JSON.
-- `vi` là nguồn chuẩn: key được type-check (`i18next.d.ts`), và `en`/`ja` thiếu key sẽ làm `tsc` báo lỗi (`satisfies Resources` trong `locales/<lng>/index.ts`). Thêm namespace mới → thêm file JSON cho cả 3 ngôn ngữ và khai báo trong 3 file `index.ts`.
-- Số, ngày, "3 giờ 25 phút": dùng `useFormatters()`.
+- Each namespace matches an FSD slice. Text used in one place stays in that slice's namespace; once 2+ slices use it, move it to `common`.
+- Need `common` too: `useTranslation(['widgets/app-shell', 'common'])`, then `t('common:actions.retry')`.
+- Plurals: `key_one` / `key_other` + `{ count }` (vi and ja only need `_other`). Rich text: `<Trans components={{ link: <a … /> }} />` with a `<link>…</link>` tag in the JSON.
+- `vi` is the source of truth: keys are type-checked (`i18next.d.ts`), and a key missing from `en`/`ja` fails `tsc` (`satisfies Resources` in `locales/<lng>/index.ts`). New namespace → add the JSON file for all 3 languages and register it in the 3 `index.ts` files.
+- Numbers, dates, "3 hr 25 min": use `useFormatters()`.
 
 ## Scripts
+
 `npm run dev` · `npm run build` (tsc -b + vite build) · `npm run typecheck` · `npm run preview`
