@@ -27,7 +27,7 @@ export function CallbackPage({ code, state, error }: { code?: string; state?: st
         <div className="flex flex-col items-center gap-4">
           <h1 className="font-display text-3xl font-bold">{t('failed')}</h1>
           <p className="max-w-md text-ink-muted">{m.error.message}</p>
-          <ButtonLink href="/">{t('common:actions.backHome')}</ButtonLink>
+          <ButtonLink href={import.meta.env.BASE_URL}>{t('common:actions.backHome')}</ButtonLink>
         </div>
       ) : (
         <div className="flex flex-col items-center gap-5">

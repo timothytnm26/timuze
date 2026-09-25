@@ -3,7 +3,8 @@ const origin = typeof window !== 'undefined' ? window.location.origin : 'http://
 export const env = {
   spotifyClientId: (import.meta.env.VITE_SPOTIFY_CLIENT_ID as string | undefined) ?? '',
   spotifyRedirectUri:
-    (import.meta.env.VITE_SPOTIFY_REDIRECT_URI as string | undefined) ?? `${origin}/callback`,
+    // BASE_URL ends with a slash: `/` locally, `/timuze/` on GitHub Pages
+    (import.meta.env.VITE_SPOTIFY_REDIRECT_URI as string | undefined) || `${origin}${import.meta.env.BASE_URL}callback`,
   spotifyAuthUrl: 'https://accounts.spotify.com/authorize',
   spotifyTokenUrl: 'https://accounts.spotify.com/api/token',
   spotifyApiUrl: 'https://api.spotify.com/v1',

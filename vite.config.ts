@@ -6,6 +6,8 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // Spotify no longer accepts `localhost` redirect URIs – use the loopback IP.
 export default defineConfig({
+  // served from a sub-path on GitHub Pages (`/timuze/`) – the deploy workflow sets BASE_PATH
+  base: process.env.BASE_PATH ?? '/',
   plugins: [
     tanstackRouter({
       target: 'react',

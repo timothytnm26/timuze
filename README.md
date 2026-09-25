@@ -17,6 +17,16 @@ npm run dev            # http://127.0.0.1:5173
 3. Copy the **Client ID** into `.env`. No Client Secret needed — the app uses **Authorization Code + PKCE**, front-end only.
 4. Apps in *Development Mode* (since 02/2026): the app owner needs Spotify Premium and at most 5 users are allowed — add their emails under **User Management**.
 
+### Deploy to GitHub Pages
+
+`.github/workflows/deploy.yml` builds and publishes the site on every push to `main`, at `https://<user>.github.io/<repo>/`. One-time setup:
+
+1. Repo → **Settings → Pages** → Source: **GitHub Actions**.
+2. Repo → **Settings → Secrets and variables → Actions → Variables** → add `VITE_SPOTIFY_CLIENT_ID` (a public value with PKCE).
+3. Spotify Dashboard → your app → add the Redirect URI `https://<user>.github.io/<repo>/callback` (keep the `127.0.0.1` one for local dev).
+
+The workflow builds with `BASE_PATH=/<repo>/` and copies `index.html` to `404.html`, so deep links like `/callback` still load the app.
+
 ## Features
 
 | Page | Data source |
