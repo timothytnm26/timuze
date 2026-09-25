@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+@import './skins/minimal.css';
+@import './skins/retro.css';
+@import './skins/pixel.css';
+@import './skins/glass.css';
+
+/*
+ * Design tokens — Tailwind v4 CSS-first config.
+ * Everything is consumed inline via utilities (bg-surface, text-ink-muted, font-display…)
+ * and composed with `cn()` (clsx + tailwind-merge).
+ *
+ * Skins (./skins/*.css) only set raw `--skin-*` variables on `[data-skin]`. `@theme inline` maps
+ * them onto Tailwind's namespaces, so each utility reads the variable *where it is used* — any
+ * element can re-skin its subtree: `data-skin` on <html> for the app, on a menu item for a live
+ * preview, or an inline `--skin-brand` for a per-artist accent (derived colors follow along).
+ * In arbitrary values use `var(--skin-*)`, not `var(--color-*)` (the latter resolves at :root).
+ */
+@theme inline {
+  --font-sans: var(--skin-font-sans);
+  --font-display: var(--skin-font-display);
+  --font-mono: var(--skin-font-mono);
+
+  --color-canvas: var(--skin-canvas);
+  --color-surface: var(--skin-surface);
+  --color-surface-2: var(--skin-surface-2);
+  --color-surface-3: var(--skin-surface-3);
+  --color-line: var(--skin-line);
+
+  --color-ink: var(--skin-ink);
+  --color-ink-muted: var(--skin-ink-muted);
+  --color-ink-faint: var(--skin-ink-faint);
+
+  --color-brand: var(--skin-brand);
+  --color-brand-strong: color-mix(in oklch, var(--skin-brand) 85%, white);
+  --color-brand-soft: color-mix(in oklch, var(--skin-brand) 14%, transparent);
+  --color-accent: var(--skin-accent);
+  --color-danger: var(--skin-danger);
+
+  /* single-hue sequential ramp (brand → canvas) for magnitude charts – oklab keeps the hue from drifting */
+  --color-seq-1: color-mix(in oklab, var(--skin-brand) 20%, var(--skin-canvas));
+  --color-seq-2: color-mix(in oklab, var(--skin-brand) 38%, var(--skin-canvas));
+  --color-seq-3: color-mix(in oklab, var(--skin-brand) 57%, var(--skin-canvas));
+  --color-seq-4: color-mix(in oklab, var(--skin-brand) 78%, var(--skin-canvas));
+  --color-seq-5: var(--skin-brand);
+
+  /* Tailwind's radius scale × the skin's roundness (0 = square corners everywhere) */
+  --radius-xs: calc(0.125rem * var(--skin-round));
+  --radius-sm: calc(0.25rem * var(--skin-round));
+  --radius-md: calc(0.375rem * var(--skin-round));
+  --radius-lg: calc(0.5rem * var(--skin-round));
+  --radius-xl: calc(0.75rem * var(--skin-round));
+  --radius-2xl: calc(1rem * var(--skin-round));
+  --radius-3xl: calc(1.5rem * var(--skin-round));
+  --radius-4xl: calc(2rem * var(--skin-round));
+  --radius-full: var(--skin-radius-full);
+  --radius-card: var(--skin-radius-card);
+}
+
+@theme {
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-spin-slow: spin 8s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* one-off tweaks for a single skin: `pixel:border-2`, `glass:backdrop-blur-xl`… */
+@custom-variant minimal (&:where([data-skin='minimal'], [data-skin='minimal'] *));
+@custom-variant retro (&:where([data-skin='retro'], [data-skin='retro'] *));
+@custom-variant pixel (&:where([data-skin='pixel'], [data-skin='pixel'] *));
+@custom-variant glass (&:where([data-skin='glass'], [data-skin='glass'] *));
+
+@layer base {
+  :root {
+    --grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply skin-backdrop text-ink font-sans antialiased;
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    @apply bg-brand text-canvas;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  /* soft glows & blobs – skins with `--skin-decor: none` (minimal, pixel) drop them */
+  [data-decor] {
+    display: var(--skin-decor);
+  }
+}
+
+/* canvas color + the skin's backdrop layers (dot grid, color washes…) */
+@utility skin-backdrop {
+  background: var(--skin-backdrop), var(--skin-canvas);
+}
+
+/* a raised surface: border weight, shadow and frosting all come from the skin */
+@utility panel {
+  border-style: solid;
+  border-width: var(--skin-panel-border);
+  box-shadow: var(--skin-panel-shadow);
+  -webkit-backdrop-filter: var(--skin-panel-backdrop);
+  backdrop-filter: var(--skin-panel-backdrop);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility grain {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--skin-grain);
+    mix-blend-mode: overlay;
+    background-image: var(--grain-image);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

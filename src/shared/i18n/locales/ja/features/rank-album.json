@@ -1,0 +1,48 @@
+{
+  "search": {
+    "label": "アルバムを検索",
+    "placeholder": "ランキングするアルバムを検索…",
+    "clear": "クリア",
+    "searching": "検索中…",
+    "noResults": "「{{query}}」に一致するアルバムはありません。"
+  },
+  "tracks_one": "{{count}} 曲",
+  "tracks_other": "{{count}} 曲",
+  "changeAlbum": "アルバムを変更",
+  "instructions": "<grip/> をドラッグして並べ替え、<x/> で曲を外せます。",
+  "reset": "アルバム順に戻す",
+  "dragHint": "長押ししてドラッグで順位を変更、または上下の矢印キーで移動できます。",
+  "handle": "{{rank}} 位: {{track}}",
+  "moved": "{{track}} が {{rank}} 位になりました",
+  "share": {
+    "create": "シェア画像を作成",
+    "creating": "画像を作成中…",
+    "failed": "画像を作成できませんでした。もう一度お試しください。",
+    "title": "ランキング画像",
+    "close": "閉じる",
+    "preview": "{{album}} のランキング画像",
+    "share": "Instagram にシェア",
+    "download": "画像を保存",
+    "desktopHint": "スマートフォンでこのページを開くと、Instagram ストーリーに直接シェアできます。",
+    "accent": "メインカラー",
+    "fromCover": "ジャケットから抽出",
+    "stock": "デフォルト",
+    "swatch": "カラー {{n}}",
+    "background": "背景画像",
+    "pickBackground": "写真を選ぶ",
+    "changeBackground": "写真を変更",
+    "removeBackground": "背景を外す"
+  },
+  "image": {
+    "footer": "timuze でランキング",
+    "titleDefault": "{{album}} マイランキング"
+  },
+  "trackNo": "トラック {{n}}",
+  "remove": "{{track}} をランキングから外す",
+  "add": "{{track}} をランキングに戻す",
+  "addBack": "戻す",
+  "excluded": "ランキング外",
+  "excludedHint": "これらの曲は画像に含まれません。「戻す」でランキングの最後に追加されます。",
+  "titleLabel": "ランキングのタイトル",
+  "empty": "ランキングが空です。下の「ランキング外」から曲を追加してください。"
+}

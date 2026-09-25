@@ -1,0 +1,13 @@
+{
+  "greeting": {
+    "lateNight": "Khuya rồi",
+    "morning": "Chào buổi sáng",
+    "noon": "Chào buổi trưa",
+    "afternoon": "Chào buổi chiều",
+    "evening": "Chào buổi tối"
+  },
+  "savedTracks": "Bài đã lưu",
+  "savedAlbums": "Album đã lưu",
+  "following": "Đang theo dõi",
+  "last50": "50 lượt gần nhất"
+}

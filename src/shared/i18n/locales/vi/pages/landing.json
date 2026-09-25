@@ -1,0 +1,54 @@
+{
+  "badge": "Thống kê Spotify cho người mê nhạc",
+  "heroTitle": "Âm nhạc của bạn, kể bằng <hl>con số.</hl>",
+  "heroBody": "Đăng nhập Spotify để xem nghệ sĩ, bài hát và album bạn nghe nhiều nhất, thói quen nghe theo giờ và cả một bản “Wrapped” riêng – bất cứ lúc nào, không cần đợi cuối năm.",
+  "notConfigured": "Chưa cấu hình <code>VITE_SPOTIFY_CLIENT_ID</code>. Tạo app tại <link>Spotify Developer Dashboard</link>, thêm Redirect URI <code>{{redirectUri}}</code> rồi điền vào file <code>.env</code>.",
+  "floatingStat": "Phút nghe năm nay",
+  "featuresEyebrow": "Có gì trong timuze",
+  "featuresTitle": "Mọi thứ bạn muốn biết về thói quen nghe nhạc của mình.",
+  "features": [
+    {
+      "title": "Top nghệ sĩ",
+      "body": "Bục vinh danh top 3 và bảng xếp hạng tới 99 nghệ sĩ – theo 4 tuần, 6 tháng hoặc 1 năm."
+    },
+    {
+      "title": "Top bài hát",
+      "body": "Những bài bạn replay nhiều nhất, kèm độ chung thuỷ, gu thập niên và giờ nghe cao điểm."
+    },
+    {
+      "title": "Top album",
+      "body": "Spotify không có API top album – timuze tự tính từ 99 bài hát bạn nghe nhiều nhất."
+    },
+    {
+      "title": "Lượt stream thật",
+      "body": "Nhập file dữ liệu xuất từ Spotify để có số lượt stream, số giờ nghe và \"Wrapped\" cho từng năm."
+    },
+    {
+      "title": "Bản đồ nhiệt",
+      "body": "Xem bạn nghe nhạc vào thứ mấy, lúc mấy giờ, trên thiết bị nào, bỏ qua bao nhiêu bài."
+    },
+    {
+      "title": "Riêng tư",
+      "body": "Không có server. Token và dữ liệu chỉ nằm trong trình duyệt của bạn (OAuth PKCE)."
+    }
+  ],
+  "previewHint": "Bấm để xem trước",
+  "previewCaption": "Minh hoạ giao diện – chữ đã được thay bằng ký hiệu",
+  "collapse": "Thu gọn",
+  "steps": [
+    {
+      "title": "Đăng nhập Spotify",
+      "body": "Cấp quyền đọc top, lịch sử nghe gần đây và thư viện. Dữ liệu chỉ được đọc – quyền điều khiển phát chỉ dùng khi bạn bấm play trên máy phát đĩa."
+    },
+    {
+      "title": "Chọn khoảng thời gian",
+      "body": "4 tuần, 6 tháng hay cả năm – mọi thống kê cập nhật ngay lập tức."
+    },
+    {
+      "title": "Khám phá & nhập thêm",
+      "body": "Thả file lịch sử stream đầy đủ để mở khoá thống kê theo năm."
+    }
+  ],
+  "outro": "Mỗi lần bấm play là một dòng nhật ký. timuze giúp bạn đọc lại cuốn nhật ký ấy – theo cách đẹp nhất.",
+  "footer": "timuze · không liên kết với Spotify AB · dữ liệu từ <link>Spotify Web API</link>"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Import your full listening history",
+  "description": "The Spotify API only returns your last 50 tracks. To get <b>real stream counts</b> per year, request your data at <link>spotify.com/account/privacy</link> (choose <i>Extended streaming history</i>), then drop the <code>.zip</code> or <code>.json</code> files here. Your data is processed only in your browser.",
+  "chooseFiles": "Choose files",
+  "processing": "Processing…",
+  "imported_one": "Imported {{count, number}} play",
+  "imported_other": "Imported {{count, number}} plays",
+  "clear": "Delete imported data",
+  "errors": {
+    "noData": "No listening data found in the selected files"
+  }
+}

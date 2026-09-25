@@ -1,0 +1,46 @@
+/*
+ * Pixel — an 8-bit handheld: navy screen, lime and cyan from the Sweetie-16 palette, a bitmap
+ * font, chunky 2px borders with hard drop shadows, a dot grid and pixelated cover art.
+ */
+@layer base {
+  [data-skin='pixel'] {
+    /* VT323 covers Vietnamese; DotGothic16 picks up Japanese */
+    --skin-font-sans: 'VT323', 'DotGothic16', ui-monospace, monospace;
+    --skin-font-display: 'VT323', 'DotGothic16', ui-monospace, monospace;
+    --skin-font-mono: 'VT323', 'DotGothic16', ui-monospace, monospace;
+
+    --skin-canvas: #10121f;
+    --skin-surface: #1a1c2c;
+    --skin-surface-2: #262b44;
+    --skin-surface-3: #333c57;
+    --skin-line: #3b4566;
+
+    --skin-ink: #f4f4f4;
+    --skin-ink-muted: #94b0c2;
+    --skin-ink-faint: #7189a6;
+
+    --skin-brand: #a7f070;
+    --skin-accent: #73eff7;
+    --skin-danger: #f05a6e;
+
+    --skin-round: 0;
+    --skin-radius-full: 0;
+    --skin-radius-card: 0;
+
+    --skin-panel-border: 2px;
+    --skin-panel-shadow: 4px 4px 0 0 #05060c;
+    --skin-panel-backdrop: none;
+    --skin-backdrop: radial-gradient(circle at 1px 1px, #20243a 1px, transparent 0) 0 0 / 16px 16px;
+    --skin-grain: 0;
+    --skin-decor: none;
+
+    /* VT323's x-height is 0.40em (Inter: 0.55) – scale it up to read at the same size */
+    font-size-adjust: 0.52;
+    /* the bitmap face has a single weight: never fake bold/italic */
+    font-synthesis: none;
+  }
+
+  [data-skin='pixel'] img {
+    image-rendering: pixelated;
+  }
+}

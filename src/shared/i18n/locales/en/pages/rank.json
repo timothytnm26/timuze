@@ -1,0 +1,9 @@
+{
+  "eyebrow": "Ranking",
+  "title": "Rank the tracks",
+  "description": "Pick an album and drag its tracks into your order of favourites – then turn it into an image for Instagram.",
+  "notice": "timuze has no server, so rankings aren't saved: yours lives in this tab only and is gone when you reload or switch albums. Create the image to keep it.",
+  "recent": "Recently played",
+  "recentEmpty": "No albums in your last 50 plays yet.",
+  "loadingAlbum": "Loading album…"
+}

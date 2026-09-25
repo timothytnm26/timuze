@@ -1,0 +1,6 @@
+{
+  "title": "Listening clock",
+  "subtitlePeak": "Peak hour: {{peak}} · based on your last 50 plays",
+  "subtitle": "Based on your last 50 plays",
+  "ariaLabel": "Plays by hour of day"
+}

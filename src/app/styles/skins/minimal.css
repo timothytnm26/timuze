@@ -1,0 +1,41 @@
+/*
+ * Minimal (default) — black, white and Spotify green. Square corners, flat hairline panels,
+ * no glows. Fonts are preloaded in index.html; motion style lives in `shared/theme`.
+ *
+ * Every skin file must set the full `--skin-*` list: a nested `[data-skin]` (e.g. a preview)
+ * would otherwise inherit the missing values from the page's skin.
+ */
+@layer base {
+
+  :root,
+  [data-skin='minimal'] {
+    --skin-font-sans: 'Inter', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+    --skin-font-display: 'Bricolage Grotesque', 'Inter', 'Noto Sans JP', ui-sans-serif, sans-serif;
+    --skin-font-mono: 'JetBrains Mono', ui-monospace, 'Noto Sans JP', monospace;
+
+    --skin-canvas: #000000;
+    --skin-surface: #0e0e0e;
+    --skin-surface-2: #171717;
+    --skin-surface-3: #242424;
+    --skin-line: #282828;
+
+    --skin-ink: #ffffff;
+    --skin-ink-muted: #a3a3a3;
+    --skin-ink-faint: #6e6e6e;
+
+    --skin-brand: #1ed760;
+    --skin-accent: #ffffff;
+    --skin-danger: #ff4d5e;
+
+    --skin-round: 0;
+    --skin-radius-full: 0;
+    --skin-radius-card: 0;
+
+    --skin-panel-border: 1px;
+    --skin-panel-shadow: none;
+    --skin-panel-backdrop: none;
+    --skin-backdrop: none;
+    --skin-grain: 0;
+    --skin-decor: none;
+  }
+}

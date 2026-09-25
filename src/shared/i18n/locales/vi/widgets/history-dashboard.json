@@ -1,0 +1,49 @@
+{
+  "year": "Năm",
+  "all": "Tất cả",
+  "allTime": "Toàn bộ lịch sử",
+  "yourYear": "Năm {{year}} của bạn",
+  "minutesListened": "phút nghe nhạc",
+  "topArtist": "Nghệ sĩ số 1",
+  "topTrack": "Bài hát số 1",
+  "stats": {
+    "streams": "Lượt stream (≥ 30 giây)",
+    "uniqueTracks": "Bài hát khác nhau",
+    "uniqueArtists": "Nghệ sĩ khác nhau",
+    "longestStreak": "Chuỗi ngày nghe dài nhất",
+    "skipRate": "Tỉ lệ bỏ qua",
+    "topDay": "Ngày cày nhất"
+  },
+  "monthly": {
+    "all": "Theo tháng",
+    "year": "Từng tháng trong {{year}}",
+    "metric": "Chỉ số",
+    "streamsSubtitle": "Số lượt stream",
+    "hoursSubtitle": "Số giờ nghe",
+    "ariaLabel": "Nghe nhạc theo tháng"
+  },
+  "heatmap": {
+    "title": "Bản đồ nhiệt",
+    "subtitle": "Bạn nghe nhạc vào thứ mấy, lúc mấy giờ"
+  },
+  "devices": {
+    "title": "Thiết bị",
+    "subtitle": "Theo thời lượng nghe",
+    "empty": "File lịch sử cơ bản không có thông tin thiết bị."
+  },
+  "platforms": {
+    "cast": "Loa / TV",
+    "other": "Khác"
+  },
+  "ranking": {
+    "title": "Bảng xếp hạng",
+    "subtitle": "Bấm tiêu đề cột để sắp xếp",
+    "type": "Loại",
+    "name": "Tên",
+    "search": "Tìm kiếm…",
+    "page": "Trang {{page}} / {{total}}",
+    "prev": "← Trước",
+    "next": "Sau →"
+  },
+  "footer": "{{plays}} từ {{files}} · nhập lúc {{date}}"
+}

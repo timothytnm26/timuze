@@ -1,0 +1,5 @@
+export { LOCALES, LOCALE_NAMES, INTL_LOCALE, isLocale, type Locale } from './config'
+export { i18n, setLocale, getLocale } from './instance'
+export { useFormatters, type Formatters } from './format'
+export { useTranslation, Trans } from 'react-i18next'
+export type { TFunction } from 'i18next'

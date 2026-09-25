@@ -1,0 +1,54 @@
+{
+  "badge": "Spotify stats for music lovers",
+  "heroTitle": "Your music, told in <hl>numbers.</hl>",
+  "heroBody": "Log in with Spotify to see the artists, tracks and albums you play the most, your listening habits by hour, and your own “Wrapped” – any time, no need to wait for December.",
+  "notConfigured": "<code>VITE_SPOTIFY_CLIENT_ID</code> is not configured. Create an app in the <link>Spotify Developer Dashboard</link>, add the Redirect URI <code>{{redirectUri}}</code>, then put it in your <code>.env</code> file.",
+  "floatingStat": "Minutes listened this year",
+  "featuresEyebrow": "What's inside timuze",
+  "featuresTitle": "Everything you ever wanted to know about your listening habits.",
+  "features": [
+    {
+      "title": "Top artists",
+      "body": "A top-3 podium and a chart of up to 99 artists – over 4 weeks, 6 months or 1 year."
+    },
+    {
+      "title": "Top tracks",
+      "body": "The songs you replay the most, plus loyalty, decade taste and peak listening hours."
+    },
+    {
+      "title": "Top albums",
+      "body": "Spotify has no top-albums API – timuze derives it from your 99 most-played tracks."
+    },
+    {
+      "title": "Real stream counts",
+      "body": "Import your Spotify data export to get stream counts, hours listened and a \"Wrapped\" for every year."
+    },
+    {
+      "title": "Heatmap",
+      "body": "See which days and hours you listen, on which devices, and how many tracks you skip."
+    },
+    {
+      "title": "Private",
+      "body": "No server. Your token and data stay in your browser only (OAuth PKCE)."
+    }
+  ],
+  "previewHint": "Click to preview",
+  "previewCaption": "Illustration – text replaced with symbols",
+  "collapse": "Collapse",
+  "steps": [
+    {
+      "title": "Log in with Spotify",
+      "body": "Grant read access to your top items, recent plays and library. Your data is only read – playback control is used only when you press play on the turntable."
+    },
+    {
+      "title": "Pick a time range",
+      "body": "4 weeks, 6 months or a whole year – every stat updates instantly."
+    },
+    {
+      "title": "Explore & import more",
+      "body": "Drop in your full streaming history to unlock yearly stats."
+    }
+  ],
+  "outro": "Every press of play is a diary entry. timuze helps you read that diary back – beautifully.",
+  "footer": "timuze · not affiliated with Spotify AB · data from the <link>Spotify Web API</link>"
+}

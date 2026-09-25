@@ -1,0 +1,9 @@
+{
+  "statsIn": "Stats for <b>{{range}}</b>",
+  "sections": {
+    "favoriteArtists": "Favorite artists",
+    "insights": "Insights",
+    "topTracks": "Most played tracks",
+    "topAlbums": "Top albums"
+  }
+}

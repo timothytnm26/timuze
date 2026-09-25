@@ -1,0 +1,9 @@
+{
+  "eyebrow": "Xếp hạng",
+  "title": "Xếp hạng bài hát",
+  "description": "Chọn một album rồi kéo thả các bài theo độ yêu thích của bạn – xong thì tạo ảnh để khoe lên Instagram.",
+  "notice": "timuze không có server nên bảng xếp hạng không được lưu lại: nó chỉ nằm trong tab này và sẽ mất khi bạn tải lại trang hoặc đổi album. Hãy tạo ảnh để giữ lại.",
+  "recent": "Nghe gần đây",
+  "recentEmpty": "Chưa có album nào trong 50 lượt nghe gần nhất.",
+  "loadingAlbum": "Đang tải album…"
+}

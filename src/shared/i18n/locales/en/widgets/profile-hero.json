@@ -1,0 +1,13 @@
+{
+  "greeting": {
+    "lateNight": "Up late",
+    "morning": "Good morning",
+    "noon": "Good afternoon",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "savedTracks": "Saved tracks",
+  "savedAlbums": "Saved albums",
+  "following": "Following",
+  "last50": "Last 50 plays"
+}

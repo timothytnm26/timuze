@@ -1,0 +1,9 @@
+{
+  "statsIn": "<b>{{range}}</b>の統計",
+  "sections": {
+    "favoriteArtists": "お気に入りのアーティスト",
+    "insights": "インサイト",
+    "topTracks": "よく聴いた曲",
+    "topAlbums": "トップアルバム"
+  }
+}

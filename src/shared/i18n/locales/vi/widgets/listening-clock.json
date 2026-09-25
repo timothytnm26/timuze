@@ -1,0 +1,6 @@
+{
+  "title": "Đồng hồ nghe nhạc",
+  "subtitlePeak": "Giờ cao điểm: {{peak}} · dựa trên 50 lượt gần nhất",
+  "subtitle": "Dựa trên 50 lượt gần nhất",
+  "ariaLabel": "Số lượt nghe theo giờ trong ngày"
+}

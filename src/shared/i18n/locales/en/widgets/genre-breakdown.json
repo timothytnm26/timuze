@@ -1,0 +1,6 @@
+{
+  "title": "Top genres",
+  "subtitle": "Based on your top 50 artists, higher-ranked artists weigh more",
+  "emptyTitle": "No genre data yet",
+  "emptyDescription": "Spotify doesn't return genres for these artists."
+}

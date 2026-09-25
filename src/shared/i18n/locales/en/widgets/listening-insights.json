@@ -1,0 +1,24 @@
+{
+  "loyalty": {
+    "title": "Loyalty",
+    "note": "of your top 50 tracks belong to your 5 most-played artists"
+  },
+  "explorer": {
+    "title": "Explorer",
+    "note": "different artists appear in your top 50 tracks"
+  },
+  "era": {
+    "title": "Musical era",
+    "note": "average release year of your favorite tracks"
+  },
+  "nightOwl": {
+    "title": "Night owl",
+    "note": "of recent plays fall between 10 pm and 4 am · average track length {{avgLength}}"
+  },
+  "decades": {
+    "title": "By decade",
+    "subtitle": "Release years of your top 50 tracks",
+    "hint": "The {{decade}}",
+    "ariaLabel": "Tracks by release decade"
+  }
+}

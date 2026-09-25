@@ -1,0 +1,119 @@
+{
+  "actions": {
+    "retry": "Thử lại",
+    "backHome": "Về trang chủ",
+    "seeAll": "Xem tất cả →",
+    "openDashboard": "Mở dashboard →",
+    "login": "Đăng nhập với Spotify",
+    "loginShort": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "redirecting": "Đang chuyển hướng…",
+    "showLess": "Thu gọn",
+    "showMore": "+{{count}} nữa"
+  },
+  "labels": {
+    "language": "Ngôn ngữ",
+    "artist": "Nghệ sĩ",
+    "artists": "Nghệ sĩ",
+    "tracks": "Bài hát",
+    "albums": "Album",
+    "streams": "Lượt stream",
+    "listeningHours": "Giờ nghe",
+    "skin": "Giao diện"
+  },
+  "auth": {
+    "missingClientId": "Thiếu VITE_SPOTIFY_CLIENT_ID trong file .env"
+  },
+  "errors": {
+    "loadFailed": "Không tải được dữ liệu",
+    "generic": "Đã có lỗi xảy ra",
+    "sessionExpired": "Phiên đăng nhập đã hết hạn",
+    "refreshFailed": "Không thể làm mới phiên đăng nhập",
+    "accessDenied": "Bạn đã từ chối cấp quyền",
+    "missingCode": "Thiếu mã xác thực, vui lòng đăng nhập lại",
+    "stateMismatch": "State không khớp – có thể là yêu cầu giả mạo",
+    "tokenExchangeFailed": "Đổi mã lấy token thất bại",
+    "invalidHistoryFile": "File không đúng định dạng lịch sử nghe của Spotify"
+  },
+  "units": {
+    "minutes": "{{value}} phút",
+    "hours": "{{hours}} giờ",
+    "hoursMinutes": "{{hours}} giờ {{minutes}} phút",
+    "hoursValue": "{{value}} giờ",
+    "plays_other": "{{count, number}} lượt",
+    "streams_other": "{{count, number}} lượt stream",
+    "tracks_other": "{{count, number}} bài",
+    "files_other": "{{count, number}} file",
+    "minuteSuffix": "phút",
+    "daySuffix": "ngày",
+    "artistSuffix": "nghệ sĩ"
+  },
+  "calendar": {
+    "weekdaysShort": [
+      "CN",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "monthsShort": [
+      "Th1",
+      "Th2",
+      "Th3",
+      "Th4",
+      "Th5",
+      "Th6",
+      "Th7",
+      "Th8",
+      "Th9",
+      "Th10",
+      "Th11",
+      "Th12"
+    ],
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "hourRange": "{{from}}:00 – {{to}}:00"
+  },
+  "timeRange": {
+    "label": "Khoảng thời gian",
+    "short_term": {
+      "label": "4 tuần",
+      "long": "4 tuần qua"
+    },
+    "medium_term": {
+      "label": "6 tháng",
+      "long": "6 tháng qua"
+    },
+    "long_term": {
+      "label": "1 năm",
+      "long": "khoảng 1 năm qua"
+    }
+  },
+  "charts": {
+    "heatmap": {
+      "hint": "Rê chuột lên ô để xem chi tiết",
+      "less": "Ít",
+      "more": "Nhiều"
+    }
+  },
+  "skins": {
+    "minimal": {
+      "name": "Minimal",
+      "description": "Đen, trắng và xanh Spotify – gọn, ít chuyển động"
+    },
+    "retro": {
+      "name": "Retro",
+      "description": "Nâu ấm, vàng mù tạt, chữ có chân thập niên 70"
+    },
+    "pixel": {
+      "name": "Pixel",
+      "description": "Màn hình 8-bit, góc vuông, ảnh bìa vỡ hạt"
+    },
+    "glass": {
+      "name": "Glass",
+      "description": "Kính mờ trong suốt trên nền màu loang"
+    }
+  }
+}

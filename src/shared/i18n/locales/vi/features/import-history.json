@@ -1,0 +1,11 @@
+{
+  "title": "Nhập lịch sử nghe đầy đủ",
+  "description": "Spotify API chỉ trả về 50 bài gần nhất. Để có <b>số lượt stream thật</b> theo năm, hãy tải dữ liệu tại <link>spotify.com/account/privacy</link> (chọn <i>Extended streaming history</i>) rồi kéo file <code>.zip</code> hoặc <code>.json</code> vào đây. Dữ liệu chỉ được xử lý trong trình duyệt của bạn.",
+  "chooseFiles": "Chọn file",
+  "processing": "Đang xử lý…",
+  "imported_other": "Đã nhập {{count, number}} lượt phát",
+  "clear": "Xoá dữ liệu đã nhập",
+  "errors": {
+    "noData": "Không tìm thấy dữ liệu nghe nhạc trong các file đã chọn"
+  }
+}

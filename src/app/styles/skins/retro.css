@@ -1,0 +1,54 @@
+/*
+ * Retro — a 70s record sleeve: espresso browns, mustard and teal, a soft "wonky" serif,
+ * film grain over everything and offset misprint shadows.
+ */
+@layer base {
+  [data-skin='retro'] {
+    --skin-font-sans: 'Inter', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+    --skin-font-display: 'Fraunces', 'Noto Sans JP', Georgia, serif;
+    --skin-font-mono: 'Space Mono', 'Noto Sans JP', ui-monospace, monospace;
+
+    --skin-canvas: #1c1410;
+    --skin-surface: #261b15;
+    --skin-surface-2: #30231b;
+    --skin-surface-3: #3d2d23;
+    --skin-line: #4b382b;
+
+    --skin-ink: #f5e6c8;
+    --skin-ink-muted: #c9b08e;
+    --skin-ink-faint: #957c5f;
+
+    --skin-brand: #f2a93b;
+    --skin-accent: #5bb8a6;
+    --skin-danger: #ff6f5e;
+
+    --skin-round: 1;
+    --skin-radius-full: 9999px;
+    --skin-radius-card: 1.25rem;
+
+    --skin-panel-border: 1px;
+    --skin-panel-shadow: 4px 4px 0 0 color-mix(in oklch, var(--skin-brand) 22%, transparent);
+    --skin-panel-backdrop: none;
+    --skin-backdrop: radial-gradient(120% 70% at 50% -20%, color-mix(in oklch, var(--skin-brand) 16%, transparent), transparent 70%);
+    --skin-grain: 0.1;
+    --skin-decor: block;
+  }
+
+  [data-skin='retro'] .font-display {
+    font-variation-settings:
+      'SOFT' 100,
+      'WONK' 1;
+  }
+
+  /* page-wide film grain */
+  [data-skin='retro'] body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: var(--grain-image);
+  }
+}

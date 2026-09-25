@@ -1,0 +1,49 @@
+{
+  "year": "Year",
+  "all": "All",
+  "allTime": "All-time history",
+  "yourYear": "Your {{year}}",
+  "minutesListened": "minutes listened",
+  "topArtist": "Top artist",
+  "topTrack": "Top track",
+  "stats": {
+    "streams": "Streams (≥ 30 seconds)",
+    "uniqueTracks": "Different tracks",
+    "uniqueArtists": "Different artists",
+    "longestStreak": "Longest listening streak",
+    "skipRate": "Skip rate",
+    "topDay": "Biggest day"
+  },
+  "monthly": {
+    "all": "By month",
+    "year": "Month by month in {{year}}",
+    "metric": "Metric",
+    "streamsSubtitle": "Number of streams",
+    "hoursSubtitle": "Hours listened",
+    "ariaLabel": "Listening by month"
+  },
+  "heatmap": {
+    "title": "Heatmap",
+    "subtitle": "Which days and hours you listen"
+  },
+  "devices": {
+    "title": "Devices",
+    "subtitle": "By listening time",
+    "empty": "The basic history export has no device information."
+  },
+  "platforms": {
+    "cast": "Speaker / TV",
+    "other": "Other"
+  },
+  "ranking": {
+    "title": "Rankings",
+    "subtitle": "Click a column header to sort",
+    "type": "Type",
+    "name": "Name",
+    "search": "Search…",
+    "page": "Page {{page}} / {{total}}",
+    "prev": "← Prev",
+    "next": "Next →"
+  },
+  "footer": "{{plays}} from {{files}} · imported {{date}}"
+}

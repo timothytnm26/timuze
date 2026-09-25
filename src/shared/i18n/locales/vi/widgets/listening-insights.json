@@ -1,0 +1,24 @@
+{
+  "loyalty": {
+    "title": "Độ chung thuỷ",
+    "note": "số bài trong top 50 thuộc về 5 nghệ sĩ bạn nghe nhiều nhất"
+  },
+  "explorer": {
+    "title": "Nhà thám hiểm",
+    "note": "khác nhau xuất hiện trong top 50 bài hát của bạn"
+  },
+  "era": {
+    "title": "Gu âm nhạc năm",
+    "note": "năm phát hành trung bình của các bài bạn yêu thích"
+  },
+  "nightOwl": {
+    "title": "Cú đêm",
+    "note": "lượt nghe gần đây rơi vào 22h – 4h · độ dài bài trung bình {{avgLength}}"
+  },
+  "decades": {
+    "title": "Theo thập niên",
+    "subtitle": "Năm phát hành của top 50 bài",
+    "hint": "Thập niên {{decade}}",
+    "ariaLabel": "Số bài theo thập niên phát hành"
+  }
+}

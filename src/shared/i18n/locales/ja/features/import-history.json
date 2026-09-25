@@ -1,0 +1,11 @@
+{
+  "title": "完全な再生履歴を読み込む",
+  "description": "Spotify API が返すのは直近50曲だけです。年ごとの<b>本当の再生回数</b>を見るには、<link>spotify.com/account/privacy</link> でデータをリクエストし（<i>Extended streaming history</i> を選択）、<code>.zip</code> または <code>.json</code> ファイルをここにドロップしてください。データはブラウザ内だけで処理されます。",
+  "chooseFiles": "ファイルを選択",
+  "processing": "処理中…",
+  "imported_other": "{{count, number}}回分の再生を読み込みました",
+  "clear": "読み込んだデータを削除",
+  "errors": {
+    "noData": "選択したファイルに再生データが見つかりませんでした"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "greeting": {
+    "lateNight": "夜更かしですね",
+    "morning": "おはようございます",
+    "noon": "こんにちは",
+    "afternoon": "こんにちは",
+    "evening": "こんばんは"
+  },
+  "savedTracks": "保存した曲",
+  "savedAlbums": "保存したアルバム",
+  "following": "フォロー中",
+  "last50": "直近50回"
+}

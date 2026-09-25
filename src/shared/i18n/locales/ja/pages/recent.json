@@ -1,0 +1,5 @@
+{
+  "eyebrow": "ダイアリー",
+  "title": "最近再生した曲",
+  "description": "直近50回の再生 – Spotify Web API で取得できる上限です。"
+}

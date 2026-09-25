@@ -1,0 +1,24 @@
+{
+  "hint": "Press <play/> on the turntable to play Spotify right here.",
+  "hintAnonymous": "Log in with Spotify, then press <play/> on the turntable to listen in the browser.",
+  "connecting": "Connecting the Spotify player…",
+  "play": "Play",
+  "pause": "Pause",
+  "next": "Next track",
+  "previous": "Previous track",
+  "dismiss": "Dismiss",
+  "nowPlaying": "Now playing",
+  "paused": "Paused",
+  "openInSpotify": "Open in Spotify",
+  "onDevice": "on {{device}}",
+  "errors": {
+    "login": "Log in with Spotify to play music.",
+    "scope": "Your current session can't control playback yet – please log in once more.",
+    "auth": "Your Spotify session has expired, please log in again.",
+    "premium": "Playing in the browser requires Spotify Premium.",
+    "unsupported": "This browser doesn't support the Spotify player.",
+    "playback": "Couldn't start playback – try again or open Spotify on another device.",
+    "noDevice": "No active Spotify device.",
+    "remotePremium": "Controlling playback requires Spotify Premium."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "genre": "Genre",
+  "country": "Country",
+  "all": "All",
+  "clear": "Clear filter",
+  "emptyTitle": "No matches",
+  "emptyDescription": "Nothing matches this filter in the selected time range.",
+  "countryLoading": "Looking up countries on MusicBrainz…",
+  "countryUnavailable": "Couldn't look up artist countries right now.",
+  "countrySource": "Countries come from MusicBrainz – artists without data only show under “All”."
+}

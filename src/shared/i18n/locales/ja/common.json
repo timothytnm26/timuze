@@ -1,0 +1,119 @@
+{
+  "actions": {
+    "retry": "再試行",
+    "backHome": "ホームに戻る",
+    "seeAll": "すべて見る →",
+    "openDashboard": "ダッシュボードを開く →",
+    "login": "Spotify でログイン",
+    "loginShort": "ログイン",
+    "logout": "ログアウト",
+    "redirecting": "リダイレクト中…",
+    "showLess": "閉じる",
+    "showMore": "他{{count}}件"
+  },
+  "labels": {
+    "language": "言語",
+    "artist": "アーティスト",
+    "artists": "アーティスト",
+    "tracks": "曲",
+    "albums": "アルバム",
+    "streams": "再生回数",
+    "listeningHours": "再生時間",
+    "skin": "スキン"
+  },
+  "auth": {
+    "missingClientId": ".env に VITE_SPOTIFY_CLIENT_ID がありません"
+  },
+  "errors": {
+    "loadFailed": "データを読み込めませんでした",
+    "generic": "エラーが発生しました",
+    "sessionExpired": "セッションの有効期限が切れました",
+    "refreshFailed": "セッションを更新できませんでした",
+    "accessDenied": "アクセス許可が拒否されました",
+    "missingCode": "認証コードがありません。もう一度ログインしてください",
+    "stateMismatch": "state が一致しません – 不正なリクエストの可能性があります",
+    "tokenExchangeFailed": "トークンの取得に失敗しました",
+    "invalidHistoryFile": "Spotify の再生履歴ファイルの形式ではありません"
+  },
+  "units": {
+    "minutes": "{{value}}分",
+    "hours": "{{hours}}時間",
+    "hoursMinutes": "{{hours}}時間{{minutes}}分",
+    "hoursValue": "{{value}}時間",
+    "plays_other": "{{count, number}}回",
+    "streams_other": "{{count, number}}回再生",
+    "tracks_other": "{{count, number}}曲",
+    "files_other": "{{count, number}}ファイル",
+    "minuteSuffix": "分",
+    "daySuffix": "日",
+    "artistSuffix": "組"
+  },
+  "calendar": {
+    "weekdaysShort": [
+      "日",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土"
+    ],
+    "monthsShort": [
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
+    "today": "今日",
+    "yesterday": "昨日",
+    "hourRange": "{{from}}:00〜{{to}}:00"
+  },
+  "timeRange": {
+    "label": "期間",
+    "short_term": {
+      "label": "4週間",
+      "long": "過去4週間"
+    },
+    "medium_term": {
+      "label": "6か月",
+      "long": "過去6か月"
+    },
+    "long_term": {
+      "label": "1年",
+      "long": "過去約1年"
+    }
+  },
+  "charts": {
+    "heatmap": {
+      "hint": "セルにカーソルを合わせると詳細を表示",
+      "less": "少",
+      "more": "多"
+    }
+  },
+  "skins": {
+    "minimal": {
+      "name": "ミニマル",
+      "description": "黒・白・Spotifyグリーン、控えめな動き"
+    },
+    "retro": {
+      "name": "レトロ",
+      "description": "温かいブラウンとマスタード、70年代のセリフ体"
+    },
+    "pixel": {
+      "name": "ピクセル",
+      "description": "8ビット画面、角ばった形、ドット化したジャケット"
+    },
+    "glass": {
+      "name": "グラス",
+      "description": "やわらかな色に浮かぶすりガラスのパネル"
+    }
+  }
+}

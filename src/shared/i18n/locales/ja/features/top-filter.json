@@ -1,0 +1,11 @@
+{
+  "genre": "ジャンル",
+  "country": "国",
+  "all": "すべて",
+  "clear": "フィルターを解除",
+  "emptyTitle": "該当なし",
+  "emptyDescription": "この期間にはフィルターに一致する項目がありません。",
+  "countryLoading": "MusicBrainzで国を検索中…",
+  "countryUnavailable": "アーティストの国を取得できませんでした。",
+  "countrySource": "国の情報はMusicBrainzから取得しています。データのないアーティストは「すべて」にのみ表示されます。"
+}

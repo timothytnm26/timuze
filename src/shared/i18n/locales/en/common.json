@@ -1,0 +1,123 @@
+{
+  "actions": {
+    "retry": "Try again",
+    "backHome": "Back to home",
+    "seeAll": "See all →",
+    "openDashboard": "Open dashboard →",
+    "login": "Log in with Spotify",
+    "loginShort": "Log in",
+    "logout": "Log out",
+    "redirecting": "Redirecting…",
+    "showLess": "Show less",
+    "showMore": "+{{count}} more"
+  },
+  "labels": {
+    "language": "Language",
+    "artist": "Artist",
+    "artists": "Artists",
+    "tracks": "Tracks",
+    "albums": "Albums",
+    "streams": "Streams",
+    "listeningHours": "Hours",
+    "skin": "Skin"
+  },
+  "auth": {
+    "missingClientId": "VITE_SPOTIFY_CLIENT_ID is missing from .env"
+  },
+  "errors": {
+    "loadFailed": "Couldn't load data",
+    "generic": "Something went wrong",
+    "sessionExpired": "Your session has expired",
+    "refreshFailed": "Couldn't refresh your session",
+    "accessDenied": "You declined the permission request",
+    "missingCode": "Missing authorization code, please log in again",
+    "stateMismatch": "State mismatch – the request may have been forged",
+    "tokenExchangeFailed": "Failed to exchange the code for a token",
+    "invalidHistoryFile": "This file isn't a Spotify streaming history export"
+  },
+  "units": {
+    "minutes": "{{value}} min",
+    "hours": "{{hours}} hr",
+    "hoursMinutes": "{{hours}} hr {{minutes}} min",
+    "hoursValue": "{{value}} hr",
+    "plays_one": "{{count, number}} play",
+    "plays_other": "{{count, number}} plays",
+    "streams_one": "{{count, number}} stream",
+    "streams_other": "{{count, number}} streams",
+    "tracks_one": "{{count, number}} track",
+    "tracks_other": "{{count, number}} tracks",
+    "files_one": "{{count, number}} file",
+    "files_other": "{{count, number}} files",
+    "minuteSuffix": "min",
+    "daySuffix": "days",
+    "artistSuffix": "artists"
+  },
+  "calendar": {
+    "weekdaysShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "monthsShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "hourRange": "{{from}}:00 – {{to}}:00"
+  },
+  "timeRange": {
+    "label": "Time range",
+    "short_term": {
+      "label": "4 weeks",
+      "long": "the last 4 weeks"
+    },
+    "medium_term": {
+      "label": "6 months",
+      "long": "the last 6 months"
+    },
+    "long_term": {
+      "label": "1 year",
+      "long": "about the last year"
+    }
+  },
+  "charts": {
+    "heatmap": {
+      "hint": "Hover a cell for details",
+      "less": "Less",
+      "more": "More"
+    }
+  },
+  "skins": {
+    "minimal": {
+      "name": "Minimal",
+      "description": "Black, white & Spotify green – calm, little motion"
+    },
+    "retro": {
+      "name": "Retro",
+      "description": "Warm browns, mustard and a 70s serif"
+    },
+    "pixel": {
+      "name": "Pixel",
+      "description": "8-bit screen, hard edges, pixelated covers"
+    },
+    "glass": {
+      "name": "Glass",
+      "description": "Frosted translucent panels over soft color"
+    }
+  }
+}

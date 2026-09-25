@@ -1,0 +1,9 @@
+{
+  "statsIn": "Thống kê trong <b>{{range}}</b>",
+  "sections": {
+    "favoriteArtists": "Nghệ sĩ yêu thích",
+    "insights": "Góc nhìn",
+    "topTracks": "Bài hát nghe nhiều nhất",
+    "topAlbums": "Album hàng đầu"
+  }
+}

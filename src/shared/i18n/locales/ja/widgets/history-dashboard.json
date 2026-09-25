@@ -1,0 +1,49 @@
+{
+  "year": "年",
+  "all": "すべて",
+  "allTime": "全期間",
+  "yourYear": "あなたの{{year}}年",
+  "minutesListened": "分再生",
+  "topArtist": "No.1 アーティスト",
+  "topTrack": "No.1 ソング",
+  "stats": {
+    "streams": "再生回数（30秒以上）",
+    "uniqueTracks": "聴いた曲の数",
+    "uniqueArtists": "聴いたアーティストの数",
+    "longestStreak": "最長連続リスニング日数",
+    "skipRate": "スキップ率",
+    "topDay": "一番聴いた日"
+  },
+  "monthly": {
+    "all": "月別",
+    "year": "{{year}}年の月別",
+    "metric": "指標",
+    "streamsSubtitle": "再生回数",
+    "hoursSubtitle": "再生時間（時間）",
+    "ariaLabel": "月ごとのリスニング"
+  },
+  "heatmap": {
+    "title": "ヒートマップ",
+    "subtitle": "何曜日の何時に聴いているか"
+  },
+  "devices": {
+    "title": "デバイス",
+    "subtitle": "再生時間ベース",
+    "empty": "基本の履歴ファイルにはデバイス情報がありません。"
+  },
+  "platforms": {
+    "cast": "スピーカー / TV",
+    "other": "その他"
+  },
+  "ranking": {
+    "title": "ランキング",
+    "subtitle": "列の見出しをクリックして並べ替え",
+    "type": "種類",
+    "name": "名前",
+    "search": "検索…",
+    "page": "{{page}} / {{total}} ページ",
+    "prev": "← 前へ",
+    "next": "次へ →"
+  },
+  "footer": "{{plays}} · {{files}} · 読み込み日時 {{date}}"
+}

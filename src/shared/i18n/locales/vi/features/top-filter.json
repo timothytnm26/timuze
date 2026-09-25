@@ -1,0 +1,11 @@
+{
+  "genre": "Thể loại",
+  "country": "Quốc gia",
+  "all": "Tất cả",
+  "clear": "Bỏ lọc",
+  "emptyTitle": "Không có kết quả",
+  "emptyDescription": "Không có mục nào khớp bộ lọc trong khoảng thời gian này.",
+  "countryLoading": "Đang tra quốc gia trên MusicBrainz…",
+  "countryUnavailable": "Tạm thời không tra được quốc gia của nghệ sĩ.",
+  "countrySource": "Quốc gia lấy từ MusicBrainz – nghệ sĩ chưa có dữ liệu sẽ chỉ hiện ở “Tất cả”."
+}

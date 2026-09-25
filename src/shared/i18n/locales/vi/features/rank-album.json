@@ -1,0 +1,48 @@
+{
+  "search": {
+    "label": "Tìm album",
+    "placeholder": "Tìm album để xếp hạng…",
+    "clear": "Xoá",
+    "searching": "Đang tìm…",
+    "noResults": "Không tìm thấy album nào cho “{{query}}”."
+  },
+  "tracks_one": "{{count}} bài",
+  "tracks_other": "{{count}} bài",
+  "changeAlbum": "Đổi album",
+  "instructions": "Kéo <grip/> để sắp xếp, bấm <x/> để bỏ bài khỏi bảng.",
+  "reset": "Về thứ tự gốc",
+  "dragHint": "Nhấn giữ và kéo để đổi hạng, hoặc dùng phím mũi tên lên/xuống.",
+  "handle": "Hạng {{rank}}: {{track}}",
+  "moved": "{{track}} giờ ở hạng {{rank}}",
+  "share": {
+    "create": "Tạo ảnh chia sẻ",
+    "creating": "Đang tạo ảnh…",
+    "failed": "Không tạo được ảnh, thử lại nhé.",
+    "title": "Ảnh xếp hạng",
+    "close": "Đóng",
+    "preview": "Ảnh xếp hạng album {{album}}",
+    "share": "Chia sẻ lên Instagram",
+    "download": "Tải ảnh",
+    "desktopHint": "Mở trang này trên điện thoại để gửi ảnh thẳng lên Instagram Story.",
+    "accent": "Màu chủ đạo",
+    "fromCover": "lấy từ ảnh bìa",
+    "stock": "bộ màu mặc định",
+    "swatch": "Màu {{n}}",
+    "background": "Ảnh nền",
+    "pickBackground": "Chọn ảnh từ máy",
+    "changeBackground": "Đổi ảnh",
+    "removeBackground": "Bỏ ảnh nền"
+  },
+  "image": {
+    "footer": "xếp hạng bằng timuze",
+    "titleDefault": "Xếp hạng của tôi cho {{album}}"
+  },
+  "trackNo": "track {{n}}",
+  "remove": "Bỏ {{track}} khỏi bảng xếp hạng",
+  "add": "Thêm {{track}} vào bảng xếp hạng",
+  "addBack": "Thêm lại",
+  "excluded": "Không xếp hạng",
+  "excludedHint": "Các bài này sẽ không xuất hiện trong ảnh. Bấm “Thêm lại” để đưa về cuối bảng.",
+  "titleLabel": "Tựa đề bảng xếp hạng",
+  "empty": "Bảng đang trống – thêm bài từ mục “Không xếp hạng” bên dưới."
+}

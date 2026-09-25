@@ -1,0 +1,24 @@
+{
+  "hint": "Bấm nút <play/> trên máy phát đĩa để phát nhạc Spotify ngay tại đây.",
+  "hintAnonymous": "Đăng nhập Spotify rồi bấm nút <play/> trên máy phát đĩa để nghe nhạc ngay trên web.",
+  "connecting": "Đang kết nối trình phát Spotify…",
+  "play": "Phát",
+  "pause": "Tạm dừng",
+  "next": "Bài tiếp",
+  "previous": "Bài trước",
+  "dismiss": "Đóng",
+  "nowPlaying": "Đang phát",
+  "paused": "Đã tạm dừng",
+  "openInSpotify": "Mở trên Spotify",
+  "onDevice": "trên {{device}}",
+  "errors": {
+    "login": "Cần đăng nhập Spotify để phát nhạc.",
+    "scope": "Phiên đăng nhập hiện tại chưa có quyền phát nhạc – đăng nhập lại một lần nhé.",
+    "auth": "Phiên Spotify đã hết hạn, hãy đăng nhập lại.",
+    "premium": "Phát nhạc trên web cần tài khoản Spotify Premium.",
+    "unsupported": "Trình duyệt này không hỗ trợ trình phát Spotify.",
+    "playback": "Không phát được – thử lại hoặc mở Spotify trên một thiết bị khác.",
+    "noDevice": "Không có thiết bị Spotify nào đang hoạt động.",
+    "remotePremium": "Điều khiển phát nhạc cần tài khoản Spotify Premium."
+  }
+}

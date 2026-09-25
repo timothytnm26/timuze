@@ -1,0 +1,48 @@
+{
+  "search": {
+    "label": "Search albums",
+    "placeholder": "Search for an album to rank…",
+    "clear": "Clear",
+    "searching": "Searching…",
+    "noResults": "No albums found for “{{query}}”."
+  },
+  "tracks_one": "{{count}} track",
+  "tracks_other": "{{count}} tracks",
+  "changeAlbum": "Change album",
+  "instructions": "Drag <grip/> to order, tap <x/> to leave a track out.",
+  "reset": "Back to album order",
+  "dragHint": "Press and drag to change the rank, or use the up/down arrow keys.",
+  "handle": "Rank {{rank}}: {{track}}",
+  "moved": "{{track}} is now number {{rank}}",
+  "share": {
+    "create": "Create share image",
+    "creating": "Creating image…",
+    "failed": "Couldn't create the image – please try again.",
+    "title": "Ranking image",
+    "close": "Close",
+    "preview": "Ranking image for {{album}}",
+    "share": "Share to Instagram",
+    "download": "Download image",
+    "desktopHint": "Open this page on your phone to send the image straight to an Instagram Story.",
+    "accent": "Accent colour",
+    "fromCover": "from the cover",
+    "stock": "default set",
+    "swatch": "Colour {{n}}",
+    "background": "Background",
+    "pickBackground": "Choose a photo",
+    "changeBackground": "Change photo",
+    "removeBackground": "Remove"
+  },
+  "image": {
+    "footer": "ranked with timuze",
+    "titleDefault": "My ranking for {{album}}"
+  },
+  "trackNo": "track {{n}}",
+  "remove": "Take {{track}} out of the ranking",
+  "add": "Put {{track}} back in the ranking",
+  "addBack": "Add back",
+  "excluded": "Not ranked",
+  "excludedHint": "These tracks won't be in the image. “Add back” puts one at the end of the ranking.",
+  "titleLabel": "Ranking title",
+  "empty": "The ranking is empty – add tracks from “Not ranked” below."
+}

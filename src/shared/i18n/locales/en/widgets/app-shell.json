@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "main": "Main navigation",
+    "mobile": "Navigation",
+    "dashboard": "Overview",
+    "recent": "Recent",
+    "rank": "Ranking"
+  },
+  "account": "Account"
+}
