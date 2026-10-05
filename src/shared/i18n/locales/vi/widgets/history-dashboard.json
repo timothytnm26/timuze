@@ -26,15 +26,6 @@
     "title": "Bản đồ nhiệt",
     "subtitle": "Bạn nghe nhạc vào thứ mấy, lúc mấy giờ"
   },
-  "devices": {
-    "title": "Thiết bị",
-    "subtitle": "Theo thời lượng nghe",
-    "empty": "File lịch sử cơ bản không có thông tin thiết bị."
-  },
-  "platforms": {
-    "cast": "Loa / TV",
-    "other": "Khác"
-  },
   "ranking": {
     "title": "Bảng xếp hạng",
     "subtitle": "Bấm tiêu đề cột để sắp xếp",
@@ -57,5 +48,11 @@
   "sourceFilter": {
     "label": "Nguồn",
     "all": "Tất cả nguồn"
+  },
+  "clock": {
+    "title": "Đồng hồ nghe nhạc",
+    "subtitle": "Bạn nghe nhiều vào giờ nào trong ngày",
+    "peak": "Cao điểm",
+    "ariaLabel": "Biểu đồ tròn 24 giờ về thời gian nghe nhạc trong ngày"
   }
 }

@@ -1,6 +1,6 @@
 export type { Stream, StreamHistory, StreamSource, ImportRecord, ImportSummary } from './model/types'
 export { dedupeAcrossSources, normalizeName } from './model/dedupe'
-export { parseStreamingFile, mergeStreams, PLATFORM_IDS } from './model/parse'
+export { parseStreamingFile, mergeStreams } from './model/parse'
 export {
   computeHistoryStats,
   availableYears,

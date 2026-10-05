@@ -26,15 +26,6 @@
     "title": "Heatmap",
     "subtitle": "Which days and hours you listen"
   },
-  "devices": {
-    "title": "Devices",
-    "subtitle": "By listening time",
-    "empty": "The basic history export has no device information."
-  },
-  "platforms": {
-    "cast": "Speaker / TV",
-    "other": "Other"
-  },
   "ranking": {
     "title": "Rankings",
     "subtitle": "Click a column header to sort",
@@ -57,5 +48,11 @@
   "sourceFilter": {
     "label": "Source",
     "all": "All sources"
+  },
+  "clock": {
+    "title": "Listening clock",
+    "subtitle": "Which hours of the day you listen the most",
+    "peak": "Peak hour",
+    "ariaLabel": "24-hour circular chart of listening time through the day"
   }
 }

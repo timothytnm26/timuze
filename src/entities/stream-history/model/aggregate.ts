@@ -27,7 +27,6 @@ export interface HistoryStats {
   heat: number[][]
   /** the heatmap split by service (ms per weekday × hour), for the "all sources" view */
   heatBySource: Partial<Record<StreamSource, number[][]>>
-  byPlatform: { platform: string; ms: number }[]
   bySource: { source: StreamSource; ms: number; streams: number }[]
   skipRate: number
   topDay: { date: string; ms: number } | null
@@ -47,7 +46,6 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
   const tracks = new Map<string, RankedEntry>()
   const albums = new Map<string, RankedEntry>()
   const months = new Map<string, HistoryStats['byMonth'][number]>()
-  const platforms = new Map<string, number>()
   const days = new Map<string, number>()
   const sources = new Map<StreamSource, { source: StreamSource; ms: number; streams: number }>()
   const heat = Array.from({ length: 7 }, () => Array<number>(24).fill(0))
@@ -94,7 +92,6 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
     if (counted) sb.streams++
     sources.set(src, sb)
 
-    if (s.platform) platforms.set(s.platform, (platforms.get(s.platform) ?? 0) + s.ms)
     const dk = d.toISOString().slice(0, 10)
     days.set(dk, (days.get(dk) ?? 0) + s.ms)
   }
@@ -125,7 +122,6 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
     byMonth: [...months.values()].sort((a, b) => a.key.localeCompare(b.key)),
     heat,
     heatBySource,
-    byPlatform: [...platforms.entries()].map(([platform, ms]) => ({ platform, ms })).sort((a, b) => b.ms - a.ms),
     bySource: [...sources.values()].sort((x, y) => y.ms - x.ms),
     skipRate: streams.length ? skipped / streams.length : 0,
     topDay: topDayEntry ? { date: topDayEntry[0], ms: topDayEntry[1] } : null,

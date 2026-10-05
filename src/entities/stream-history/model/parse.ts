@@ -24,10 +24,7 @@ interface BasicRow {
 const isExtended = (r: unknown): r is ExtendedRow => typeof r === 'object' && r !== null && 'ms_played' in r
 const isBasic = (r: unknown): r is BasicRow => typeof r === 'object' && r !== null && 'msPlayed' in r
 
-/**
- * Brand names are kept as-is; generic buckets are stored as language-neutral ids
- * (`cast`, `other`) and translated at display time – see `PLATFORM_IDS`.
- */
+/** Brand names are kept as-is; generic buckets are stored as language-neutral ids (`cast`, `other`). */
 const simplifyPlatform = (p?: string) => {
   if (!p) return null
   const s = p.toLowerCase()
@@ -40,9 +37,6 @@ const simplifyPlatform = (p?: string) => {
   if (s.includes('cast') || s.includes('tv') || s.includes('speaker') || s.includes('partner')) return 'cast'
   return 'other'
 }
-
-/** Language-neutral platform ids, plus the Vietnamese labels older imports stored in IndexedDB. */
-export const PLATFORM_IDS: Record<string, 'cast' | 'other'> = { cast: 'cast', other: 'other', 'Loa / TV': 'cast', Khác: 'other' }
 
 /** Parse one export file; podcast / video rows (no track name) are dropped. */
 export const parseStreamingFile = (json: unknown): Stream[] => {

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { availableYears, computeHistoryStats, PLATFORM_IDS, type StreamHistory, type StreamSource } from '@/entities/stream-history'
+import { availableYears, computeHistoryStats, type StreamHistory, type StreamSource } from '@/entities/stream-history'
 import { ClearHistoryButton } from '@/features/import-history'
-import { AnimatedNumber, BarList, BRANDS, BrandIcon, brandFill, brandStyle, Card, CardHeader, ColumnChart, Heatmap, Reveal, Segmented } from '@/shared/ui'
+import { AnimatedNumber, BarList, BRANDS, BrandIcon, brandFill, brandStyle, Card, CardHeader, ClockChart, ColumnChart, Heatmap, Reveal, Segmented } from '@/shared/ui'
 import { cn, msToHours } from '@/shared/lib'
 import { useFormatters, useTranslation } from '@/shared/i18n'
 import { RankingTable } from './RankingTable'
@@ -81,10 +81,17 @@ export function HistoryDashboard({ history }: { history: StreamHistory }) {
     return src.map((r, i) => ({ ...r, rank: i + 1 }))
   }, [stats, tab])
 
-  const platformLabel = (p: string) => {
-    const id = PLATFORM_IDS[p]
-    return id ? t(`platforms.${id}`) : p
-  }
+  // listening by hour of the day (all weekdays together), optionally split by service
+  const clock = useMemo(
+    () =>
+      Array.from({ length: 24 }, (_, hour) => ({
+        hour,
+        value: stats.heat.reduce((sum, day) => sum + (day[hour] ?? 0), 0),
+        parts: split ? present.map((s) => ({ key: s, value: (stats.heatBySource[s] ?? []).reduce((sum, day) => sum + (day[hour] ?? 0), 0) })) : undefined,
+      })),
+    [stats, split, present],
+  )
+  const clockSegments = useMemo(() => present.map((s) => ({ key: s, label: t(`sources.${s}`), color: BRANDS[s].color })), [present, t])
 
   const top = stats.topArtists[0]
   const topTrack = stats.topTracks[0]
@@ -226,19 +233,16 @@ export function HistoryDashboard({ history }: { history: StreamHistory }) {
           />
         </Card>
         <Card>
-          <CardHeader title={t('devices.title')} subtitle={t('devices.subtitle')} />
-          {stats.byPlatform.length ? (
-            <BarList
-              items={stats.byPlatform.map((p) => ({
-                key: p.platform,
-                label: platformLabel(p.platform),
-                value: p.ms,
-                display: `${Math.round((p.ms / stats.totalMs) * 100)}%`,
-              }))}
-            />
-          ) : (
-            <p className="text-sm text-ink-muted">{t('devices.empty')}</p>
-          )}
+          <CardHeader title={t('clock.title')} subtitle={t('clock.subtitle')} />
+          <ClockChart
+            data={clock}
+            segments={split ? clockSegments : undefined}
+            color={tint}
+            formatValue={f.listeningTime}
+            hourLabel={(h) => t('common:calendar.hourRange', { from: h, to: h + 1 })}
+            peakLabel={t('clock.peak')}
+            ariaLabel={t('clock.ariaLabel')}
+          />
         </Card>
       </div>
 
