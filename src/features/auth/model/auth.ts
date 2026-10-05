@@ -8,9 +8,9 @@ const STATE_KEY = 'timuze.pkce.state'
 const RETURN_KEY = 'timuze.returnTo'
 
 /** Step 1 – redirect to Spotify's consent screen (Authorization Code + PKCE, no backend needed). */
-export async function startSpotifyLogin(returnTo = '/dashboard', customClientId = '') {
+export async function startSpotifyLogin(returnTo = '/dashboard', customClientId = '', appName = '') {
   // remember (or forget) the user's own app first – the callback and token refresh read it back
-  setCustomSpotifyClientId(customClientId.trim())
+  setCustomSpotifyClientId(customClientId.trim(), appName.trim())
   const verifier = randomString(64)
   const state = randomString(16)
   safeStorage.set(VERIFIER_KEY, verifier)

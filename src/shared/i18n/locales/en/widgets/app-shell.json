@@ -6,5 +6,20 @@
     "recent": "Recent",
     "rank": "Ranking"
   },
-  "account": "Account"
+  "account": "Account",
+  "identity": {
+    "buddy": "timuze buddy",
+    "own": "Your own app",
+    "lastfm": "Last.fm",
+    "spotifyFile": "Spotify (file)",
+    "youtube": "YouTube Music",
+    "apple": "Apple Music"
+  },
+  "openDashboard": "Open dashboard",
+  "sources": {
+    "title": "Data sources",
+    "open": "Show data sources",
+    "shown": "Shown",
+    "manage": "Add or manage sources"
+  }
 }

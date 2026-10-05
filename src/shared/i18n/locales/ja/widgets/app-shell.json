@@ -6,5 +6,20 @@
     "recent": "最近",
     "rank": "ランキング"
   },
-  "account": "アカウント"
+  "account": "アカウント",
+  "identity": {
+    "buddy": "timuze バディ",
+    "own": "自分のアプリ",
+    "lastfm": "Last.fm",
+    "spotifyFile": "Spotify（ファイル）",
+    "youtube": "YouTube Music",
+    "apple": "Apple Music"
+  },
+  "openDashboard": "ダッシュボードを開く",
+  "sources": {
+    "title": "データソース",
+    "open": "データソースを表示",
+    "shown": "表示中",
+    "manage": "ソースの追加・管理"
+  }
 }

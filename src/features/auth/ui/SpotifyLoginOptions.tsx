@@ -1,11 +1,11 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { Button } from '@/shared/ui'
-import { env, getCustomSpotifyClientId } from '@/shared/config'
+import { env, getCustomSpotifyAppName, getCustomSpotifyClientId } from '@/shared/config'
 import { Trans, useTranslation } from '@/shared/i18n'
 import { startSpotifyLogin } from '../model/auth'
 
 const STEPS = [1, 2, 3, 4] as const
-const NOTES = [1, 2] as const
+const NOTES = [1] as const
 
 const field =
   'w-full rounded-xl border border-line bg-surface px-3 py-2 font-mono text-sm text-ink placeholder:text-ink-faint focus:border-brand focus:outline-none'
@@ -22,8 +22,8 @@ function Option({ badge, title, children }: { badge: string; title: string; chil
   )
 }
 
-/** Plain text link to the built-in app – only the accounts the project owner added can use it. */
-function GuestLink() {
+/** Plain text link to timuze's own app – only the "buddies" the project owner added can use it. */
+function BuddyLink() {
   const { t } = useTranslation(['features/auth', 'common'])
   const [pending, setPending] = useState(false)
   const configured = env.spotifyClientId.length > 0
@@ -38,7 +38,7 @@ function GuestLink() {
       }}
       className="cursor-pointer self-start text-sm text-brand underline-offset-2 hover:underline disabled:pointer-events-none disabled:opacity-50"
     >
-      {pending ? t('common:actions.redirecting') : t('login.guest.cta')}
+      {pending ? t('common:actions.redirecting') : t('login.buddy.cta')}
     </button>
   )
 }
@@ -47,13 +47,14 @@ function GuestLink() {
 export function SpotifyLoginOptions() {
   const { t } = useTranslation('features/auth')
   const [clientId, setClientId] = useState(getCustomSpotifyClientId)
+  const [appName, setAppName] = useState(getCustomSpotifyAppName)
   const [pending, setPending] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const submitOwn = (e: FormEvent) => {
     e.preventDefault()
     setPending(true)
-    void startSpotifyLogin('/dashboard', clientId).catch(() => setPending(false))
+    void startSpotifyLogin('/dashboard', clientId, appName).catch(() => setPending(false))
   }
 
   const copyUri = async () => {
@@ -104,6 +105,18 @@ export function SpotifyLoginOptions() {
               required
             />
           </label>
+          <label className="flex flex-col gap-1">
+            <span className="font-medium">{t('login.own.appName')}</span>
+            <input
+              className={field.replace('font-mono ', '')}
+              value={appName}
+              onChange={(e) => setAppName(e.target.value)}
+              placeholder={t('login.own.appNamePlaceholder')}
+              maxLength={24}
+              autoComplete="off"
+            />
+            <span className="text-xs text-ink-faint">{t('login.own.appNameHint')}</span>
+          </label>
           <ul className="flex list-disc flex-col gap-1 pl-5 text-xs text-ink-faint">
             {NOTES.map((n) => (
               <li key={n}>{t(`login.own.note${n}`)}</li>
@@ -115,7 +128,7 @@ export function SpotifyLoginOptions() {
         </form>
       </Option>
 
-      <GuestLink />
+      <BuddyLink />
     </div>
   )
 }

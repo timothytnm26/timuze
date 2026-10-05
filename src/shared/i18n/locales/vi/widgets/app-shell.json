@@ -6,5 +6,20 @@
     "recent": "Gần đây",
     "rank": "Xếp hạng"
   },
-  "account": "Tài khoản"
+  "account": "Tài khoản",
+  "identity": {
+    "buddy": "Bạn của timuze",
+    "own": "Ứng dụng của bạn",
+    "lastfm": "Last.fm",
+    "spotifyFile": "Spotify (file)",
+    "youtube": "YouTube Music",
+    "apple": "Apple Music"
+  },
+  "openDashboard": "Mở bảng điều khiển",
+  "sources": {
+    "title": "Nguồn dữ liệu",
+    "open": "Xem các nguồn dữ liệu",
+    "shown": "Đang hiển thị",
+    "manage": "Thêm hoặc quản lý nguồn"
+  }
 }

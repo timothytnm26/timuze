@@ -40,8 +40,18 @@ const CUSTOM_CLIENT_ID_KEY = 'timuze.spotifyClientId'
 /** Client ID a user pasted from their own Spotify app (lives in this browser only). */
 export const getCustomSpotifyClientId = () => safeStorage.get<string>(CUSTOM_CLIENT_ID_KEY) ?? ''
 
-export const setCustomSpotifyClientId = (id: string) =>
-  id ? safeStorage.set(CUSTOM_CLIENT_ID_KEY, id) : safeStorage.remove(CUSTOM_CLIENT_ID_KEY)
+const CUSTOM_APP_NAME_KEY = 'timuze.spotifyAppName'
+
+/** The name the user gave their own Spotify app – shown after "timuze" in the logo. */
+export const getCustomSpotifyAppName = () => safeStorage.get<string>(CUSTOM_APP_NAME_KEY) ?? ''
+
+/** Saving a Client ID saves its app name with it; clearing one clears both. */
+export const setCustomSpotifyClientId = (id: string, appName = '') => {
+  if (id) safeStorage.set(CUSTOM_CLIENT_ID_KEY, id)
+  else safeStorage.remove(CUSTOM_CLIENT_ID_KEY)
+  if (id && appName) safeStorage.set(CUSTOM_APP_NAME_KEY, appName)
+  else safeStorage.remove(CUSTOM_APP_NAME_KEY)
+}
 
 /**
  * The Client ID in use: the user's own if they pasted one, else the built-in one.

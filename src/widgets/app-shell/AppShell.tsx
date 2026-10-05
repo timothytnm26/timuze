@@ -1,30 +1,32 @@
 import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { UserAvatar, userQueries } from '@/entities/user'
-import { LoginLink, LogoutButton, useSession } from '@/features/auth'
+import { UserAvatar } from '@/entities/user'
+import { LoginLink, LogoutButton } from '@/features/auth'
 import { LocaleMenu } from '@/features/switch-locale'
 import { SkinMenu } from '@/features/switch-skin'
 import { cn } from '@/shared/lib'
 import { LogoMark } from '@/shared/ui'
 import { useTranslation } from '@/shared/i18n'
 import { NowPlaying } from '@/widgets/now-playing'
+import { useAppName, useIdentity } from './model/identity'
+import { SourcesMenu } from './SourcesMenu'
 import { NAV } from './nav'
 
+/** "timuze", followed by the name of the user's own Spotify app when they logged in through one. */
 export function Logo({ className }: { className?: string }) {
+  const appName = useAppName()
   return (
-    <Link to="/" className={cn('flex items-center gap-1.5 font-display text-xl font-bold tracking-tight', className)}>
-      <LogoMark />
+    <Link to="/" className={cn('flex min-w-0 items-center gap-1.5 font-display text-xl font-bold tracking-tight', className)}>
+      <LogoMark className="shrink-0" />
       timuze
+      {appName && <span className="min-w-0 max-w-32 truncate font-medium text-ink-muted">{appName}</span>}
     </Link>
   )
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const loggedIn = useSession().mode !== 'anonymous'
-  const { data: me } = useQuery({ ...userQueries.me(), enabled: loggedIn })
-  // without Spotify only the Streams page (local files) works
-  const nav = loggedIn ? NAV : NAV.filter((n) => n.to === '/history')
+  const identity = useIdentity()
+  const loggedIn = identity?.spotify ?? false
   const { t } = useTranslation(['widgets/app-shell', 'common'])
 
   return (
@@ -36,7 +38,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             skin/language islands opening upward out of it aren't clipped by the scroller */}
         <div className="-mx-2 flex min-h-0 flex-1 flex-col gap-8 overflow-x-hidden overflow-y-auto overscroll-contain px-2 [scrollbar-width:thin]">
           <nav className="flex flex-col gap-1" aria-label={t('nav.main')}>
-            {nav.map((n) => (
+            {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -56,16 +58,21 @@ export function AppShell({ children }: { children: ReactNode }) {
             <SkinMenu placement="top" align="start" />
             <LocaleMenu placement="top" align="start" />
           </div>
-          {!loggedIn && <LoginLink size="sm" />}
-          {me && (
+          {identity && (
             <div className="flex items-center gap-3">
-              <UserAvatar user={me} />
+              <UserAvatar user={identity.user} />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold">{me.display_name ?? me.id}</p>
-                <LogoutButton className="-ml-3 h-6 px-3 text-xs" />
+                <p className="truncate text-sm font-semibold">{identity.user.display_name ?? identity.user.id}</p>
+                <div className="flex items-center gap-1.5">
+                  <p className="min-w-0 truncate text-xs text-ink-muted">{t(`identity.${identity.kind}`)}</p>
+                  {(identity.spotify || identity.sources.length > 1) && <SourcesMenu identity={identity} />}
+                </div>
+                {/* only a Spotify login has a session to end */}
+                {loggedIn && <LogoutButton className="-ml-3 h-6 px-3 text-xs" />}
               </div>
             </div>
           )}
+          {!loggedIn && <LoginLink size="sm" variant="outline" />}
         </div>
       </aside>
 
@@ -78,8 +85,8 @@ export function AppShell({ children }: { children: ReactNode }) {
             {loggedIn && <NowPlaying className="hidden sm:flex" />}
             <SkinMenu />
             <LocaleMenu />
-            {me && <UserAvatar user={me} />}
-            {!loggedIn && <LoginLink size="sm" short />}
+            {identity && <UserAvatar user={identity.user} />}
+            {!loggedIn && <LoginLink size="sm" short variant="outline" />}
           </div>
         </header>
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-8 pb-28 sm:px-8 lg:pb-16">{children}</main>
@@ -90,7 +97,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         className="fixed inset-x-3 bottom-3 z-40 flex justify-between rounded-2xl border border-line bg-surface/90 px-1 py-1.5 backdrop-blur-xl lg:hidden glass:bg-canvas/50 pixel:border-2"
         aria-label={t('nav.mobile')}
       >
-        {nav.map((n) => (
+        {NAV.map((n) => (
           <Link
             key={n.to}
             to={n.to}
