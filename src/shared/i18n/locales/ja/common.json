@@ -33,7 +33,8 @@
     "missingCode": "認証コードがありません。もう一度ログインしてください",
     "stateMismatch": "state が一致しません – 不正なリクエストの可能性があります",
     "tokenExchangeFailed": "トークンの取得に失敗しました",
-    "invalidHistoryFile": "Spotify の再生履歴ファイルの形式ではありません"
+    "invalidHistoryFile": "Spotify の再生履歴ファイルの形式ではありません",
+    "albumNotFound": "アルバムが見つかりません"
   },
   "units": {
     "minutes": "{{value}}分",
@@ -95,7 +96,8 @@
     "heatmap": {
       "hint": "セルにカーソルを合わせると詳細を表示",
       "less": "少",
-      "more": "多"
+      "more": "多",
+      "hintParts": "セルにカーソルを合わせると詳細を表示 · 小さな割合は実際より大きく描かれます"
     }
   },
   "skins": {
@@ -115,5 +117,8 @@
       "name": "グラス",
       "description": "やわらかな色に浮かぶすりガラスのパネル"
     }
+  },
+  "listener": {
+    "name": "リスナー"
   }
 }

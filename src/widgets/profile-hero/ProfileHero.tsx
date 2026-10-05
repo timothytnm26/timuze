@@ -1,9 +1,11 @@
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { UserAvatar, userQueries } from '@/entities/user'
+import { computeHistoryStats, streamHistoryQueries } from '@/entities/stream-history'
 import { libraryQueries } from '@/entities/library'
 import { trackQueries } from '@/entities/track'
 import { AnimatedNumber, Skeleton } from '@/shared/ui'
+import { dataMode } from '@/shared/api'
 import { useTranslation } from '@/shared/i18n'
 import { gsap, msToMinutes, prefersReducedMotion, SplitText, useGSAP } from '@/shared/lib'
 import { decorativeMotion, tune } from '@/shared/theme'
@@ -37,9 +39,13 @@ export function ProfileHero() {
   const ref = useRef<HTMLElement>(null)
   const { t } = useTranslation(['widgets/profile-hero', 'common'])
   const { data: me } = useQuery(userQueries.me())
-  const { data: lib } = useQuery(libraryQueries.summary())
-  const { data: recent } = useQuery(trackQueries.recent())
+  const local = dataMode() === 'local'
+  const { data: lib } = useQuery({ ...libraryQueries.summary(), enabled: !local })
+  const { data: recent } = useQuery({ ...trackQueries.recent(), enabled: !local })
   const recentMinutes = recent ? msToMinutes(recent.reduce((s, p) => s + p.track.duration_ms, 0)) : undefined
+  // no Spotify library without a login – the KPIs describe the imported history instead
+  const { data: history } = useQuery({ ...streamHistoryQueries.all(), enabled: local })
+  const stats = useMemo(() => (history ? computeHistoryStats(history.streams, undefined, 1) : undefined), [history])
 
   useGSAP(
     () => {
@@ -85,12 +91,21 @@ export function ProfileHero() {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <Kpi label={t('savedTracks')} value={lib?.savedTracks} />
-          <Kpi label={t('savedAlbums')} value={lib?.savedAlbums} />
-          <Kpi label={t('following')} value={lib?.followedArtists} suffix={t('common:units.artistSuffix')} />
-          <Kpi label={t('last50')} value={recentMinutes} suffix={t('common:units.minuteSuffix')} />
-        </div>
+        {local ? (
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <Kpi label={t('totalStreams')} value={stats?.totalStreams} />
+            <Kpi label={t('uniqueTracks')} value={stats?.uniqueTracks} />
+            <Kpi label={t('uniqueArtists')} value={stats?.uniqueArtists} suffix={t('common:units.artistSuffix')} />
+            <Kpi label={t('totalMinutes')} value={stats ? msToMinutes(stats.totalMs) : undefined} suffix={t('common:units.minuteSuffix')} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <Kpi label={t('savedTracks')} value={lib?.savedTracks} />
+            <Kpi label={t('savedAlbums')} value={lib?.savedAlbums} />
+            <Kpi label={t('following')} value={lib?.followedArtists} suffix={t('common:units.artistSuffix')} />
+            <Kpi label={t('last50')} value={recentMinutes} suffix={t('common:units.minuteSuffix')} />
+          </div>
+        )}
       </div>
     </section>
   )

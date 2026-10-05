@@ -33,7 +33,8 @@
     "missingCode": "Missing authorization code, please log in again",
     "stateMismatch": "State mismatch – the request may have been forged",
     "tokenExchangeFailed": "Failed to exchange the code for a token",
-    "invalidHistoryFile": "This file isn't a Spotify streaming history export"
+    "invalidHistoryFile": "This file isn't a Spotify streaming history export",
+    "albumNotFound": "Album not found"
   },
   "units": {
     "minutes": "{{value}} min",
@@ -99,7 +100,8 @@
     "heatmap": {
       "hint": "Hover a cell for details",
       "less": "Less",
-      "more": "More"
+      "more": "More",
+      "hintParts": "Hover a cell for details · small shares are drawn larger than they are"
     }
   },
   "skins": {
@@ -119,5 +121,8 @@
       "name": "Glass",
       "description": "Frosted translucent panels over soft color"
     }
+  },
+  "listener": {
+    "name": "Listener"
   }
 }

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { artistQueries, ArtistCard, type Artist } from '@/entities/artist'
 import { countValues, CountryFilter, FilterEmpty } from '@/features/top-filter'
-import type { TimeRange } from '@/shared/api'
+import { dataMode, type TimeRange } from '@/shared/api'
 import { Cover, ErrorState, Reveal, Skeleton } from '@/shared/ui'
 import { cn } from '@/shared/lib'
 
@@ -71,7 +71,8 @@ export function TopArtists({
   onCountryChange?: (c: string | null) => void
 }) {
   const q = useQuery(artistQueries.top(range, Math.max(limit, 50)))
-  const filterable = !!onCountryChange
+  // countries come from MusicBrainz via Spotify ids – imported history has none
+  const filterable = !!onCountryChange && dataMode() === 'spotify'
   const all = useMemo(() => (q.data ?? []).slice(0, limit), [q.data, limit])
   const countries = useQuery({ ...artistQueries.countries(all.map((a) => a.id)), enabled: filterable && all.length > 0 })
 

@@ -22,6 +22,7 @@ interface RecentTracksResponse {
       name: string
       artist: { '#text': string }
       album?: { '#text': string }
+      image?: { size: string; '#text': string }[]
       date?: { uts: string }
       '@attr'?: { nowplaying?: string }
     }[]
@@ -65,6 +66,16 @@ const fetchPage = async (user: string, apiKey: string, page: number, signal?: Ab
   }
 }
 
+/** Last.fm answers with this grey star when a cover is missing. */
+const PLACEHOLDER_COVER = '2a96cbd8b46e442fc41c2b86b821562f'
+
+/** Only the file name is kept (`<hash>.png`) – the URL prefix is the same for every cover. */
+const coverName = (images: { size: string; '#text': string }[] | undefined) => {
+  const url = (images?.find((i) => i.size === 'extralarge') ?? images?.at(-1))?.['#text']
+  const name = url?.split('/').pop()
+  return name && !name.startsWith(PLACEHOLDER_COVER) ? name : undefined
+}
+
 const toStreams = (tracks: NonNullable<RecentTracksResponse['recenttracks']>['track']): Stream[] =>
   (tracks ?? []).flatMap((t) => {
     // the track playing right now has no date yet
@@ -79,6 +90,7 @@ const toStreams = (tracks: NonNullable<RecentTracksResponse['recenttracks']>['tr
         uri: null,
         platform: null,
         skipped: false,
+        cover: coverName(t.image),
         source: 'lastfm' as const,
         estimated: true,
       },

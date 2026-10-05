@@ -9,3 +9,7 @@ export const queryClient = new QueryClient({
     },
   },
 })
+
+/** Queries built from imported history carry `'local'` in their key. */
+export const invalidateLocalQueries = () =>
+  void queryClient.invalidateQueries({ predicate: (q) => q.queryKey.includes('local') })

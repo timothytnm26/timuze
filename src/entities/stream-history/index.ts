@@ -1,11 +1,12 @@
 export type { Stream, StreamHistory, StreamSource, ImportRecord, ImportSummary } from './model/types'
-export { dedupeAcrossSources } from './model/dedupe'
+export { dedupeAcrossSources, normalizeName } from './model/dedupe'
 export { parseStreamingFile, mergeStreams, PLATFORM_IDS } from './model/parse'
 export {
   computeHistoryStats,
   availableYears,
   STREAM_THRESHOLD_MS,
   type HistoryStats,
+  type SourceTotals,
   type RankedEntry,
 } from './model/aggregate'
 export { streamHistoryQueries } from './api/queries'

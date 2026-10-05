@@ -3,6 +3,8 @@ import type { Stream, StreamSource } from './types'
 /** A play counts as a "stream" at ≥ 30 s – same threshold Spotify uses for royalties. */
 export const STREAM_THRESHOLD_MS = 30_000
 
+export type SourceTotals = Partial<Record<StreamSource, { ms: number; streams: number }>>
+
 export interface RankedEntry {
   key: string
   name: string
@@ -21,8 +23,10 @@ export interface HistoryStats {
   topArtists: RankedEntry[]
   topTracks: RankedEntry[]
   topAlbums: RankedEntry[]
-  byMonth: { key: string; year: number; month: number; ms: number; streams: number }[]
+  byMonth: { key: string; year: number; month: number; ms: number; streams: number; bySource: SourceTotals }[]
   heat: number[][]
+  /** the heatmap split by service (ms per weekday × hour), for the "all sources" view */
+  heatBySource: Partial<Record<StreamSource, number[][]>>
   byPlatform: { platform: string; ms: number }[]
   bySource: { source: StreamSource; ms: number; streams: number }[]
   skipRate: number
@@ -47,6 +51,7 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
   const days = new Map<string, number>()
   const sources = new Map<StreamSource, { source: StreamSource; ms: number; streams: number }>()
   const heat = Array.from({ length: 7 }, () => Array<number>(24).fill(0))
+  const heatBySource: HistoryStats['heatBySource'] = {}
 
   let totalMs = 0
   let totalStreams = 0
@@ -70,15 +75,20 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
     if (s.album) bump(albums, `${s.album}|${s.artist}`, s.album, s.artist)
 
     const mk = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
-    const m = months.get(mk) ?? { key: mk, year: d.getFullYear(), month: d.getMonth(), ms: 0, streams: 0 }
+    const src = s.source ?? 'spotify'
+    const m = months.get(mk) ?? { key: mk, year: d.getFullYear(), month: d.getMonth(), ms: 0, streams: 0, bySource: {} }
     m.ms += s.ms
     if (counted) m.streams++
+    const part = (m.bySource[src] ??= { ms: 0, streams: 0 })
+    part.ms += s.ms
+    if (counted) part.streams++
     months.set(mk, m)
 
     const row = heat[d.getDay()]
     if (row) row[d.getHours()] = (row[d.getHours()] ?? 0) + s.ms
+    const srcRow = (heatBySource[src] ??= Array.from({ length: 7 }, () => Array<number>(24).fill(0)))[d.getDay()]
+    if (srcRow) srcRow[d.getHours()] = (srcRow[d.getHours()] ?? 0) + s.ms
 
-    const src = s.source ?? 'spotify'
     const sb = sources.get(src) ?? { source: src, ms: 0, streams: 0 }
     sb.ms += s.ms
     if (counted) sb.streams++
@@ -114,6 +124,7 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
     topAlbums: rank(albums, top),
     byMonth: [...months.values()].sort((a, b) => a.key.localeCompare(b.key)),
     heat,
+    heatBySource,
     byPlatform: [...platforms.entries()].map(([platform, ms]) => ({ platform, ms })).sort((a, b) => b.ms - a.ms),
     bySource: [...sources.values()].sort((x, y) => y.ms - x.ms),
     skipRate: streams.length ? skipped / streams.length : 0,

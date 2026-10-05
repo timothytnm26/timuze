@@ -9,5 +9,9 @@
   "savedTracks": "保存した曲",
   "savedAlbums": "保存したアルバム",
   "following": "フォロー中",
-  "last50": "直近50回"
+  "last50": "直近50回",
+  "totalStreams": "再生回数",
+  "uniqueTracks": "曲数",
+  "uniqueArtists": "アーティスト",
+  "totalMinutes": "合計再生時間"
 }

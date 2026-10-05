@@ -14,6 +14,8 @@ export interface Stream {
   skipped: boolean
   /** Missing on records stored before multi-source imports – treat as `spotify`. */
   source?: StreamSource
+  /** Last.fm cover file name (`<hash>.png`); expand with `lastfmCoverUrl`. */
+  cover?: string
   /** `ms` is a guess (the export has no play duration), not a measured value. */
   estimated?: boolean
 }
@@ -24,6 +26,8 @@ export interface ImportRecord {
   source: StreamSource
   importedAt: number
   files: string[]
+  /** Account name found in the export itself (Spotify's `username`), when there is one. */
+  account?: string
   streams: Stream[]
 }
 
@@ -37,4 +41,6 @@ export interface StreamHistory {
   imports: ImportSummary[]
   /** Plays seen by two sources that were merged into one. */
   duplicates: number
+  /** Each source's own plays, before cross-source merging – for looking at one source alone. */
+  bySource: Partial<Record<StreamSource, Stream[]>>
 }

@@ -33,7 +33,8 @@
     "missingCode": "Thiếu mã xác thực, vui lòng đăng nhập lại",
     "stateMismatch": "State không khớp – có thể là yêu cầu giả mạo",
     "tokenExchangeFailed": "Đổi mã lấy token thất bại",
-    "invalidHistoryFile": "File không đúng định dạng lịch sử nghe của Spotify"
+    "invalidHistoryFile": "File không đúng định dạng lịch sử nghe của Spotify",
+    "albumNotFound": "Không tìm thấy album này"
   },
   "units": {
     "minutes": "{{value}} phút",
@@ -95,7 +96,8 @@
     "heatmap": {
       "hint": "Rê chuột lên ô để xem chi tiết",
       "less": "Ít",
-      "more": "Nhiều"
+      "more": "Nhiều",
+      "hintParts": "Rê chuột lên ô để xem chi tiết · phần nhỏ được vẽ lớn hơn thực tế"
     }
   },
   "skins": {
@@ -115,5 +117,8 @@
       "name": "Glass",
       "description": "Kính mờ trong suốt trên nền màu loang"
     }
+  },
+  "listener": {
+    "name": "Người nghe"
   }
 }

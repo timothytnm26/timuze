@@ -7,7 +7,7 @@ const WINDOW_MS = 90_000
 const PRIORITY: Record<StreamSource, number> = { spotify: 0, apple: 1, youtube: 2, lastfm: 3 }
 
 /** Lower-case, no accents, no "(feat. …)" / "[Remastered]" / "- 2011 Remaster" noise, letters and digits only. */
-const norm = (s: string) =>
+export const normalizeName = (s: string) =>
   s
     .normalize('NFKD')
     .replace(/\p{M}/gu, '')
@@ -37,14 +37,20 @@ export function dedupeAcrossSources(streams: Stream[]): { streams: Stream[]; rem
   const out: Stream[] = []
 
   for (const s of byQuality) {
-    const key = norm(s.track)
+    const key = normalizeName(s.track)
     const start = startOf(s)
-    const artist = norm(s.artist)
+    const artist = normalizeName(s.artist)
     const bucket = kept.get(key) ?? []
     const dup = bucket.some(
       (k) => source(k.s) !== source(s) && Math.abs(k.start - start) <= WINDOW_MS && sameArtist(k.artist, artist),
     )
-    if (dup) continue
+    if (dup) {
+      // keep the better record but not lose the cover only the dropped one had
+      const winner = bucket.find((k) => source(k.s) !== source(s) && Math.abs(k.start - start) <= WINDOW_MS && sameArtist(k.artist, artist))
+      // the records are the store's private copies, so mutating the survivor is safe
+      if (winner && !winner.s.cover && s.cover) winner.s.cover = s.cover
+      continue
+    }
     bucket.push({ s, start, artist })
     kept.set(key, bucket)
     out.push(s)

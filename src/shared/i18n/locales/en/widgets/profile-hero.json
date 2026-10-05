@@ -9,5 +9,9 @@
   "savedTracks": "Saved tracks",
   "savedAlbums": "Saved albums",
   "following": "Following",
-  "last50": "Last 50 plays"
+  "last50": "Last 50 plays",
+  "totalStreams": "Streams",
+  "uniqueTracks": "Different tracks",
+  "uniqueArtists": "Artists",
+  "totalMinutes": "Total listening time"
 }

@@ -1,4 +1,6 @@
 import { useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { streamHistoryQueries } from '@/entities/stream-history';
 import { Link } from '@tanstack/react-router';
 import { LoginLink, StartButton, useSession } from '@/features/auth';
 import { LocaleMenu } from '@/features/switch-locale';
@@ -51,7 +53,9 @@ function Landing() {
   const { mode } = useSession();
   const { t } = useTranslation(['pages/landing', 'common']);
   const f = useFormatters();
-  const loggedIn = mode !== 'anonymous';
+  // someone who already imported history can go straight back to their pages
+  const { data: history } = useQuery(streamHistoryQueries.all());
+  const loggedIn = mode !== 'anonymous' || !!history;
 
   useGSAP(
     () => {

@@ -9,5 +9,9 @@
   "savedTracks": "Bài đã lưu",
   "savedAlbums": "Album đã lưu",
   "following": "Đang theo dõi",
-  "last50": "50 lượt gần nhất"
+  "last50": "50 lượt gần nhất",
+  "totalStreams": "Lượt nghe",
+  "uniqueTracks": "Bài hát khác nhau",
+  "uniqueArtists": "Nghệ sĩ",
+  "totalMinutes": "Tổng thời gian nghe"
 }

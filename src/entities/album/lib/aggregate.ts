@@ -1,3 +1,4 @@
+import { isStandaloneAlbumId } from '@/entities/local-library'
 import type { Track } from '@/entities/track/@x/album'
 import type { SimplifiedAlbum } from '../model/types'
 
@@ -15,6 +16,8 @@ export const aggregateTopAlbums = (tracks: Track[]): TopAlbum[] => {
   const n = tracks.length
   const map = new Map<string, TopAlbum>()
   tracks.forEach((t, i) => {
+    // imported plays with no album are standalone singles, not albums
+    if (isStandaloneAlbumId(t.album.id)) return
     const entry = map.get(t.album.id) ?? { album: t.album, score: 0, tracks: [] }
     entry.score += n - i
     entry.tracks.push(t)

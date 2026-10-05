@@ -46,7 +46,7 @@ export function RecentTimeline({ limit = 50 }: { limit?: number }) {
           </h3>
           <div className="relative flex flex-col gap-0.5 border-l border-line pl-4">
             {plays.map((p) => (
-              <div key={p.played_at} className="relative">
+              <div key={`${p.played_at}|${p.track.id}`} className="relative">
                 <span className="absolute top-1/2 -left-[1.3rem] size-2 -translate-y-1/2 rounded-full bg-brand ring-4 ring-canvas" />
                 <TrackRow track={p.track} meta={f.relative(p.played_at)} />
               </div>

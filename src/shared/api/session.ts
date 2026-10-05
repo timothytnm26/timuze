@@ -35,3 +35,9 @@ export const setSession = (patch: Partial<SessionState>) =>
 export const clearSession = () => sessionStore.setState(() => ANONYMOUS)
 
 export const isAuthenticated = () => sessionStore.state.mode !== 'anonymous'
+
+/**
+ * Where the data comes from. Signed in: the Spotify Web API. Otherwise: the history the user imported,
+ * rebuilt into the same shapes. Part of every such query key so the two never share a cache entry.
+ */
+export const dataMode = () => (isAuthenticated() ? 'spotify' : 'local')

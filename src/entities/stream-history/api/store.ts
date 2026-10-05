@@ -13,6 +13,8 @@ export interface PlayStore {
   addImport(record: ImportRecord): Promise<void>
   deleteImport(id: string): Promise<void>
   clear(): Promise<void>
+  /** Called after every write, so derived data (local top lists…) can refresh. */
+  subscribe(listener: () => void): () => void
 }
 
 const IMPORTS_KEY = 'play-imports'
@@ -40,29 +42,52 @@ const saveImports = async (imports: ImportRecord[]) => {
   await idb.del(LEGACY_KEY)
 }
 
+const listeners = new Set<() => void>()
+/** Merging and de-duplicating every play is O(n log n), and several queries read it at once. */
+let memo: Promise<StreamHistory | null> | null = null
+const changed = () => {
+  memo = null
+  listeners.forEach((l) => l())
+}
+
+const buildHistory = async (): Promise<StreamHistory | null> => {
+  const imports = await loadImports()
+  if (!imports.length) return null
+  let streams: Stream[] = []
+  for (const r of imports) streams = mergeStreams(streams, r.streams.map((s) => ({ ...s, source: s.source ?? r.source })))
+  const deduped = dedupeAcrossSources(streams)
+  const bySource: StreamHistory['bySource'] = {}
+  for (const s of streams) (bySource[s.source ?? 'spotify'] ??= []).push(s)
+  return {
+    importedAt: Math.max(...imports.map((r) => r.importedAt)),
+    files: imports.flatMap((r) => r.files),
+    streams: deduped.streams,
+    duplicates: deduped.removed,
+    bySource,
+    imports: imports.map(({ streams: s, ...rest }) => ({ ...rest, count: s.length })),
+  }
+}
+
 export const idbPlayStore: PlayStore = {
-  async getHistory() {
-    const imports = await loadImports()
-    if (!imports.length) return null
-    let streams: Stream[] = []
-    for (const r of imports) streams = mergeStreams(streams, r.streams.map((s) => ({ ...s, source: s.source ?? r.source })))
-    const deduped = dedupeAcrossSources(streams)
-    return {
-      importedAt: Math.max(...imports.map((r) => r.importedAt)),
-      files: imports.flatMap((r) => r.files),
-      streams: deduped.streams,
-      duplicates: deduped.removed,
-      imports: imports.map(({ streams: s, ...rest }) => ({ ...rest, count: s.length })),
-    }
+  getHistory() {
+    memo ??= buildHistory()
+    return memo
   },
   async addImport(record) {
     await saveImports([...(await loadImports()), record])
+    changed()
   },
   async deleteImport(id) {
     await saveImports((await loadImports()).filter((r) => r.id !== id))
+    changed()
   },
   async clear() {
     await saveImports([])
+    changed()
+  },
+  subscribe(listener) {
+    listeners.add(listener)
+    return () => listeners.delete(listener)
   },
 }
 
