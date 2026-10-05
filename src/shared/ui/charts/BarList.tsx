@@ -9,6 +9,8 @@ export interface BarListItem {
   value: number
   display?: string
   leading?: ReactNode
+  /** bar colour (any CSS colour) instead of the skin's brand tint */
+  color?: string
 }
 
 /** Ranked horizontal bars – for "top N by count" style data. */
@@ -40,8 +42,11 @@ export function BarList({ items, className }: { items: BarListItem[]; className?
         <li key={item.key} className="group relative flex h-9 items-center gap-3 rounded-md px-2">
           <div
             data-bar
-            className="absolute inset-y-0 left-0 rounded-r-sm rounded-l-md bg-brand-soft transition-colors group-hover:bg-brand/25"
-            style={{ width: `${(item.value / max) * 100}%` }}
+            className={cn('absolute inset-y-0 left-0 rounded-r-sm rounded-l-md transition-colors', !item.color && 'bg-brand-soft group-hover:bg-brand/25')}
+            style={{
+              width: `${(item.value / max) * 100}%`,
+              ...(item.color && { background: `color-mix(in oklab, ${item.color} 32%, transparent)` }),
+            }}
             aria-hidden
           />
           {item.leading && <span className="relative shrink-0">{item.leading}</span>}

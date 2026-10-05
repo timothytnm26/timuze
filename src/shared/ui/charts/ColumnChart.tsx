@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import { cn } from '../../lib/cn'
 import { gsap, prefersReducedMotion, useGSAP } from '../../lib/gsap'
 import { tune } from '../../theme'
@@ -9,6 +9,15 @@ export interface ColumnDatum {
   value: number
   /** optional long label for the tooltip */
   hint?: string
+  /** split of `value` by segment (same unit as `value`) – drawn as a stack when the chart has `segments` */
+  parts?: { key: string; value: number }[]
+}
+
+export interface ColumnSegment {
+  key: string
+  label: string
+  /** solid fill for the segment */
+  fill: CSSProperties
 }
 
 /**
@@ -21,6 +30,8 @@ export function ColumnChart({
   height = 180,
   highlightMax = true,
   labelEvery = 1,
+  segments,
+  color,
   className,
   ariaLabel,
 }: {
@@ -29,6 +40,10 @@ export function ColumnChart({
   height?: number
   highlightMax?: boolean
   labelEvery?: number
+  /** colours and names for `parts` */
+  segments?: ColumnSegment[]
+  /** one colour for every column (any CSS colour) instead of the skin's brand tint */
+  color?: string
   className?: string
   ariaLabel: string
 }) {
@@ -81,15 +96,38 @@ export function ColumnChart({
               tabIndex={0}
               aria-label={`${d.hint ?? d.label}: ${formatValue(d.value)}`}
             >
-              <div
-                data-col
-                className={cn(
-                  'w-full rounded-t-sm transition-colors duration-200',
-                  active ? 'bg-brand' : 'bg-seq-3/70',
-                  d.value === 0 && 'bg-surface-3',
-                )}
-                style={{ height: `${Math.max(pct, d.value > 0 ? 2 : 1)}%` }}
-              />
+              {segments && d.parts && d.value > 0 ? (
+                <div
+                  data-col
+                  className="flex w-full flex-col-reverse overflow-hidden rounded-t-sm"
+                  style={{ height: `${Math.max(pct, 2)}%` }}
+                >
+                  {segments.map((s) => {
+                    const v = d.parts?.find((p) => p.key === s.key)?.value ?? 0
+                    return v > 0 ? (
+                      <div
+                        key={s.key}
+                        // a hairline of page colour between neighbours
+                        className="border-t border-canvas last:border-t-0 transition-opacity duration-200"
+                        style={{ height: `${(v / d.value) * 100}%`, minHeight: 3, ...s.fill, opacity: active ? 1 : 0.7 }}
+                      />
+                    ) : null
+                  })}
+                </div>
+              ) : (
+                <div
+                  data-col
+                  className={cn(
+                    'w-full rounded-t-sm transition-colors duration-200',
+                    !color && (active ? 'bg-brand' : 'bg-seq-3/70'),
+                    d.value === 0 && 'bg-surface-3',
+                  )}
+                  style={{
+                    height: `${Math.max(pct, d.value > 0 ? 2 : 1)}%`,
+                    ...(color && d.value > 0 && { background: active ? color : `color-mix(in oklab, ${color} 62%, transparent)` }),
+                  }}
+                />
+              )}
             </div>
           )
         })}
@@ -108,6 +146,19 @@ export function ColumnChart({
         >
           <div className="text-ink-muted">{hovered.hint ?? hovered.label}</div>
           <div className="font-semibold text-ink">{formatValue(hovered.value)}</div>
+          {segments && hovered.parts && hovered.value > 0 && (
+            <ul className="mt-1 flex flex-col gap-0.5">
+              {segments.map((s) => {
+                const v = hovered.parts?.find((p) => p.key === s.key)?.value ?? 0
+                return v > 0 ? (
+                  <li key={s.key} className="flex items-center gap-1.5 text-ink-muted">
+                    <span className="size-2 rounded-full" style={s.fill} />
+                    {s.label} · {Math.round((v / hovered.value) * 100)}%
+                  </li>
+                ) : null
+              })}
+            </ul>
+          )}
         </div>
       )}
     </figure>

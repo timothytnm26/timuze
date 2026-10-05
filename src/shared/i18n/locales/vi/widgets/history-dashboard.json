@@ -53,5 +53,9 @@
     "youtube": "YouTube Music",
     "apple": "Apple Music",
     "lastfm": "Last.fm"
+  },
+  "sourceFilter": {
+    "label": "Nguồn",
+    "all": "Tất cả nguồn"
   }
 }
