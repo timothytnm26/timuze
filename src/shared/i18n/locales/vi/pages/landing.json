@@ -1,35 +1,35 @@
 {
-  "badge": "Thống kê Spotify cho người mê nhạc",
+  "badge": "Thống kê nghe nhạc cho người yêu nhạc",
   "heroTitle": "Âm nhạc của bạn, kể bằng <hl>con số.</hl>",
-  "heroBody": "Nhập tên người dùng Last.fm, tải file lịch sử từ Spotify, YouTube Music hay Apple Music, hoặc đăng nhập Spotify để xem nghệ sĩ, bài hát, album bạn nghe nhiều nhất, thói quen nghe theo giờ và “Wrapped” của riêng bạn – bất cứ lúc nào, không cần chờ đến tháng 12.",
-  "notConfigured": "Chưa cấu hình <code>VITE_SPOTIFY_CLIENT_ID</code>. Tạo app tại <ext>Spotify Developer Dashboard</ext>, thêm Redirect URI <code>{{redirectUri}}</code> rồi điền vào file <code>.env</code>.",
+  "heroBody": "Mang lịch sử nghe của bạn từ Last.fm, Spotify, YouTube Music hay Apple Music vào – không cần đăng ký – để xem nghệ sĩ, bài hát, album nghe nhiều nhất, đồng hồ nghe nhạc theo giờ và “Wrapped” của riêng bạn, bất cứ lúc nào, không cần chờ đến tháng 12. Đăng nhập Spotify nếu muốn thêm thư viện và phát nhạc ngay tại đây.",
+  "notConfigured": "Đăng nhập “bạn của timuze” chưa được cấu hình ở đây (thiếu <code>VITE_SPOTIFY_CLIENT_ID</code>). Last.fm, file lịch sử và ứng dụng Spotify của riêng bạn vẫn dùng được. Để bật: tạo ứng dụng ở <ext>Spotify Developer Dashboard</ext>, thêm Redirect URI <code>{{redirectUri}}</code>, rồi điền Client ID vào file <code>.env</code>.",
   "floatingStat": "Phút nghe năm nay",
   "featuresEyebrow": "Có gì trong timuze",
   "featuresTitle": "Mọi thứ bạn muốn biết về thói quen nghe nhạc của mình.",
   "features": [
     {
-      "title": "Top nghệ sĩ",
-      "body": "Bục vinh danh top 3 và bảng xếp hạng tới 99 nghệ sĩ – theo 4 tuần, 6 tháng hoặc 1 năm."
+      "title": "Nghệ sĩ nghe nhiều",
+      "body": "Bục top 3 và bảng tới 99 nghệ sĩ – theo 4 tuần, 6 tháng hoặc 1 năm nghe nhạc của bạn."
     },
     {
-      "title": "Top bài hát",
-      "body": "Những bài bạn replay nhiều nhất, kèm độ chung thuỷ, gu thập niên và giờ nghe cao điểm."
+      "title": "Bài hát nghe nhiều",
+      "body": "Những bài bạn nghe đi nghe lại nhất, cùng độ trung thành, gu theo thập niên và giờ nghe cao điểm."
     },
     {
-      "title": "Top album",
-      "body": "Spotify không có API top album – timuze tự tính từ 99 bài hát bạn nghe nhiều nhất."
+      "title": "Album nghe nhiều",
+      "body": "Album nghe nhiều nhất, tính từ các bài hát hàng đầu của bạn, kèm ảnh bìa."
     },
     {
-      "title": "Lượt stream thật",
-      "body": "Nhập file dữ liệu xuất từ Spotify để có số lượt stream, số giờ nghe và \"Wrapped\" cho từng năm."
+      "title": "Số lượt nghe thật",
+      "body": "Nhập lịch sử từ Last.fm, Spotify, YouTube Music hoặc Apple Music để có số lượt nghe, số giờ và “Wrapped” cho từng năm – gộp lại, kèm tỉ lệ từng nguồn."
     },
     {
-      "title": "Bản đồ nhiệt",
-      "body": "Xem bạn nghe nhạc vào thứ mấy, lúc mấy giờ, trên thiết bị nào, bỏ qua bao nhiêu bài."
+      "title": "Bản đồ nhiệt & đồng hồ",
+      "body": "Xem bạn nghe vào thứ mấy, lúc mấy giờ, đồng hồ 24 giờ và phần đóng góp của từng nguồn dữ liệu."
     },
     {
       "title": "Riêng tư",
-      "body": "Không có server. Token và dữ liệu chỉ nằm trong trình duyệt của bạn (OAuth PKCE)."
+      "body": "Không có máy chủ. Dữ liệu của bạn chỉ nằm trong trình duyệt."
     }
   ],
   "previewHint": "Bấm để xem trước",
@@ -37,18 +37,18 @@
   "collapse": "Thu gọn",
   "steps": [
     {
-      "title": "Đăng nhập Spotify",
-      "body": "Cấp quyền đọc top, lịch sử nghe gần đây và thư viện. Dữ liệu chỉ được đọc – quyền điều khiển phát chỉ dùng khi bạn bấm play trên máy phát đĩa."
+      "title": "Chọn cách bắt đầu",
+      "body": "Tên người dùng Last.fm, file lịch sử nghe hoặc đăng nhập Spotify – bạn chọn."
     },
     {
       "title": "Chọn khoảng thời gian",
-      "body": "4 tuần, 6 tháng hay cả năm – mọi thống kê cập nhật ngay lập tức."
+      "body": "4 tuần, 6 tháng hay cả năm – mọi thống kê cập nhật ngay."
     },
     {
-      "title": "Khám phá & nhập thêm",
-      "body": "Thả file lịch sử stream đầy đủ để mở khoá thống kê theo năm."
+      "title": "Khám phá và thêm nguồn",
+      "body": "Nhập thêm nguồn khác để có bức tranh đầy đủ và xem từng nguồn riêng."
     }
   ],
   "outro": "Mỗi lần bấm play là một dòng nhật ký. timuze giúp bạn đọc lại cuốn nhật ký ấy – theo cách đẹp nhất.",
-  "footer": "timuze · không liên kết với Spotify AB · dữ liệu từ <ext>Spotify Web API</ext>"
+  "footer": "timuze · không liên kết với Spotify, Last.fm, YouTube hay Apple · dữ liệu từ file của chính bạn, Last.fm, Spotify và iTunes Search"
 }

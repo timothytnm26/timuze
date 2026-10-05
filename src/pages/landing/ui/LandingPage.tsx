@@ -224,13 +224,7 @@ function Landing() {
       </section> */}
 
       <footer className="border-t border-line/50 px-4 py-8 text-center text-xs leading-relaxed text-balance text-ink-faint sm:px-8">
-        <Trans
-          t={t}
-          i18nKey="footer"
-          components={{
-            ext: <a href="https://developer.spotify.com/documentation/web-api" className="underline" target="_blank" rel="noreferrer" />,
-          }}
-        />
+        {t('footer')}
       </footer>
     </div>
   );
