@@ -27,6 +27,8 @@ function BuddyLink() {
   const { t } = useTranslation(['features/auth', 'common'])
   const [pending, setPending] = useState(false)
   const configured = env.spotifyClientId.length > 0
+  // without a built-in app there is nothing for visitors to log in to – only the site's owner needs to know
+  if (!configured && !import.meta.env.DEV) return null
   return (
     <button
       type="button"

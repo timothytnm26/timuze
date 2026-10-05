@@ -164,7 +164,8 @@ function Landing() {
               </Link>
             : <StartButton />}
           </div>
-          {!isSpotifyConfigured() && (
+          {/* a note for whoever runs the site, not for its visitors */}
+          {import.meta.env.DEV && !isSpotifyConfigured() && (
             <p data-hero-fade className="mt-5 max-w-xl rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-accent">
               <Trans
                 t={t}

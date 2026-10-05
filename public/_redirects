@@ -1,0 +1,2 @@
+# single-page app: every path serves index.html so /login, /history and the Spotify /callback load on refresh
+/*    /index.html   200
