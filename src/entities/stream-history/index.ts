@@ -1,4 +1,5 @@
-export type { Stream, StreamHistory } from './model/types'
+export type { Stream, StreamHistory, StreamSource, ImportRecord, ImportSummary } from './model/types'
+export { dedupeAcrossSources } from './model/dedupe'
 export { parseStreamingFile, mergeStreams, PLATFORM_IDS } from './model/parse'
 export {
   computeHistoryStats,
@@ -7,4 +8,5 @@ export {
   type HistoryStats,
   type RankedEntry,
 } from './model/aggregate'
-export { streamHistoryQueries, saveStreamHistory, clearStreamHistory } from './api/queries'
+export { streamHistoryQueries } from './api/queries'
+export { playStore, type PlayStore } from './api/store'

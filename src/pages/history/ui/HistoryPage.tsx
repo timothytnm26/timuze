@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { streamHistoryQueries } from '@/entities/stream-history'
-import { ImportHistory } from '@/features/import-history'
+import { ImportHistory, ManageImports } from '@/features/import-history'
 import { Skeleton } from '@/shared/ui'
 import { useTranslation } from '@/shared/i18n'
 import { PageHeader } from '@/widgets/page-header'
@@ -19,7 +19,10 @@ export function HistoryPage() {
       {q.isPending ? (
         <Skeleton className="h-80 rounded-card" />
       ) : q.data ? (
-        <HistoryDashboard history={q.data} />
+        <>
+          <HistoryDashboard history={q.data} />
+          <ManageImports history={q.data} />
+        </>
       ) : (
         <ImportHistory />
       )}

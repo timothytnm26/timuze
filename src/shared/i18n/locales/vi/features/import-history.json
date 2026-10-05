@@ -1,11 +1,97 @@
 {
   "title": "Nhập lịch sử nghe đầy đủ",
-  "description": "Spotify API chỉ trả về 50 bài gần nhất. Để có <b>số lượt stream thật</b> theo năm, hãy tải dữ liệu tại <link>spotify.com/account/privacy</link> (chọn <i>Extended streaming history</i>) rồi kéo file <code>.zip</code> hoặc <code>.json</code> vào đây. Dữ liệu chỉ được xử lý trong trình duyệt của bạn.",
+  "intro": "API của các dịch vụ chỉ trả về vài chục bài gần nhất. Để có số lượt nghe thật theo từng năm, hãy xin file dữ liệu cá nhân từ nền tảng bạn dùng, rồi thả file vào đây. Bạn có thể nhập nhiều nguồn cùng lúc.",
+  "sourceLabel": "Nguồn dữ liệu",
+  "stepsTitle": "Các bước lấy file",
+  "warningsTitle": "Lưu ý",
   "chooseFiles": "Chọn file",
   "processing": "Đang xử lý…",
   "imported_other": "Đã nhập {{count, number}} lượt phát",
-  "clear": "Xoá dữ liệu đã nhập",
+  "clear": "Xoá toàn bộ dữ liệu đã nhập",
+  "confirmClear": "Xoá toàn bộ lịch sử nghe đã nhập khỏi trình duyệt này? Không thể hoàn tác.",
+  "privacy": "Quyền riêng tư: file được đọc ngay trong trình duyệt của bạn và không được tải lên máy chủ nào. Ứng dụng chỉ giữ tên bài, nghệ sĩ, album, thời điểm và thời lượng nghe; địa chỉ IP, thiết bị và các thông tin khác trong file bị bỏ qua. Nhập lại cùng một file là an toàn vì các lượt trùng được loại bỏ.",
+  "manage": {
+    "summary": "Quản lý & thêm nguồn dữ liệu",
+    "title": "Các lần đã nhập",
+    "remove": "Xoá lần nhập này",
+    "estimateNote": "Dữ liệu từ {{sources}} <b>không có thời lượng nghe</b>, nên mỗi lượt được tính là 3 phút. Số phút và số giờ nghe của các nguồn này chỉ mang tính ước lượng.",
+    "storageNote": "Dữ liệu chỉ nằm trong trình duyệt này (IndexedDB). Xoá dữ liệu trang web, đổi trình duyệt, đổi tên miền hoặc dùng cửa sổ ẩn danh sẽ làm mất dữ liệu — khi đó hãy nhập lại file.",
+    "duplicatesNote_other": "Đã gộp {{count, number}} lượt nghe xuất hiện ở hai nguồn (khớp theo bài, nghệ sĩ và thời điểm trong vòng 90 giây); bản ghi chính xác hơn được giữ lại. Xoá một lần nhập sẽ trả lại các lượt đã gộp."
+  },
   "errors": {
-    "noData": "Không tìm thấy dữ liệu nghe nhạc trong các file đã chọn"
+    "noData": {
+      "spotify": "Không tìm thấy dữ liệu nghe nhạc Spotify. Hãy chọn file Streaming_History_Audio_*.json hoặc file .zip tải từ mục Extended streaming history.",
+      "youtube": "Không tìm thấy lượt nghe YouTube Music. Hãy chắc chắn bạn xuất ở định dạng JSON và lịch sử có mục “YouTube Music”.",
+      "apple": "Không tìm thấy lượt nghe Apple Music. Hãy chọn file .zip tải từ privacy.apple.com hoặc file CSV “Play Activity”.",
+      "lastfm": "Không tìm thấy lượt scrobble nào trên Last.fm."
+    },
+    "lastfm": {
+      "userNotFound": "Không tìm thấy người dùng Last.fm này. Hãy kiểm tra lại tên người dùng.",
+      "privateProfile": "Không lấy được lịch sử nghe. Hãy bỏ chọn “Hide recent listening information” trong cài đặt riêng tư của Last.fm, hoặc tài khoản chưa có scrobble nào.",
+      "invalidKey": "API key không hợp lệ hoặc đã bị tạm khoá.",
+      "rateLimit": "Last.fm đang giới hạn tốc độ. Hãy thử lại sau ít phút.",
+      "network": "Không kết nối được với Last.fm. Hãy kiểm tra mạng rồi thử lại."
+    }
+  },
+  "sources": {
+    "spotify": {
+      "label": "Spotify",
+      "eta": "Thời gian chờ: Spotify gửi file qua email, có thể mất đến 30 ngày.",
+      "step1": "Mở <link>spotify.com/account/privacy</link> và đăng nhập.",
+      "step2": "Kéo xuống phần <b>Download your data</b>.",
+      "step3": "Chỉ tích <b>Extended streaming history</b> (không phải “Account data”), rồi bấm <b>Request data</b>.",
+      "step4": "Mở email xác nhận từ Spotify và bấm xác nhận. Sau khi file sẵn sàng, bạn sẽ nhận thêm một email có nút tải.",
+      "step5": "Tải file <code>.zip</code> về và thả vào ô bên dưới (không cần giải nén).",
+      "drop": "Thả file .zip hoặc các file Streaming_History_Audio_*.json của Spotify vào đây.",
+      "warn1": "Hãy chọn đúng <b>Extended streaming history</b>. “Account data” chỉ có 1 năm gần nhất và không có tên album.",
+      "warn2": "Chỉ các bài hát được nhập; podcast và video bị bỏ qua. Một lượt chỉ được tính là stream khi nghe từ 30 giây.",
+      "warn3": "Link tải email của Spotify hết hạn sau vài ngày, hãy tải sớm."
+    },
+    "youtube": {
+      "label": "YouTube Music",
+      "eta": "Thời gian chờ: Google Takeout thường mất từ vài phút đến vài giờ, đôi khi vài ngày.",
+      "step1": "Mở <link>takeout.google.com</link> và đăng nhập tài khoản Google bạn dùng nghe nhạc.",
+      "step2": "Bấm <b>Deselect all</b> (Bỏ chọn tất cả), rồi tích <b>YouTube and YouTube Music</b>.",
+      "step3": "Bấm <b>All YouTube data included</b>, chỉ tích <b>history</b> (lịch sử), rồi bấm OK.",
+      "step4": "Cũng trong mục đó, bấm <b>Multiple formats</b> và đổi <b>History</b> từ HTML sang <b>JSON</b>. Sau đó chọn <b>Create export</b>.",
+      "step5": "Khi có email, tải file <code>.zip</code> về và thả vào ô bên dưới (không cần giải nén).",
+      "drop": "Thả file .zip của Google Takeout (hoặc file watch-history.json) vào đây.",
+      "warn1": "Takeout <b>không có thời lượng nghe</b>. Mỗi mục được tính là một lượt dài 3 phút, nên số phút nghe chỉ là ước lượng.",
+      "warn2": "Chỉ giữ các mục thuộc <b>YouTube Music</b>; video YouTube thường bị bỏ qua. Mục bị xoá hoặc riêng tư (không có kênh) cũng bị bỏ qua.",
+      "warn3": "Nếu lịch sử YouTube từng bị tắt, khoảng thời gian đó sẽ không có dữ liệu. Tên nghệ sĩ lấy từ tên kênh, nên có thể không chính xác với video không phải kênh “- Topic”."
+    },
+    "apple": {
+      "label": "Apple Music",
+      "eta": "Thời gian chờ: Apple gửi email khi file sẵn sàng, có thể mất đến 7 ngày.",
+      "step1": "Mở <link>privacy.apple.com</link> và đăng nhập bằng Apple ID.",
+      "step2": "Chọn <b>Request a copy of your data</b> (Yêu cầu bản sao dữ liệu).",
+      "step3": "Tích <b>Apple Media Services information</b>, rồi bấm Continue và hoàn tất yêu cầu.",
+      "step4": "Chờ email của Apple báo file đã sẵn sàng, rồi tải về.",
+      "step5": "Thả file <code>.zip</code> vào ô bên dưới (không cần giải nén). Ứng dụng tự tìm file lịch sử nghe Apple Music bên trong, kể cả khi nằm trong file zip lồng nhau.",
+      "drop": "Thả file .zip của Apple (hoặc file CSV “Play Activity”) vào đây.",
+      "warn1": "Định dạng file của Apple thay đổi theo thời gian; tính năng này đọc theo tên cột nên có thể không nhận ra file mới. Nếu báo không có dữ liệu, hãy thử chọn riêng file CSV.",
+      "warn2": "Nếu chỉ có file “Play History Daily Tracks”, thời điểm nghe chỉ chính xác đến ngày nên biểu đồ theo giờ sẽ không chính xác.",
+      "warn3": "Apple chỉ ghi lại lịch sử khi bạn dùng Apple Music; bài nghe ngoại tuyến có thể thiếu."
+    },
+    "lastfm": {
+      "label": "Last.fm",
+      "eta": "Thời gian chờ: tài khoản có nhiều scrobble phải tải nhiều trang, có thể mất vài phút. Hãy giữ nguyên tab này.",
+      "step1": "Mở <link>last.fm/settings/privacy</link>, đăng nhập và bỏ chọn <b>Hide recent listening information</b> để lịch sử nghe được công khai.",
+      "step2": "Ghi lại <b>tên người dùng</b> Last.fm của bạn (phần cuối của địa chỉ <code>last.fm/user/tên-bạn</code>).",
+      "step3": "Nếu ô <b>API key</b> hiện ra bên dưới: mở <code>last.fm/api/account/create</code>, đặt tên ứng dụng tuỳ ý, để trống ô callback, rồi sao chép <b>API key</b> (không phải Shared secret).",
+      "step4": "Nhập tên người dùng (và API key nếu có yêu cầu) vào biểu mẫu bên dưới.",
+      "step5": "Bấm <b>Nhập từ Last.fm</b> và chờ tải xong.",
+      "drop": "Nhập tên người dùng Last.fm của bạn bên dưới.",
+      "warn1": "Last.fm chỉ có những bài đã được <b>scrobble</b>. Spotify tự scrobble khi bạn liên kết trong cài đặt Spotify; Apple Music và YouTube Music cần ứng dụng hoặc tiện ích bên thứ ba (ví dụ Web Scrobbler), và không có dữ liệu trước khi bạn bật scrobble.",
+      "warn2": "Last.fm <b>không có thời lượng nghe</b> và không cho biết bài nghe trên nền tảng nào. Mỗi lượt được tính là 3 phút nên số phút nghe chỉ là ước lượng.",
+      "warn3": "Các lượt nghe xuất hiện ở hai nguồn (ví dụ file Spotify và Last.fm đã scrobble Spotify) được <b>tự động gộp</b> theo tên bài, nghệ sĩ và thời điểm (lệch dưới 90 giây); bản ghi có thời lượng thật được giữ lại. Việc khớp không hoàn hảo: bài bị đổi tên hoặc khác phiên bản có thể vẫn bị đếm đôi."
+    }
+  },
+  "lastfm": {
+    "username": "Tên người dùng Last.fm",
+    "apiKey": "Last.fm API key",
+    "apiKeyHint": "Khóa API công khai của bạn, chỉ được lưu trong trình duyệt này. Không dùng “Shared secret”.",
+    "start": "Nhập từ Last.fm",
+    "progress": "Đã tải {{done}}/{{total}} trang…"
   }
 }

@@ -8,6 +8,9 @@ export const env = {
   spotifyAuthUrl: 'https://accounts.spotify.com/authorize',
   spotifyTokenUrl: 'https://accounts.spotify.com/api/token',
   spotifyApiUrl: 'https://api.spotify.com/v1',
+  /** Public (not secret) Last.fm API key – read-only calls need no signature. Users can paste their own instead. */
+  lastfmApiKey: (import.meta.env.VITE_LASTFM_API_KEY as string | undefined) ?? '',
+  lastfmApiUrl: 'https://ws.audioscrobbler.com/2.0/',
   /** Spotify has no artist country – it is looked up on MusicBrainz (CORS-enabled, ~1 req/s). */
   musicBrainzApiUrl: 'https://musicbrainz.org/ws/2',
 } as const

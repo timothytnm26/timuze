@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@/shared/ui'
 import { useTranslation } from '@/shared/i18n'
-import { clearStreamHistory, streamHistoryQueries } from '@/entities/stream-history'
+import { playStore, streamHistoryQueries } from '@/entities/stream-history'
 
 export function ClearHistoryButton() {
   const qc = useQueryClient()
@@ -11,7 +11,8 @@ export function ClearHistoryButton() {
       variant="ghost"
       size="sm"
       onClick={async () => {
-        await clearStreamHistory()
+        if (!window.confirm(t('confirmClear'))) return
+        await playStore.clear()
         qc.setQueryData(streamHistoryQueries.all().queryKey, null)
       }}
     >

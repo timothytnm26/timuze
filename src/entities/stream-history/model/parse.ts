@@ -60,6 +60,7 @@ export const parseStreamingFile = (json: unknown): Stream[] => {
         uri: r.spotify_track_uri,
         platform: simplifyPlatform(r.platform),
         skipped: Boolean(r.skipped),
+        source: 'spotify',
       })
     } else if (isBasic(r)) {
       out.push({
@@ -72,6 +73,7 @@ export const parseStreamingFile = (json: unknown): Stream[] => {
         uri: null,
         platform: null,
         skipped: false,
+        source: 'spotify',
       })
     }
   }

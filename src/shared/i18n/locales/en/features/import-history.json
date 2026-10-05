@@ -1,12 +1,99 @@
 {
   "title": "Import your full listening history",
-  "description": "The Spotify API only returns your last 50 tracks. To get <b>real stream counts</b> per year, request your data at <link>spotify.com/account/privacy</link> (choose <i>Extended streaming history</i>), then drop the <code>.zip</code> or <code>.json</code> files here. Your data is processed only in your browser.",
+  "intro": "Streaming APIs only return your last few dozen tracks. To get real play counts per year, request your personal data from the service you use, then drop the file here. You can import several sources at once.",
+  "sourceLabel": "Data source",
+  "stepsTitle": "How to get the file",
+  "warningsTitle": "Good to know",
   "chooseFiles": "Choose files",
   "processing": "Processing…",
   "imported_one": "Imported {{count, number}} play",
   "imported_other": "Imported {{count, number}} plays",
-  "clear": "Delete imported data",
+  "clear": "Delete all imported data",
+  "confirmClear": "Delete all imported listening history from this browser? This can't be undone.",
+  "privacy": "Privacy: files are read in your browser and never uploaded to a server. Only track, artist, album, time and play length are kept; IP addresses, devices and everything else in the file are ignored. Importing the same file again is safe because duplicate plays are removed.",
+  "manage": {
+    "summary": "Manage & add data sources",
+    "title": "Past imports",
+    "remove": "Remove this import",
+    "estimateNote": "Data from {{sources}} <b>has no play length</b>, so every play counts as 3 minutes. Minutes and hours listened for these sources are estimates.",
+    "storageNote": "Data lives only in this browser (IndexedDB). Clearing site data, switching browser or domain, or using a private window will erase it — just import the files again.",
+    "duplicatesNote_one": "Merged {{count, number}} play that appeared in two sources (matched by track, artist and time within 90 seconds); the more accurate record is kept. Removing an import brings the merged plays back.",
+    "duplicatesNote_other": "Merged {{count, number}} plays that appeared in two sources (matched by track, artist and time within 90 seconds); the more accurate record is kept. Removing an import brings the merged plays back."
+  },
   "errors": {
-    "noData": "No listening data found in the selected files"
+    "noData": {
+      "spotify": "No Spotify listening data found. Choose the Streaming_History_Audio_*.json files, or the .zip from Extended streaming history.",
+      "youtube": "No YouTube Music plays found. Make sure you exported as JSON and that your history includes “YouTube Music”.",
+      "apple": "No Apple Music plays found. Choose the .zip from privacy.apple.com or the “Play Activity” CSV.",
+      "lastfm": "No scrobbles found on Last.fm."
+    },
+    "lastfm": {
+      "userNotFound": "That Last.fm user wasn't found. Check the username.",
+      "privateProfile": "Couldn't read the listening history. Untick “Hide recent listening information” in your Last.fm privacy settings, or the account has no scrobbles yet.",
+      "invalidKey": "The API key is invalid or has been suspended.",
+      "rateLimit": "Last.fm is rate limiting requests. Try again in a few minutes.",
+      "network": "Couldn't reach Last.fm. Check your connection and try again."
+    }
+  },
+  "sources": {
+    "spotify": {
+      "label": "Spotify",
+      "eta": "Wait time: Spotify emails you the file, which can take up to 30 days.",
+      "step1": "Open <link>spotify.com/account/privacy</link> and sign in.",
+      "step2": "Scroll to <b>Download your data</b>.",
+      "step3": "Tick only <b>Extended streaming history</b> (not “Account data”), then click <b>Request data</b>.",
+      "step4": "Open the confirmation email from Spotify and confirm. When the file is ready you'll get a second email with a download button.",
+      "step5": "Download the <code>.zip</code> and drop it below (no need to unzip).",
+      "drop": "Drop the Spotify .zip or the Streaming_History_Audio_*.json files here.",
+      "warn1": "Pick <b>Extended streaming history</b>. “Account data” only covers the last year and has no album names.",
+      "warn2": "Only songs are imported; podcasts and videos are skipped. A play counts as a stream from 30 seconds.",
+      "warn3": "Spotify's download link expires after a few days, so download it soon."
+    },
+    "youtube": {
+      "label": "YouTube Music",
+      "eta": "Wait time: Google Takeout usually takes minutes to hours, sometimes days.",
+      "step1": "Open <link>takeout.google.com</link> and sign in with the Google account you listen with.",
+      "step2": "Click <b>Deselect all</b>, then tick <b>YouTube and YouTube Music</b>.",
+      "step3": "Click <b>All YouTube data included</b>, tick only <b>history</b>, then OK.",
+      "step4": "In the same dialog click <b>Multiple formats</b> and change <b>History</b> from HTML to <b>JSON</b>. Then choose <b>Create export</b>.",
+      "step5": "When the email arrives, download the <code>.zip</code> and drop it below (no need to unzip).",
+      "drop": "Drop the Google Takeout .zip (or the watch-history.json file) here.",
+      "warn1": "Takeout has <b>no play length</b>. Each entry counts as one 3-minute play, so listening minutes are estimates.",
+      "warn2": "Only <b>YouTube Music</b> entries are kept; regular YouTube videos are ignored. Deleted or private items (no channel) are skipped too.",
+      "warn3": "If YouTube history was ever turned off, that period has no data. Artist names come from the channel name, so they may be off for videos that aren't “- Topic” channels."
+    },
+    "apple": {
+      "label": "Apple Music",
+      "eta": "Wait time: Apple emails you when the file is ready, which can take up to 7 days.",
+      "step1": "Open <link>privacy.apple.com</link> and sign in with your Apple ID.",
+      "step2": "Choose <b>Request a copy of your data</b>.",
+      "step3": "Tick <b>Apple Media Services information</b>, then Continue and complete the request.",
+      "step4": "Wait for Apple's email saying the file is ready, then download it.",
+      "step5": "Drop the <code>.zip</code> below (no need to unzip). The app finds the Apple Music play files inside, even in nested zips.",
+      "drop": "Drop the Apple .zip (or the “Play Activity” CSV) here.",
+      "warn1": "Apple changes its file format from time to time; the import matches on column names, so a new layout may not be recognised. If it reports no data, try choosing the CSV file on its own.",
+      "warn2": "If only “Play History Daily Tracks” exists, play times are accurate to the day only, so the hour-of-day charts won't be accurate.",
+      "warn3": "Apple only logs history while you use Apple Music; offline plays may be missing."
+    },
+    "lastfm": {
+      "label": "Last.fm",
+      "eta": "Wait time: accounts with many scrobbles need many pages and can take a few minutes. Keep this tab open.",
+      "step1": "Open <link>last.fm/settings/privacy</link>, sign in and untick <b>Hide recent listening information</b> so your history is public.",
+      "step2": "Note your Last.fm <b>username</b> (the last part of <code>last.fm/user/your-name</code>).",
+      "step3": "If the <b>API key</b> field shows below: open <code>last.fm/api/account/create</code>, use any application name, leave the callback empty, and copy the <b>API key</b> (not the Shared secret).",
+      "step4": "Enter the username (and the API key if asked) in the form below.",
+      "step5": "Click <b>Import from Last.fm</b> and wait for it to finish.",
+      "drop": "Enter your Last.fm username below.",
+      "warn1": "Last.fm only has tracks that were <b>scrobbled</b>. Spotify scrobbles on its own once linked in Spotify settings; Apple Music and YouTube Music need a third-party app or extension (e.g. Web Scrobbler), and nothing before you turned scrobbling on is recorded.",
+      "warn2": "Last.fm has <b>no play length</b> and doesn't say which service a play came from. Each play counts as 3 minutes, so listening minutes are estimates.",
+      "warn3": "Plays that appear in two sources (e.g. the Spotify export and a Last.fm that scrobbles Spotify) are <b>merged automatically</b> by track, artist and time (within 90 seconds); the record with the real play length is kept. Matching isn't perfect: renamed or differently versioned tracks may still be counted twice."
+    }
+  },
+  "lastfm": {
+    "username": "Last.fm username",
+    "apiKey": "Last.fm API key",
+    "apiKeyHint": "Your own public API key, stored only in this browser. Not the “Shared secret”.",
+    "start": "Import from Last.fm",
+    "progress": "Loaded {{done}}/{{total}} pages…"
   }
 }
