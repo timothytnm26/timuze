@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as CallbackRouteImport } from './routes/callback'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppAlbumsRouteImport } from './routes/_app/albums'
 import { Route as AppArtistsRouteImport } from './routes/_app/artists'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
@@ -32,6 +33,11 @@ const AppRoute = AppRouteImport.update({
 const CallbackRoute = CallbackRouteImport.update({
   id: '/callback',
   path: '/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppAlbumsRoute = AppAlbumsRouteImport.update({
@@ -73,6 +79,7 @@ const AppTracksRoute = AppTracksRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/callback': typeof CallbackRoute
+  '/login': typeof LoginRoute
   '/albums': typeof AppAlbumsRoute
   '/artists': typeof AppArtistsRoute
   '/dashboard': typeof AppDashboardRoute
@@ -84,6 +91,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/callback': typeof CallbackRoute
+  '/login': typeof LoginRoute
   '/albums': typeof AppAlbumsRoute
   '/artists': typeof AppArtistsRoute
   '/dashboard': typeof AppDashboardRoute
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/callback': typeof CallbackRoute
+  '/login': typeof LoginRoute
   '/_app/albums': typeof AppAlbumsRoute
   '/_app/artists': typeof AppArtistsRoute
   '/_app/dashboard': typeof AppDashboardRoute
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/callback'
+    | '/login'
     | '/albums'
     | '/artists'
     | '/dashboard'
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/callback'
+    | '/login'
     | '/albums'
     | '/artists'
     | '/dashboard'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_app'
     | '/callback'
+    | '/login'
     | '/_app/albums'
     | '/_app/artists'
     | '/_app/dashboard'
@@ -146,6 +158,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   CallbackRoute: typeof CallbackRoute
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -169,6 +182,13 @@ declare module '@tanstack/react-router' {
       path: '/callback'
       fullPath: '/callback'
       preLoaderRoute: typeof CallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/albums': {
@@ -249,6 +269,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   CallbackRoute: CallbackRoute,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

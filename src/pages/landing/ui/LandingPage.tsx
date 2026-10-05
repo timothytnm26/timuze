@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Link } from '@tanstack/react-router';
-import { LoginButton, useSession } from '@/features/auth';
+import { LoginLink, StartButton, useSession } from '@/features/auth';
 import { LocaleMenu } from '@/features/switch-locale';
 import { SkinMenu } from '@/features/switch-skin';
 import { isSpotifyConfigured, env } from '@/shared/config';
@@ -158,7 +158,7 @@ function Landing() {
               <Link to="/dashboard" className={buttonClass('primary', 'lg')}>
                 {t('common:actions.openDashboard')}
               </Link>
-            : <LoginButton />}
+            : <StartButton />}
           </div>
           {!isSpotifyConfigured() && (
             <p data-hero-fade className="mt-5 max-w-xl rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-accent">
@@ -168,7 +168,7 @@ function Landing() {
                 values={{ redirectUri: env.spotifyRedirectUri }}
                 components={{
                   code: <code className="font-mono" />,
-                  link: <a className="underline" href="https://developer.spotify.com/dashboard" target="_blank" rel="noreferrer" />,
+                  ext: <a className="underline" href="https://developer.spotify.com/dashboard" target="_blank" rel="noreferrer" />,
                 }}
               />
             </p>
@@ -176,7 +176,7 @@ function Landing() {
         </div>
 
         <div data-hero-visual className="relative min-w-0">
-          <HeroTurntable loginAction={<LoginButton size="md" />} fallback={<CoverStack stat={f.number(48213)} statLabel={t('floatingStat')} />} />
+          <HeroTurntable loginAction={<LoginLink size="md" icon />} fallback={<CoverStack stat={f.number(48213)} statLabel={t('floatingStat')} />} />
         </div>
       </section>
 
@@ -224,7 +224,7 @@ function Landing() {
           t={t}
           i18nKey="footer"
           components={{
-            link: <a href="https://developer.spotify.com/documentation/web-api" className="underline" target="_blank" rel="noreferrer" />,
+            ext: <a href="https://developer.spotify.com/documentation/web-api" className="underline" target="_blank" rel="noreferrer" />,
           }}
         />
       </footer>

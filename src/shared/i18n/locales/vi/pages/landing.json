@@ -1,8 +1,8 @@
 {
   "badge": "Thống kê Spotify cho người mê nhạc",
   "heroTitle": "Âm nhạc của bạn, kể bằng <hl>con số.</hl>",
-  "heroBody": "Đăng nhập Spotify để xem nghệ sĩ, bài hát và album bạn nghe nhiều nhất, thói quen nghe theo giờ và cả một bản “Wrapped” riêng – bất cứ lúc nào, không cần đợi cuối năm.",
-  "notConfigured": "Chưa cấu hình <code>VITE_SPOTIFY_CLIENT_ID</code>. Tạo app tại <link>Spotify Developer Dashboard</link>, thêm Redirect URI <code>{{redirectUri}}</code> rồi điền vào file <code>.env</code>.",
+  "heroBody": "Nhập tên người dùng Last.fm, tải file lịch sử từ Spotify, YouTube Music hay Apple Music, hoặc đăng nhập Spotify để xem nghệ sĩ, bài hát, album bạn nghe nhiều nhất, thói quen nghe theo giờ và “Wrapped” của riêng bạn – bất cứ lúc nào, không cần chờ đến tháng 12.",
+  "notConfigured": "Chưa cấu hình <code>VITE_SPOTIFY_CLIENT_ID</code>. Tạo app tại <ext>Spotify Developer Dashboard</ext>, thêm Redirect URI <code>{{redirectUri}}</code> rồi điền vào file <code>.env</code>.",
   "floatingStat": "Phút nghe năm nay",
   "featuresEyebrow": "Có gì trong timuze",
   "featuresTitle": "Mọi thứ bạn muốn biết về thói quen nghe nhạc của mình.",
@@ -50,5 +50,5 @@
     }
   ],
   "outro": "Mỗi lần bấm play là một dòng nhật ký. timuze giúp bạn đọc lại cuốn nhật ký ấy – theo cách đẹp nhất.",
-  "footer": "timuze · không liên kết với Spotify AB · dữ liệu từ <link>Spotify Web API</link>"
+  "footer": "timuze · không liên kết với Spotify AB · dữ liệu từ <ext>Spotify Web API</ext>"
 }

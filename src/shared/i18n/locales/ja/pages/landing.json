@@ -1,8 +1,8 @@
 {
   "badge": "音楽好きのための Spotify 統計",
   "heroTitle": "あなたの音楽を、<hl>数字</hl>で語ろう。",
-  "heroBody": "Spotify にログインすると、よく聴くアーティスト・曲・アルバム、時間帯ごとのリスニング習慣、そしてあなただけの「Wrapped」がいつでも見られます。年末を待つ必要はありません。",
-  "notConfigured": "<code>VITE_SPOTIFY_CLIENT_ID</code> が設定されていません。<link>Spotify Developer Dashboard</link> でアプリを作成し、Redirect URI <code>{{redirectUri}}</code> を追加して <code>.env</code> ファイルに記入してください。",
+  "heroBody": "Last.fm のユーザー名を入力するか、Spotify・YouTube Music・Apple Music の履歴ファイルを読み込む、または Spotify にログインすると、よく聴くアーティスト・曲・アルバム、時間帯ごとの聴き方、自分だけの「Wrapped」を、12月を待たずにいつでも見られます。",
+  "notConfigured": "<code>VITE_SPOTIFY_CLIENT_ID</code> が設定されていません。<ext>Spotify Developer Dashboard</ext> でアプリを作成し、Redirect URI <code>{{redirectUri}}</code> を追加して <code>.env</code> ファイルに記入してください。",
   "floatingStat": "今年の再生時間（分）",
   "featuresEyebrow": "timuze でできること",
   "featuresTitle": "あなたのリスニング習慣について、知りたいことのすべて。",
@@ -50,5 +50,5 @@
     }
   ],
   "outro": "再生ボタンを押すたびに、日記が1行増えていく。timuze はその日記を、いちばん美しい形で読み返させてくれます。",
-  "footer": "timuze · Spotify AB とは無関係です · データ提供: <link>Spotify Web API</link>"
+  "footer": "timuze · Spotify AB とは無関係です · データ提供: <ext>Spotify Web API</ext>"
 }

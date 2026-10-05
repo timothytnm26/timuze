@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { UserAvatar, userQueries } from '@/entities/user'
-import { LoginButton, LogoutButton, useSession } from '@/features/auth'
+import { LogoutButton, StartLink, useSession } from '@/features/auth'
 import { useTranslation } from '@/shared/i18n'
 import { cn } from '@/shared/lib'
 import { Island } from '@/shared/ui'
@@ -17,7 +17,7 @@ export function ProfileMenu({ className }: { className?: string }) {
   const { data: me } = useQuery({ ...userQueries.me(), enabled: loggedIn })
   const { t } = useTranslation(['widgets/app-shell', 'common'])
 
-  if (!loggedIn) return <LoginButton size="sm" short className={cn('[&>svg]:size-4', className)} />
+  if (!loggedIn) return <StartLink size="sm" className={className} />
 
   const name = me ? (me.display_name ?? me.id) : '…'
 

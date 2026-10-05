@@ -4,8 +4,10 @@ import { AppShell } from '@/widgets/app-shell'
 
 /** Pathless layout – guards every authenticated page. */
 export const Route = createFileRoute('/_app')({
-  beforeLoad: () => {
-    if (!isAuthenticated()) throw redirect({ to: '/' })
+  beforeLoad: ({ location }) => {
+    // Streams only needs the user's own export files, so it works without a Spotify login
+    const guestOk = location.pathname.replace(/\/$/, '').endsWith('/history')
+    if (!isAuthenticated() && !guestOk) throw redirect({ to: '/' })
   },
   component: () => (
     <AppShell>

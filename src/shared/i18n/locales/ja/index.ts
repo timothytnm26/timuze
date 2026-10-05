@@ -1,6 +1,7 @@
 // Generated list of namespaces – one JSON file per FSD slice (plus `common`).
 import type { Resources } from '../vi'
 import common from './common.json'
+import featuresAuth from './features/auth.json'
 import featuresImportHistory from './features/import-history.json'
 import featuresRankAlbum from './features/rank-album.json'
 import featuresTopFilter from './features/top-filter.json'
@@ -27,6 +28,7 @@ import widgetsTopAlbums from './widgets/top-albums.json'
 
 export const ja = {
   'common': common,
+  'features/auth': featuresAuth,
   'features/import-history': featuresImportHistory,
   'features/rank-album': featuresRankAlbum,
   'features/top-filter': featuresTopFilter,

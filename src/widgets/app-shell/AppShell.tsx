@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { UserAvatar, userQueries } from '@/entities/user'
-import { LogoutButton } from '@/features/auth'
+import { LoginLink, LogoutButton, useSession } from '@/features/auth'
 import { LocaleMenu } from '@/features/switch-locale'
 import { SkinMenu } from '@/features/switch-skin'
 import { cn } from '@/shared/lib'
@@ -21,7 +21,10 @@ export function Logo({ className }: { className?: string }) {
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const { data: me } = useQuery(userQueries.me())
+  const loggedIn = useSession().mode !== 'anonymous'
+  const { data: me } = useQuery({ ...userQueries.me(), enabled: loggedIn })
+  // without Spotify only the Streams page (local files) works
+  const nav = loggedIn ? NAV : NAV.filter((n) => n.to === '/history')
   const { t } = useTranslation(['widgets/app-shell', 'common'])
 
   return (
@@ -33,7 +36,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             skin/language islands opening upward out of it aren't clipped by the scroller */}
         <div className="-mx-2 flex min-h-0 flex-1 flex-col gap-8 overflow-x-hidden overflow-y-auto overscroll-contain px-2 [scrollbar-width:thin]">
           <nav className="flex flex-col gap-1" aria-label={t('nav.main')}>
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -46,13 +49,14 @@ export function AppShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <NowPlaying variant="card" className="mt-auto" />
+          {loggedIn && <NowPlaying variant="card" className="mt-auto" />}
         </div>
         <div className="-mt-5 flex flex-col gap-3">
           <div className="flex gap-2">
             <SkinMenu placement="top" align="start" />
             <LocaleMenu placement="top" align="start" />
           </div>
+          {!loggedIn && <LoginLink size="sm" />}
           {me && (
             <div className="flex items-center gap-3">
               <UserAvatar user={me} />
@@ -71,10 +75,11 @@ export function AppShell({ children }: { children: ReactNode }) {
         <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-line/60 px-4 py-3 before:absolute before:inset-0 before:-z-10 before:bg-canvas/80 before:backdrop-blur-xl sm:px-8 lg:hidden glass:before:bg-canvas/40">
           <Logo />
           <div className="flex items-center gap-3">
-            <NowPlaying className="hidden sm:flex" />
+            {loggedIn && <NowPlaying className="hidden sm:flex" />}
             <SkinMenu />
             <LocaleMenu />
             {me && <UserAvatar user={me} />}
+            {!loggedIn && <LoginLink size="sm" short />}
           </div>
         </header>
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-8 pb-28 sm:px-8 lg:pb-16">{children}</main>
@@ -85,7 +90,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         className="fixed inset-x-3 bottom-3 z-40 flex justify-between rounded-2xl border border-line bg-surface/90 px-1 py-1.5 backdrop-blur-xl lg:hidden glass:bg-canvas/50 pixel:border-2"
         aria-label={t('nav.mobile')}
       >
-        {NAV.map((n) => (
+        {nav.map((n) => (
           <Link
             key={n.to}
             to={n.to}

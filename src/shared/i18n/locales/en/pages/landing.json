@@ -1,8 +1,8 @@
 {
   "badge": "Spotify stats for music lovers",
   "heroTitle": "Your music, told in <hl>numbers.</hl>",
-  "heroBody": "Log in with Spotify to see the artists, tracks and albums you play the most, your listening habits by hour, and your own “Wrapped” – any time, no need to wait for December.",
-  "notConfigured": "<code>VITE_SPOTIFY_CLIENT_ID</code> is not configured. Create an app in the <link>Spotify Developer Dashboard</link>, add the Redirect URI <code>{{redirectUri}}</code>, then put it in your <code>.env</code> file.",
+  "heroBody": "Enter your Last.fm username, load a history file from Spotify, YouTube Music or Apple Music, or log in with Spotify to see the artists, tracks and albums you play the most, your listening habits by hour, and your own “Wrapped” – any time, no need to wait for December.",
+  "notConfigured": "<code>VITE_SPOTIFY_CLIENT_ID</code> is not configured. Create an app in the <ext>Spotify Developer Dashboard</ext>, add the Redirect URI <code>{{redirectUri}}</code>, then put it in your <code>.env</code> file.",
   "floatingStat": "Minutes listened this year",
   "featuresEyebrow": "What's inside timuze",
   "featuresTitle": "Everything you ever wanted to know about your listening habits.",
@@ -50,5 +50,5 @@
     }
   ],
   "outro": "Every press of play is a diary entry. timuze helps you read that diary back – beautifully.",
-  "footer": "timuze · not affiliated with Spotify AB · data from the <link>Spotify Web API</link>"
+  "footer": "timuze · not affiliated with Spotify AB · data from the <ext>Spotify Web API</ext>"
 }

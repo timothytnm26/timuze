@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@/shared/ui'
-import { isSpotifyConfigured } from '@/shared/config'
+import { env } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { useTranslation } from '@/shared/i18n'
 import { startSpotifyLogin } from '../model/auth'
@@ -16,18 +16,25 @@ export function SpotifyIcon({ className }: { className?: string }) {
 export function LoginButton({
   size = 'lg',
   short = false,
+  variant,
+  label,
   className,
 }: {
   size?: 'sm' | 'md' | 'lg'
   /** "Log in" instead of "Log in with Spotify" – for tight headers (the icon still says Spotify) */
   short?: boolean
+  variant?: 'primary' | 'outline'
+  /** replaces the default "Log in with Spotify" text */
+  label?: string
   className?: string
 }) {
   const [pending, setPending] = useState(false)
-  const configured = isSpotifyConfigured()
+  // the built-in app only – a user's own Client ID goes through StartOptions
+  const configured = env.spotifyClientId.length > 0
   const { t } = useTranslation()
   return (
     <Button
+      variant={variant}
       size={size}
       className={className}
       disabled={pending || !configured}
@@ -38,7 +45,7 @@ export function LoginButton({
       }}
     >
       <SpotifyIcon />
-      {pending ? t('actions.redirecting') : t(short ? 'actions.loginShort' : 'actions.login')}
+      {pending ? t('actions.redirecting') : (label ?? t(short ? 'actions.loginShort' : 'actions.login'))}
     </Button>
   )
 }
