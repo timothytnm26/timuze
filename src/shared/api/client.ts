@@ -1,4 +1,4 @@
-import { env } from '../config'
+import { env, getSpotifyClientId } from '../config'
 import { SpotifyApiError } from './errors'
 import { clearSession, sessionStore, setSession } from './session'
 import type { TokenResponse } from './types'
@@ -28,7 +28,7 @@ const refreshAccessToken = async (): Promise<string> => {
     body: new URLSearchParams({
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
-      client_id: env.spotifyClientId,
+      client_id: getSpotifyClientId(),
     }),
   })
   if (!res.ok) {

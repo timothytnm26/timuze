@@ -1,4 +1,4 @@
-import { env, SPOTIFY_SCOPES } from '@/shared/config'
+import { env, getSpotifyClientId, setCustomSpotifyClientId, SPOTIFY_SCOPES } from '@/shared/config'
 import { createCodeChallenge, randomString, safeStorage } from '@/shared/lib'
 import { clearSession, storeTokens, type TokenResponse } from '@/shared/api'
 import { i18n } from '@/shared/i18n'
@@ -8,7 +8,9 @@ const STATE_KEY = 'timuze.pkce.state'
 const RETURN_KEY = 'timuze.returnTo'
 
 /** Step 1 – redirect to Spotify's consent screen (Authorization Code + PKCE, no backend needed). */
-export async function startSpotifyLogin(returnTo = '/dashboard') {
+export async function startSpotifyLogin(returnTo = '/dashboard', customClientId = '') {
+  // remember (or forget) the user's own app first – the callback and token refresh read it back
+  setCustomSpotifyClientId(customClientId.trim())
   const verifier = randomString(64)
   const state = randomString(16)
   safeStorage.set(VERIFIER_KEY, verifier)
@@ -17,7 +19,7 @@ export async function startSpotifyLogin(returnTo = '/dashboard') {
 
   const url = new URL(env.spotifyAuthUrl)
   url.search = new URLSearchParams({
-    client_id: env.spotifyClientId,
+    client_id: getSpotifyClientId(),
     response_type: 'code',
     redirect_uri: env.spotifyRedirectUri,
     code_challenge_method: 'S256',
@@ -44,7 +46,7 @@ export async function completeSpotifyLogin(params: { code?: string; state?: stri
       grant_type: 'authorization_code',
       code: params.code,
       redirect_uri: env.spotifyRedirectUri,
-      client_id: env.spotifyClientId,
+      client_id: getSpotifyClientId(),
       code_verifier: verifier,
     }),
   })

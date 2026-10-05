@@ -1,3 +1,5 @@
+import { safeStorage } from '../lib/storage'
+
 const origin = typeof window !== 'undefined' ? window.location.origin : 'http://127.0.0.1:5173'
 
 export const env = {
@@ -33,4 +35,18 @@ export const SPOTIFY_SCOPES = [
 /** Sessions granted before these scopes existed must log in again to play music. */
 export const PLAYBACK_SCOPES = ['streaming', 'user-modify-playback-state'] as const
 
-export const isSpotifyConfigured = () => env.spotifyClientId.length > 0
+const CUSTOM_CLIENT_ID_KEY = 'timuze.spotifyClientId'
+
+/** Client ID a user pasted from their own Spotify app (lives in this browser only). */
+export const getCustomSpotifyClientId = () => safeStorage.get<string>(CUSTOM_CLIENT_ID_KEY) ?? ''
+
+export const setCustomSpotifyClientId = (id: string) =>
+  id ? safeStorage.set(CUSTOM_CLIENT_ID_KEY, id) : safeStorage.remove(CUSTOM_CLIENT_ID_KEY)
+
+/**
+ * The Client ID in use: the user's own if they pasted one, else the built-in one.
+ * A refresh token only works with the Client ID that issued it, so login, callback and refresh all read this.
+ */
+export const getSpotifyClientId = () => getCustomSpotifyClientId() || env.spotifyClientId
+
+export const isSpotifyConfigured = () => getSpotifyClientId().length > 0
