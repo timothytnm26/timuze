@@ -1,4 +1,4 @@
-# timuze — Spotify stats for music lovers
+# timuze — listening stats for music lovers
 
 React 19 + TypeScript · **Feature-Sliced Design** · TanStack Router / Query / Table / Store · GSAP (ScrollTrigger, SplitText, Flip) · three.js · Tailwind CSS 4 + tailwind-merge.
 
@@ -61,6 +61,17 @@ The **Streams** page merges plays from several sources. Each import is stored se
 - Storage goes through the `PlayStore` interface (`entities/stream-history/api/store.ts`): IndexedDB today, swappable for a backend later without touching the UI.
 - Last.fm needs an API key. Set `VITE_LASTFM_API_KEY` (a public value – never the shared secret) or leave it empty and users paste their own key, which stays in their browser. Create one at <https://www.last.fm/api/account/create>.
 
+## Using timuze without Spotify
+
+`/login` is the entry point: Last.fm username, history files (Spotify, YouTube Music, Apple Music) or Spotify login. Without a Spotify login every page is rebuilt from the imported history, in the same shapes the Spotify queries return (`entities/local-library`), so the widgets are shared:
+
+- Top artists / tracks / albums use the same three ranges (4 weeks · 6 months · 1 year), counted back from the latest play.
+- Cover art, genre, release date and album tracklists (for ranking) come from the public iTunes Search API. Lookups are queued (about one per 1.2 s, backing off when rate limited) and cached, so covers fill in progressively. Last.fm covers are saved at import time. Artists have no photo source, so they borrow the cover of their most played track.
+- The artist country filter, now-playing and the web player stay Spotify-only.
+- A Spotify login can be **timuze buddy** (timuze's own app, limited to the accounts added in the Spotify dashboard) or **your own app** (paste a Client ID, optionally name it – the name shows after "timuze"). Logged in, the pages use Spotify data; imported history still feeds **Streams**.
+- The header shows the highest-priority source: Spotify login → Last.fm → Spotify export account → YouTube Music / Apple Music; a **+** lists every source.
+- On **Streams** you can look at one source or all of them; in the all-sources view the monthly chart is stacked by source and each heatmap cell is split by share (with a minimum slice so a 1% source stays visible).
+
 ## FSD structure
 
 ```text
@@ -71,7 +82,7 @@ src/
 │                # listening-clock, recent-timeline, history-dashboard, now-playing, hero-turntable, page-header
 ├─ features/     # auth (PKCE login/logout), time-range, top-filter, import-history, switch-locale, switch-skin,
 │                # web-player (SDK + Spotify Connect remote), rank-album (search, drag-to-rank, share image)
-├─ entities/     # user, artist, track, album, library (types + requests), stream-history (parse, aggregate, dedupe, PlayStore)
+├─ entities/     # user, artist, track, album, library (types + requests), stream-history (parse, aggregate, dedupe, PlayStore), local-library (history → Spotify-shaped data, iTunes lookups)
 └─ shared/       # api (client, session, paging), i18n, theme (skins, motion), config, lib (cn, gsap, pkce, idb, format), ui (Button, Island, charts…)
 ```
 
