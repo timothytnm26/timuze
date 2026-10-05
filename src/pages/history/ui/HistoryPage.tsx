@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { streamHistoryQueries } from '@/entities/stream-history'
+import { streamHistoryQueries, type StreamSource } from '@/entities/stream-history'
 import { ImportHistory, ManageImports } from '@/features/import-history'
 import { Skeleton } from '@/shared/ui'
 import { useTranslation } from '@/shared/i18n'
 import { PageHeader } from '@/widgets/page-header'
 import { HistoryDashboard } from '@/widgets/history-dashboard'
 
-export function HistoryPage() {
+export function HistoryPage({ initialSource, initialUsername }: { initialSource?: StreamSource; initialUsername?: string }) {
   const { t } = useTranslation('pages/history')
   const q = useQuery(streamHistoryQueries.all())
   return (
@@ -20,11 +20,13 @@ export function HistoryPage() {
         <Skeleton className="h-80 rounded-card" />
       ) : q.data ? (
         <>
+          <div className="mb-6">
+            <ManageImports history={q.data} initialSource={initialSource} initialUsername={initialUsername} />
+          </div>
           <HistoryDashboard history={q.data} />
-          <ManageImports history={q.data} />
         </>
       ) : (
-        <ImportHistory />
+        <ImportHistory initialSource={initialSource} initialUsername={initialUsername} />
       )}
     </>
   )

@@ -16,7 +16,8 @@
     "remove": "この読み込みを削除",
     "estimateNote": "{{sources}} のデータには<b>再生時間がない</b>ため、1回につき3分として計算します。これらのソースの再生時間は推定値です。",
     "storageNote": "データはこのブラウザ（IndexedDB）にのみ保存されます。サイトデータの削除、ブラウザやドメインの変更、プライベートウィンドウの使用で消えます。その場合はファイルを再度読み込んでください。",
-    "duplicatesNote_other": "2つのソースに現れた {{count, number}} 回分の再生を統合しました（曲名・アーティスト・90秒以内の時刻で照合）。より正確な記録を残します。読み込みを削除すると統合された再生は元に戻ります。"
+    "duplicatesNote_other": "2つのソースに現れた {{count, number}} 回分の再生を統合しました（曲名・アーティスト・90秒以内の時刻で照合）。より正確な記録を残します。読み込みを削除すると統合された再生は元に戻ります。",
+    "using": "使用中：{{sources}}"
   },
   "errors": {
     "noData": {
@@ -37,7 +38,7 @@
     "spotify": {
       "label": "Spotify",
       "eta": "待ち時間：ファイルはメールで届きます。最大30日かかることがあります。",
-      "step1": "<link>spotify.com/account/privacy</link> を開いてログインします。",
+      "step1": "<ext>spotify.com/account/privacy</ext> を開いてログインします。",
       "step2": "<b>Download your data</b> までスクロールします。",
       "step3": "<b>Extended streaming history</b> のみにチェックを入れ（「Account data」ではありません）、<b>Request data</b> を押します。",
       "step4": "Spotify からの確認メールを開いて承認します。準備ができるとダウンロード用のメールが届きます。",
@@ -50,7 +51,7 @@
     "youtube": {
       "label": "YouTube Music",
       "eta": "待ち時間：Google Takeout は通常数分〜数時間、場合によっては数日かかります。",
-      "step1": "<link>takeout.google.com</link> を開き、音楽を聴いている Google アカウントでログインします。",
+      "step1": "<ext>takeout.google.com</ext> を開き、音楽を聴いている Google アカウントでログインします。",
       "step2": "<b>Deselect all</b>（すべて選択解除）を押し、<b>YouTube and YouTube Music</b> にチェックを入れます。",
       "step3": "<b>All YouTube data included</b> を押し、<b>history</b> のみにチェックして OK を押します。",
       "step4": "同じ画面で <b>Multiple formats</b> を押し、<b>History</b> を HTML から <b>JSON</b> に変更します。その後 <b>Create export</b> を選びます。",
@@ -63,7 +64,7 @@
     "apple": {
       "label": "Apple Music",
       "eta": "待ち時間：準備ができるとメールが届きます。最大7日かかることがあります。",
-      "step1": "<link>privacy.apple.com</link> を開き、Apple ID でログインします。",
+      "step1": "<ext>privacy.apple.com</ext> を開き、Apple ID でログインします。",
       "step2": "<b>Request a copy of your data</b>（データのコピーをリクエスト）を選びます。",
       "step3": "<b>Apple Media Services information</b> にチェックを入れ、続けてリクエストを完了します。",
       "step4": "Apple からファイル準備完了のメールが届くのを待ち、ダウンロードします。",
@@ -76,9 +77,9 @@
     "lastfm": {
       "label": "Last.fm",
       "eta": "待ち時間：スクロブルが多いアカウントはページ数が多く、数分かかることがあります。このタブを開いたままにしてください。",
-      "step1": "<link>last.fm/settings/privacy</link> を開いてログインし、<b>Hide recent listening information</b> のチェックを外して履歴を公開します。",
+      "step1": "<ext>last.fm/settings/privacy</ext> を開いてログインし、<b>Hide recent listening information</b> のチェックを外して履歴を公開します。",
       "step2": "Last.fm の<b>ユーザー名</b>を控えます（<code>last.fm/user/あなたの名前</code> の末尾部分）。",
-      "step3": "下に <b>API キー</b> 欄が表示されている場合：<code>last.fm/api/account/create</code> を開き、アプリ名は任意、コールバックは空欄のまま、<b>API key</b>（Shared secret ではありません）をコピーします。",
+      "step3": "下に <b>API キー</b> 欄が表示されている場合：<ext2>last.fm/api/account/create</ext2> を開き、アプリ名は任意、コールバックは空欄のまま、<b>API key</b>（Shared secret ではありません）をコピーします。",
       "step4": "ユーザー名（必要なら API キーも）を下のフォームに入力します。",
       "step5": "<b>Last.fm から読み込む</b> を押して完了を待ちます。",
       "drop": "下に Last.fm のユーザー名を入力してください。",

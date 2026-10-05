@@ -16,7 +16,8 @@
     "remove": "Xoá lần nhập này",
     "estimateNote": "Dữ liệu từ {{sources}} <b>không có thời lượng nghe</b>, nên mỗi lượt được tính là 3 phút. Số phút và số giờ nghe của các nguồn này chỉ mang tính ước lượng.",
     "storageNote": "Dữ liệu chỉ nằm trong trình duyệt này (IndexedDB). Xoá dữ liệu trang web, đổi trình duyệt, đổi tên miền hoặc dùng cửa sổ ẩn danh sẽ làm mất dữ liệu — khi đó hãy nhập lại file.",
-    "duplicatesNote_other": "Đã gộp {{count, number}} lượt nghe xuất hiện ở hai nguồn (khớp theo bài, nghệ sĩ và thời điểm trong vòng 90 giây); bản ghi chính xác hơn được giữ lại. Xoá một lần nhập sẽ trả lại các lượt đã gộp."
+    "duplicatesNote_other": "Đã gộp {{count, number}} lượt nghe xuất hiện ở hai nguồn (khớp theo bài, nghệ sĩ và thời điểm trong vòng 90 giây); bản ghi chính xác hơn được giữ lại. Xoá một lần nhập sẽ trả lại các lượt đã gộp.",
+    "using": "Đang dùng: {{sources}}"
   },
   "errors": {
     "noData": {
@@ -37,7 +38,7 @@
     "spotify": {
       "label": "Spotify",
       "eta": "Thời gian chờ: Spotify gửi file qua email, có thể mất đến 30 ngày.",
-      "step1": "Mở <link>spotify.com/account/privacy</link> và đăng nhập.",
+      "step1": "Mở <ext>spotify.com/account/privacy</ext> và đăng nhập.",
       "step2": "Kéo xuống phần <b>Download your data</b>.",
       "step3": "Chỉ tích <b>Extended streaming history</b> (không phải “Account data”), rồi bấm <b>Request data</b>.",
       "step4": "Mở email xác nhận từ Spotify và bấm xác nhận. Sau khi file sẵn sàng, bạn sẽ nhận thêm một email có nút tải.",
@@ -50,7 +51,7 @@
     "youtube": {
       "label": "YouTube Music",
       "eta": "Thời gian chờ: Google Takeout thường mất từ vài phút đến vài giờ, đôi khi vài ngày.",
-      "step1": "Mở <link>takeout.google.com</link> và đăng nhập tài khoản Google bạn dùng nghe nhạc.",
+      "step1": "Mở <ext>takeout.google.com</ext> và đăng nhập tài khoản Google bạn dùng nghe nhạc.",
       "step2": "Bấm <b>Deselect all</b> (Bỏ chọn tất cả), rồi tích <b>YouTube and YouTube Music</b>.",
       "step3": "Bấm <b>All YouTube data included</b>, chỉ tích <b>history</b> (lịch sử), rồi bấm OK.",
       "step4": "Cũng trong mục đó, bấm <b>Multiple formats</b> và đổi <b>History</b> từ HTML sang <b>JSON</b>. Sau đó chọn <b>Create export</b>.",
@@ -63,7 +64,7 @@
     "apple": {
       "label": "Apple Music",
       "eta": "Thời gian chờ: Apple gửi email khi file sẵn sàng, có thể mất đến 7 ngày.",
-      "step1": "Mở <link>privacy.apple.com</link> và đăng nhập bằng Apple ID.",
+      "step1": "Mở <ext>privacy.apple.com</ext> và đăng nhập bằng Apple ID.",
       "step2": "Chọn <b>Request a copy of your data</b> (Yêu cầu bản sao dữ liệu).",
       "step3": "Tích <b>Apple Media Services information</b>, rồi bấm Continue và hoàn tất yêu cầu.",
       "step4": "Chờ email của Apple báo file đã sẵn sàng, rồi tải về.",
@@ -76,9 +77,9 @@
     "lastfm": {
       "label": "Last.fm",
       "eta": "Thời gian chờ: tài khoản có nhiều scrobble phải tải nhiều trang, có thể mất vài phút. Hãy giữ nguyên tab này.",
-      "step1": "Mở <link>last.fm/settings/privacy</link>, đăng nhập và bỏ chọn <b>Hide recent listening information</b> để lịch sử nghe được công khai.",
+      "step1": "Mở <ext>last.fm/settings/privacy</ext>, đăng nhập và bỏ chọn <b>Hide recent listening information</b> để lịch sử nghe được công khai.",
       "step2": "Ghi lại <b>tên người dùng</b> Last.fm của bạn (phần cuối của địa chỉ <code>last.fm/user/tên-bạn</code>).",
-      "step3": "Nếu ô <b>API key</b> hiện ra bên dưới: mở <code>last.fm/api/account/create</code>, đặt tên ứng dụng tuỳ ý, để trống ô callback, rồi sao chép <b>API key</b> (không phải Shared secret).",
+      "step3": "Nếu ô <b>API key</b> hiện ra bên dưới: mở <ext2>last.fm/api/account/create</ext2>, đặt tên ứng dụng tuỳ ý, để trống ô callback, rồi sao chép <b>API key</b> (không phải Shared secret).",
       "step4": "Nhập tên người dùng (và API key nếu có yêu cầu) vào biểu mẫu bên dưới.",
       "step5": "Bấm <b>Nhập từ Last.fm</b> và chờ tải xong.",
       "drop": "Nhập tên người dùng Last.fm của bạn bên dưới.",

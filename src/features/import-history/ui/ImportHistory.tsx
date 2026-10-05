@@ -18,9 +18,17 @@ const LINKS: Record<StreamSource, string> = {
   lastfm: 'https://www.last.fm/settings/privacy',
 }
 
-export function ImportHistory({ className }: { className?: string }) {
+export function ImportHistory({
+  className,
+  initialSource = 'spotify',
+  initialUsername,
+}: {
+  className?: string
+  initialSource?: StreamSource
+  initialUsername?: string
+}) {
   const input = useRef<HTMLInputElement>(null)
-  const [source, setSource] = useState<StreamSource>('spotify')
+  const [source, setSource] = useState<StreamSource>(initialSource)
   const [dragging, setDragging] = useState(false)
   const qc = useQueryClient()
   const { t } = useTranslation('features/import-history')
@@ -45,7 +53,8 @@ export function ImportHistory({ className }: { className?: string }) {
     b: <b className="text-ink" />,
     i: <i />,
     code: <code />,
-    link: <a className="text-brand underline-offset-2 hover:underline" href={LINKS[source]} target="_blank" rel="noreferrer" />,
+    ext2: <a className="text-brand underline-offset-2 hover:underline" href="https://www.last.fm/api/account/create" target="_blank" rel="noreferrer" />,
+    ext: <a className="text-brand underline-offset-2 hover:underline" href={LINKS[source]} target="_blank" rel="noreferrer" />,
   }
 
   return (
@@ -91,7 +100,7 @@ export function ImportHistory({ className }: { className?: string }) {
       </div>
 
       {source === 'lastfm' ? (
-        <LastfmForm />
+        <LastfmForm initialUsername={initialUsername} />
       ) : (
         <div
           onDragOver={(e) => {

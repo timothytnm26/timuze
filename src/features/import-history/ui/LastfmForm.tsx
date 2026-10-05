@@ -13,10 +13,10 @@ const API_KEY = 'lastfm-api-key'
 const field =
   'w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-brand focus:outline-none'
 
-export function LastfmForm() {
+export function LastfmForm({ initialUsername }: { initialUsername?: string }) {
   const { t } = useTranslation('features/import-history')
   const qc = useQueryClient()
-  const [username, setUsername] = useState(() => safeStorage.get<string>(USER_KEY) ?? '')
+  const [username, setUsername] = useState(() => initialUsername ?? safeStorage.get<string>(USER_KEY) ?? '')
   const [apiKey, setApiKey] = useState(() => safeStorage.get<string>(API_KEY) ?? '')
   const [progress, setProgress] = useState<[number, number] | null>(null)
   const needsKey = !env.lastfmApiKey
