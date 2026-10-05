@@ -45,5 +45,13 @@
     "prev": "← Trước",
     "next": "Sau →"
   },
-  "footer": "{{plays}} từ {{files}} · nhập lúc {{date}}"
+  "footer": "{{plays}} từ {{files}} · nhập lúc {{date}}",
+  "sources": {
+    "title": "Nguồn dữ liệu",
+    "subtitle": "Phần trăm thời gian nghe theo từng nguồn đã nhập",
+    "spotify": "Spotify",
+    "youtube": "YouTube Music",
+    "apple": "Apple Music",
+    "lastfm": "Last.fm"
+  }
 }

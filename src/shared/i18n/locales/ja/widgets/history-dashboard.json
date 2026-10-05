@@ -45,5 +45,13 @@
     "prev": "← 前へ",
     "next": "次へ →"
   },
-  "footer": "{{plays}} · {{files}} · 読み込み日時 {{date}}"
+  "footer": "{{plays}} · {{files}} · 読み込み日時 {{date}}",
+  "sources": {
+    "title": "データソース",
+    "subtitle": "読み込んだソースごとの再生時間の割合",
+    "spotify": "Spotify",
+    "youtube": "YouTube Music",
+    "apple": "Apple Music",
+    "lastfm": "Last.fm"
+  }
 }

@@ -45,5 +45,13 @@
     "prev": "← Prev",
     "next": "Next →"
   },
-  "footer": "{{plays}} from {{files}} · imported {{date}}"
+  "footer": "{{plays}} from {{files}} · imported {{date}}",
+  "sources": {
+    "title": "Data sources",
+    "subtitle": "Share of listening time by imported source",
+    "spotify": "Spotify",
+    "youtube": "YouTube Music",
+    "apple": "Apple Music",
+    "lastfm": "Last.fm"
+  }
 }

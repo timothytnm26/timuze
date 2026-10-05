@@ -1,4 +1,4 @@
-import type { Stream } from './types'
+import type { Stream, StreamSource } from './types'
 
 /** A play counts as a "stream" at ≥ 30 s – same threshold Spotify uses for royalties. */
 export const STREAM_THRESHOLD_MS = 30_000
@@ -24,6 +24,7 @@ export interface HistoryStats {
   byMonth: { key: string; year: number; month: number; ms: number; streams: number }[]
   heat: number[][]
   byPlatform: { platform: string; ms: number }[]
+  bySource: { source: StreamSource; ms: number; streams: number }[]
   skipRate: number
   topDay: { date: string; ms: number } | null
   longestStreakDays: number
@@ -44,6 +45,7 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
   const months = new Map<string, HistoryStats['byMonth'][number]>()
   const platforms = new Map<string, number>()
   const days = new Map<string, number>()
+  const sources = new Map<StreamSource, { source: StreamSource; ms: number; streams: number }>()
   const heat = Array.from({ length: 7 }, () => Array<number>(24).fill(0))
 
   let totalMs = 0
@@ -76,6 +78,12 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
     const row = heat[d.getDay()]
     if (row) row[d.getHours()] = (row[d.getHours()] ?? 0) + s.ms
 
+    const src = s.source ?? 'spotify'
+    const sb = sources.get(src) ?? { source: src, ms: 0, streams: 0 }
+    sb.ms += s.ms
+    if (counted) sb.streams++
+    sources.set(src, sb)
+
     if (s.platform) platforms.set(s.platform, (platforms.get(s.platform) ?? 0) + s.ms)
     const dk = d.toISOString().slice(0, 10)
     days.set(dk, (days.get(dk) ?? 0) + s.ms)
@@ -107,6 +115,7 @@ export const computeHistoryStats = (all: Stream[], year?: number, top = 100): Hi
     byMonth: [...months.values()].sort((a, b) => a.key.localeCompare(b.key)),
     heat,
     byPlatform: [...platforms.entries()].map(([platform, ms]) => ({ platform, ms })).sort((a, b) => b.ms - a.ms),
+    bySource: [...sources.values()].sort((x, y) => y.ms - x.ms),
     skipRate: streams.length ? skipped / streams.length : 0,
     topDay: topDayEntry ? { date: topDayEntry[0], ms: topDayEntry[1] } : null,
     longestStreakDays: longest,

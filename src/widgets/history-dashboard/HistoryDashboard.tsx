@@ -167,6 +167,20 @@ export function HistoryDashboard({ history }: { history: StreamHistory }) {
         </Card>
       </div>
 
+      {stats.bySource.length > 1 && (
+        <Card>
+          <CardHeader title={t('sources.title')} subtitle={t('sources.subtitle')} />
+          <BarList
+            items={stats.bySource.map((s) => ({
+              key: s.source,
+              label: t(`sources.${s.source}`),
+              value: s.ms,
+              display: `${Math.round((s.ms / stats.totalMs) * 100)}% · ${t('common:units.plays', { count: s.streams })}`,
+            }))}
+          />
+        </Card>
+      )}
+
       <Card>
         <CardHeader
           title={t('ranking.title')}
