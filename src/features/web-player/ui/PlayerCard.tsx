@@ -1,6 +1,4 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { useStore } from '@tanstack/react-store'
-import { sessionStore } from '@/shared/api'
 import { Trans, useTranslation } from '@/shared/i18n'
 import { cn, formatDuration } from '@/shared/lib'
 import { Cover } from '@/shared/ui'
@@ -26,8 +24,7 @@ function useProgress() {
  */
 export function PlayerCard({ loginAction, className }: { loginAction?: ReactNode; className?: string }) {
   const { t } = useTranslation('features/web-player')
-  const mode = useStore(sessionStore, (s) => s.mode)
-  const { status, playing, track, error, device } = usePlayer()
+  const { status, playing, track, error, device, source } = usePlayer()
   const { at, duration } = useProgress()
 
   let body: ReactNode
@@ -53,14 +50,20 @@ export function PlayerCard({ loginAction, className }: { loginAction?: ReactNode
           <p className="truncate text-xs text-ink-muted">
             {track.artists}
             {device && <span className="text-ink-faint"> · {t('onDevice', { device })}</span>}
+            {source === 'preview' && <span className="text-ink-faint"> · {t('preview')}</span>}
+            {source === 'youtube' && <span className="text-ink-faint"> · {t('viaYoutube')}</span>}
+            {source === 'embed' && <span className="text-ink-faint"> · {t('viaEmbed')}</span>}
           </p>
-          <div className="mt-1.5 flex items-center gap-2 font-mono text-[10px] text-ink-faint tabular-nums">
-            <span>{formatDuration(at)}</span>
-            <div className="h-1 flex-1 overflow-hidden rounded-full bg-surface-3">
-              <div className="h-full rounded-full bg-brand" style={{ width: `${duration ? (at / duration) * 100 : 0}%` }} />
+          {/* a scrobbled track has no length to show */}
+          {duration > 0 && (
+            <div className="mt-1.5 flex items-center gap-2 font-mono text-[10px] text-ink-faint tabular-nums">
+              <span>{formatDuration(at)}</span>
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-surface-3">
+                <div className="h-full rounded-full bg-brand" style={{ width: `${(at / duration) * 100}%` }} />
+              </div>
+              <span>{formatDuration(duration)}</span>
             </div>
-            <span>{formatDuration(duration)}</span>
-          </div>
+          )}
         </div>
       </>
     )
@@ -72,7 +75,7 @@ export function PlayerCard({ loginAction, className }: { loginAction?: ReactNode
         ) : (
           <Trans
             t={t}
-            i18nKey={mode === 'anonymous' ? 'hintAnonymous' : 'hint'}
+            i18nKey="hint"
             components={{
               play: (
                 <span className="mx-0.5 inline-grid size-4 translate-y-0.5 place-items-center rounded-full bg-brand text-canvas">

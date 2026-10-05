@@ -1,4 +1,5 @@
 {
   "label": "3D turntable – drag the tonearm onto the record to play, back to its rest to stop, or use the controls on the deck",
-  "glassLabel": "Glass record player – drag the tonearm onto the record or tap the record or the middle button to play/pause, the side buttons skip; drag along the progress bar to seek"
+  "glassLabel": "Glass record player – drag the tonearm onto the record or tap the record or the middle button to play/pause, the side buttons skip; drag along the progress bar to seek",
+  "hoverHint": "Import your history to preview your top tracks here, or log in with Spotify (Premium) for full playback – then press <play/> on the turntable."
 }

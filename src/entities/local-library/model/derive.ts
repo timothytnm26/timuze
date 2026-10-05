@@ -7,6 +7,7 @@ import type { PlayHistory, Track } from '@/entities/track/@x/local-library'
 import type { SimplifiedAlbum } from '@/entities/album/@x/local-library'
 import type { CurrentUser } from '@/entities/user/@x/local-library'
 import { enqueueMeta, getMeta, loadMetaCache } from '../api/itunes'
+import type { PlayerTrack } from '../api/player'
 import {
   albumId,
   artistId,
@@ -34,6 +35,9 @@ interface TrackAgg {
   artist: string
   album: string | null
   cover?: string
+  /** ids the exports carry, for embedding the real recording */
+  spotifyId?: string
+  youtubeId?: string
   streams: number
   ms: number
 }
@@ -48,6 +52,15 @@ interface ArtistAgg {
 interface Index {
   tracks: TrackAgg[]
   artists: ArtistAgg[]
+}
+
+/** `watch?v=<id>` from a Takeout `titleUrl`. */
+const youtubeIdOf = (uri: string) => {
+  try {
+    return new URL(uri).searchParams.get('v') ?? undefined
+  } catch {
+    return undefined
+  }
 }
 
 const byPlays = (a: { streams: number; ms: number }, b: { streams: number; ms: number }) => b.streams - a.streams || b.ms - a.ms
@@ -74,6 +87,10 @@ function buildIndex(streams: Stream[]): Index {
     t.ms += s.ms
     t.album ??= s.album
     t.cover ??= s.cover
+    if (s.uri) {
+      t.spotifyId ??= /^spotify:track:(\w+)$/.exec(s.uri)?.[1]
+      t.youtubeId ??= youtubeIdOf(s.uri)
+    }
   }
   const sortedArtists = [...artists.values()].sort(byPlays)
   sortedArtists.forEach((a) => a.tracks.sort(byPlays))
@@ -203,4 +220,24 @@ export async function localUser(): Promise<CurrentUser> {
     external_urls: { spotify: '' },
     uri: 'local:user',
   }
+}
+
+/**
+ * The user's top tracks of the last month of their history (or of the year, if that month is empty), with whatever
+ * can play them: a YouTube video id, a Spotify track id and/or a 30-second iTunes preview (looked up in the background).
+ */
+export async function localPlayerTracks(count: number): Promise<PlayerTrack[]> {
+  const [history] = await Promise.all([playStore.getHistory(), loadMetaCache()])
+  if (!history) return []
+  let top = indexFor(history, 'short_term').tracks.slice(0, count)
+  if (!top.length) top = indexFor(history, 'long_term').tracks.slice(0, count)
+  void enqueueMeta(top.map(lookupItems))
+  return top.map((t) => ({
+    name: t.track,
+    artists: t.artist,
+    image: coverOf(t),
+    previewUrl: getMeta(t.artist, t.track)?.previewUrl,
+    youtubeId: t.youtubeId,
+    spotifyId: t.spotifyId,
+  }))
 }

@@ -19,6 +19,10 @@ export interface TrackMeta {
   releaseDate?: string
   durationMs?: number
   trackCount?: number
+  /** 30-second audio clip (Apple allows playing these publicly) */
+  previewUrl?: string
+  /** cache format – entries older than the preview field are looked up again */
+  v?: number
   /** nothing matched – not retried for a week */
   miss?: boolean
   /** looked up at, epoch ms */
@@ -43,6 +47,7 @@ export interface ItunesItem {
   trackExplicitness?: string
   collectionViewUrl?: string
   trackViewUrl?: string
+  previewUrl?: string
   collectionType?: string
 }
 
@@ -67,7 +72,8 @@ const persist = () => {
 export const metaKey = (artist: string, track: string) => `${normalizeName(artist)}|${normalizeName(track)}`
 export const getMeta = (artist: string, track: string): TrackMeta | undefined => cache[metaKey(artist, track)]
 
-const fresh = (m: TrackMeta | undefined) => !!m && (!m.miss || Date.now() - m.t < RECHECK_MISS_MS)
+const META_VERSION = 2
+const fresh = (m: TrackMeta | undefined) => !!m && (m.miss ? Date.now() - m.t < RECHECK_MISS_MS : m.v === META_VERSION)
 
 class RateLimited extends Error {}
 
@@ -95,6 +101,8 @@ const fetchMeta = async (artist: string, track: string): Promise<TrackMeta> => {
     releaseDate: hit.releaseDate,
     durationMs: hit.trackTimeMillis,
     trackCount: hit.trackCount,
+    previewUrl: hit.previewUrl,
+    v: META_VERSION,
     t: Date.now(),
   }
 }
@@ -105,11 +113,12 @@ const queue: { artist: string; track: string }[] = []
 const queued = new Set<string>()
 let running = false
 let gap = MIN_GAP_MS
-let onProgress: (() => void) | undefined
+const listeners = new Set<() => void>()
 
-/** Called (batched) whenever new metadata arrived, so queries built on it can refresh. */
-export const setMetaListener = (fn: () => void) => {
-  onProgress = fn
+/** Called (batched) whenever new metadata arrived, so what is built on it can refresh. Returns the unsubscribe. */
+export const addMetaListener = (fn: () => void) => {
+  listeners.add(fn)
+  return () => void listeners.delete(fn)
 }
 
 async function run() {
@@ -135,7 +144,7 @@ async function run() {
     if (pending >= 5 || (pending > 0 && !queue.length)) {
       pending = 0
       persist()
-      onProgress?.()
+      listeners.forEach((l) => l())
     }
     if (queue.length) await sleep(gap)
   }

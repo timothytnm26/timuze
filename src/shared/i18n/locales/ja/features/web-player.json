@@ -1,6 +1,5 @@
 {
   "hint": "レコードプレーヤーの<play/>を押すと、ここでSpotifyを再生できます。",
-  "hintAnonymous": "Spotifyにログインして、レコードプレーヤーの<play/>を押すとブラウザで再生できます。",
   "connecting": "Spotifyプレーヤーに接続中…",
   "play": "再生",
   "pause": "一時停止",
@@ -12,13 +11,17 @@
   "openInSpotify": "Spotifyで開く",
   "onDevice": "{{device}} で再生",
   "errors": {
-    "login": "再生するにはSpotifyにログインしてください。",
+    "login": "再生履歴を読み込むか、Spotify にログインして音楽を再生してください。",
     "scope": "現在のセッションには再生の権限がありません。もう一度ログインしてください。",
     "auth": "Spotifyのセッションが切れました。再ログインしてください。",
     "premium": "ブラウザでの再生にはSpotify Premiumが必要です。",
     "unsupported": "このブラウザはSpotifyプレーヤーに対応していません。",
     "playback": "再生できませんでした。もう一度試すか、別のデバイスでSpotifyを開いてください。",
     "noDevice": "アクティブなSpotifyデバイスがありません。",
-    "remotePremium": "再生の操作には Spotify Premium が必要です。"
-  }
+    "remotePremium": "再生の操作には Spotify Premium が必要です。",
+    "noPreview": "トップトラックの試聴音源が見つかりませんでした。"
+  },
+  "preview": "30秒試聴",
+  "viaYoutube": "YouTube",
+  "viaEmbed": "Spotify クリップ"
 }

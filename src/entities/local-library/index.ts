@@ -1,4 +1,5 @@
-export { localTopArtists, localTopTracks, localRecentPlays, localUser } from './model/derive'
+export { localPlayerTracks, localTopArtists, localTopTracks, localRecentPlays, localUser } from './model/derive'
 export { searchLocalAlbums, getLocalAlbum } from './api/albums'
-export { setMetaListener } from './api/itunes'
+export { addMetaListener } from './api/itunes'
+export { hasLocalHistory, lastfmNowPlaying, type PlayerTrack } from './api/player'
 export { isLocalId, isStandaloneAlbumId } from './lib/ids'

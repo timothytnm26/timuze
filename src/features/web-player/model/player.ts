@@ -1,40 +1,11 @@
-import { createStore, useStore } from '@tanstack/react-store'
 import { getTopTracks } from '@/entities/track'
 import { getAccessToken, sessionStore, SpotifyApiError, spotifyGet, spotifySend } from '@/shared/api'
 import { PLAYBACK_SCOPES } from '@/shared/config'
 import { loadSdk, type SdkPlayer, type SdkState } from './sdk'
+import { seekLocal, skipLocal, startLocalWatch, stopLocal, toggleLocal } from './local'
+import { fail, initialPlayerState as initial, patch, playerStore, type PlayerError, type PlayerState } from './store'
 
-export type PlayerError = 'login' | 'scope' | 'premium' | 'auth' | 'unsupported' | 'playback' | 'remotePremium' | 'noDevice'
-
-export interface NowPlayingTrack {
-  name: string
-  artists: string
-  image?: string
-}
-
-export interface PlayerState {
-  status: 'idle' | 'connecting' | 'ready' | 'error'
-  playing: boolean
-  track: NowPlayingTrack | null
-  /** ms, as of `updatedAt` – interpolate while playing */
-  position: number
-  duration: number
-  updatedAt: number
-  error: PlayerError | null
-  /** name of the Spotify Connect device playing when it isn't this tab (phone, desktop app…), else null */
-  device: string | null
-}
-
-const initial: PlayerState = {
-  status: 'idle',
-  playing: false,
-  track: null,
-  position: 0,
-  duration: 0,
-  updatedAt: 0,
-  error: null,
-  device: null,
-}
+export { playerStore, usePlayer, type NowPlayingTrack, type PlayerError, type PlayerState } from './store'
 
 /**
  * Playback for the turntable – lives for the whole tab, so music keeps going across routes.
@@ -42,11 +13,6 @@ const initial: PlayerState = {
  * another device holds playback the controls drive it through the Web API. Only when nothing is
  * playing does timuze start its own in-browser player (Web Playback SDK).
  */
-export const playerStore = createStore<PlayerState>(initial)
-export const usePlayer = <T = PlayerState>(select: (s: PlayerState) => T = (s) => s as T) => useStore(playerStore, select)
-
-const patch = (p: Partial<PlayerState>) => playerStore.setState((s) => ({ ...s, ...p }))
-const fail = (error: PlayerError) => patch({ status: 'error', playing: false, error })
 
 let sdk: SdkPlayer | null = null
 let deviceId: string | null = null
@@ -168,10 +134,22 @@ export function watchPlayback() {
   if (++watchers === 1) {
     void pollPlayback()
     pollTimer = setInterval(() => document.hidden || void pollPlayback(), 5000)
+    startLocal()
   }
   return () => {
-    if (--watchers === 0) clearInterval(pollTimer)
+    if (--watchers === 0) {
+      clearInterval(pollTimer)
+      stopLocalWatch?.()
+      stopLocalWatch = null
+    }
   }
+}
+
+/** Without a Spotify login the turntable runs on imported history instead (see `local.ts`). */
+let stopLocalWatch: (() => void) | null = null
+function startLocal() {
+  stopLocalWatch?.()
+  stopLocalWatch = sessionStore.state.mode === 'anonymous' ? startLocalWatch() : null
 }
 
 const remoteError = (e: unknown): PlayerError => {
@@ -191,6 +169,7 @@ async function remoteCommand(method: 'PUT' | 'POST', path: string, params?: Reco
 }
 
 const reset = () => {
+  stopLocal()
   sdk?.disconnect()
   sdk = null
   deviceId = null
@@ -204,7 +183,7 @@ export function togglePlayback() {
   const { mode, scope } = sessionStore.state
   const s = playerStore.state
 
-  if (mode === 'anonymous') return fail('login')
+  if (mode === 'anonymous') return toggleLocal()
   if (!PLAYBACK_SCOPES.every((sc) => scope?.split(' ').includes(sc))) return fail('scope')
 
   if (remote) {
@@ -224,6 +203,7 @@ export function togglePlayback() {
 }
 
 export function skipTrack(direction: 1 | -1 = 1) {
+  if (sessionStore.state.mode === 'anonymous') return skipLocal(direction)
   if (remote) return void remoteCommand('POST', direction === 1 ? '/me/player/next' : '/me/player/previous')
   if (!sdk || !playerStore.state.track) return togglePlayback()
   void (direction === 1 ? sdk.nextTrack() : sdk.previousTrack())
@@ -231,6 +211,7 @@ export function skipTrack(direction: 1 | -1 = 1) {
 
 /** Jump the playhead by `ms` (negative = back), clamped to the track. */
 export function seekBy(ms: number) {
+  if (sessionStore.state.mode === 'anonymous') return seekLocal(ms)
   const s = playerStore.state
   if (!s.track || !s.duration) return
   const position = Math.round(Math.min(Math.max(livePosition(s) + ms, 0), s.duration - 500))
@@ -246,6 +227,14 @@ export const dismissPlayerError = () => patch({ status: sdk ? 'ready' : 'idle', 
 // logging out tears the player down
 let lastMode = sessionStore.state.mode
 sessionStore.subscribe((state) => {
-  if (state.mode !== lastMode) reset()
+  if (state.mode !== lastMode) {
+    reset()
+    stopLocal()
+    // still on screen: the other mode's player takes over
+    if (watchers > 0) {
+      startLocal()
+      void pollPlayback()
+    }
+  }
   lastMode = state.mode
 })
