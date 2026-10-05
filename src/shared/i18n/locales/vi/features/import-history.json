@@ -9,15 +9,15 @@
   "imported_other": "Đã nhập {{count, number}} lượt phát",
   "clear": "Xoá toàn bộ dữ liệu đã nhập",
   "confirmClear": "Xoá toàn bộ lịch sử nghe đã nhập khỏi trình duyệt này? Không thể hoàn tác.",
-  "privacy": "Quyền riêng tư: file được đọc ngay trong trình duyệt của bạn và không được tải lên máy chủ nào. Ứng dụng chỉ giữ tên bài, nghệ sĩ, album, thời điểm và thời lượng nghe; địa chỉ IP, thiết bị và các thông tin khác trong file bị bỏ qua. Nhập lại cùng một file là an toàn vì các lượt trùng được loại bỏ.",
+  "privacy": "Tệp được đọc ngay trong trình duyệt và không tải lên đâu cả. Chỉ giữ tên bài, nghệ sĩ, album, thời điểm và thời lượng nghe.",
   "manage": {
     "summary": "Quản lý & thêm nguồn dữ liệu",
     "title": "Các lần đã nhập",
     "remove": "Xoá lần nhập này",
     "estimateNote": "Dữ liệu từ {{sources}} <b>không có thời lượng nghe</b>, nên mỗi lượt được tính là 3 phút. Số phút và số giờ nghe của các nguồn này chỉ mang tính ước lượng.",
-    "storageNote": "Dữ liệu chỉ nằm trong trình duyệt này (IndexedDB). Xoá dữ liệu trang web, đổi trình duyệt, đổi tên miền hoặc dùng cửa sổ ẩn danh sẽ làm mất dữ liệu — khi đó hãy nhập lại file.",
-    "duplicatesNote_other": "Đã gộp {{count, number}} lượt nghe xuất hiện ở hai nguồn (khớp theo bài, nghệ sĩ và thời điểm trong vòng 90 giây); bản ghi chính xác hơn được giữ lại. Xoá một lần nhập sẽ trả lại các lượt đã gộp.",
-    "using": "Đang dùng: {{sources}}"
+    "storageNote": "Dữ liệu chỉ nằm trên trình duyệt này. Nếu xoá dữ liệu trang hoặc đổi trình duyệt, hãy nhập lại.",
+    "using": "Đang dùng: {{sources}}",
+    "duplicatesNote_other": "Đã gộp {{count, number}} lượt nghe trùng giữa các nguồn."
   },
   "errors": {
     "noData": {
@@ -91,7 +91,7 @@
   "lastfm": {
     "username": "Tên người dùng Last.fm",
     "apiKey": "Last.fm API key",
-    "apiKeyHint": "Khóa API công khai của bạn, chỉ được lưu trong trình duyệt này. Không dùng “Shared secret”.",
+    "apiKeyHint": "Khóa API công khai của bạn. Không dùng “Shared secret”.",
     "start": "Nhập từ Last.fm",
     "progress": "Đã tải {{done}}/{{total}} trang…"
   }

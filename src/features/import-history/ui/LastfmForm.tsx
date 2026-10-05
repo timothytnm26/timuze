@@ -11,7 +11,7 @@ const USER_KEY = 'lastfm-username'
 const API_KEY = 'lastfm-api-key'
 
 const field =
-  'w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-brand focus:outline-none'
+  'w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-(--src) focus:outline-none'
 
 export function LastfmForm({ initialUsername }: { initialUsername?: string }) {
   const { t } = useTranslation('features/import-history')
@@ -48,7 +48,7 @@ export function LastfmForm({ initialUsername }: { initialUsername?: string }) {
   const error = run.error instanceof LastfmError ? t(`errors.lastfm.${run.error.code}`) : run.error?.message
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4 rounded-2xl border-2 border-dashed border-line px-6 py-8">
+    <form onSubmit={onSubmit} className="flex flex-col gap-4 rounded-2xl border-2 border-dashed border-(--src)/40 px-6 py-8">
       <label className="flex flex-col gap-1 text-sm">
         <span className="font-medium">{t('lastfm.username')}</span>
         <input className={field} value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="off" spellCheck={false} required />
@@ -61,7 +61,7 @@ export function LastfmForm({ initialUsername }: { initialUsername?: string }) {
         </label>
       )}
       <div className="flex flex-wrap items-center gap-3">
-        <Button type="submit" disabled={run.isPending}>
+        <Button type="submit" className="bg-(--src) text-(--src-ink) hover:bg-(--src)/85" disabled={run.isPending}>
           {run.isPending ? t('processing') : t('lastfm.start')}
         </Button>
         {run.isPending && progress && (
@@ -69,7 +69,7 @@ export function LastfmForm({ initialUsername }: { initialUsername?: string }) {
         )}
       </div>
       {run.isError && <p className="text-sm text-danger">{error}</p>}
-      {run.isSuccess && <p className="text-sm text-brand">{t('imported', { count: run.data.streams.length })}</p>}
+      {run.isSuccess && <p className="text-sm text-(--src)">{t('imported', { count: run.data.streams.length })}</p>}
     </form>
   )
 }

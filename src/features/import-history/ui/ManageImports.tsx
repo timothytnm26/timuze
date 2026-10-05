@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Button, Card } from '@/shared/ui'
+import { BrandIcon, Button, Card } from '@/shared/ui'
 import { cn } from '@/shared/lib'
 import { Trans, useFormatters, useTranslation } from '@/shared/i18n'
 import { playStore, streamHistoryQueries, type StreamHistory, type StreamSource } from '@/entities/stream-history'
@@ -52,7 +52,8 @@ export function ManageImports({
           <ul className="flex flex-col divide-y divide-line text-sm">
             {history.imports.map((i) => (
               <li key={i.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
-                <span>
+                <span className="flex items-center gap-2">
+                  <BrandIcon brand={i.source} className="size-5" />
                   <b>{t(`sources.${i.source}.label`)}</b>
                   <span className="text-ink-muted">
                     {' '}

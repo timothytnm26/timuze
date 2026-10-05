@@ -10,16 +10,16 @@
   "imported_other": "Imported {{count, number}} plays",
   "clear": "Delete all imported data",
   "confirmClear": "Delete all imported listening history from this browser? This can't be undone.",
-  "privacy": "Privacy: files are read in your browser and never uploaded to a server. Only track, artist, album, time and play length are kept; IP addresses, devices and everything else in the file are ignored. Importing the same file again is safe because duplicate plays are removed.",
+  "privacy": "Files are read in your browser and never uploaded. Only track, artist, album, time and play length are kept.",
   "manage": {
     "summary": "Manage & add data sources",
     "title": "Past imports",
     "remove": "Remove this import",
     "estimateNote": "Data from {{sources}} <b>has no play length</b>, so every play counts as 3 minutes. Minutes and hours listened for these sources are estimates.",
-    "storageNote": "Data lives only in this browser (IndexedDB). Clearing site data, switching browser or domain, or using a private window will erase it — just import the files again.",
-    "duplicatesNote_one": "Merged {{count, number}} play that appeared in two sources (matched by track, artist and time within 90 seconds); the more accurate record is kept. Removing an import brings the merged plays back.",
-    "duplicatesNote_other": "Merged {{count, number}} plays that appeared in two sources (matched by track, artist and time within 90 seconds); the more accurate record is kept. Removing an import brings the merged plays back.",
-    "using": "In use: {{sources}}"
+    "storageNote": "Data stays on this browser only. If you clear site data or switch browser, import again.",
+    "using": "In use: {{sources}}",
+    "duplicatesNote_one": "Merged {{count, number}} play seen in two sources.",
+    "duplicatesNote_other": "Merged {{count, number}} plays seen in two sources."
   },
   "errors": {
     "noData": {
@@ -93,7 +93,7 @@
   "lastfm": {
     "username": "Last.fm username",
     "apiKey": "Last.fm API key",
-    "apiKeyHint": "Your own public API key, stored only in this browser. Not the “Shared secret”.",
+    "apiKeyHint": "Your own public API key. Not the “Shared secret”.",
     "start": "Import from Last.fm",
     "progress": "Loaded {{done}}/{{total}} pages…"
   }
