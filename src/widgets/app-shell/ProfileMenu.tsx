@@ -3,7 +3,7 @@ import { UserAvatar } from '@/entities/user'
 import { LogoutButton, StartLink } from '@/features/auth'
 import { useTranslation } from '@/shared/i18n'
 import { cn } from '@/shared/lib'
-import { Island } from '@/shared/ui'
+import { Icon, Island } from '@/shared/ui'
 import { useIdentity } from './model/identity'
 import { NAV } from './nav'
 
@@ -44,9 +44,7 @@ export function ProfileMenu({ className }: { className?: string }) {
         <>
           {flyer}
           <span className="hidden max-w-32 truncate sm:block">{name}</span>
-          <svg viewBox="0 0 10 6" className={cn('hidden size-2.5 transition-transform sm:block', open && 'rotate-180')} aria-hidden>
-            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
+          <Icon name="chevron-down" className={cn('hidden size-2.5 transition-transform sm:block', open && 'rotate-180')} />
           <span className="sr-only">{t('account')}</span>
         </>
       )}
@@ -69,7 +67,7 @@ export function ProfileMenu({ className }: { className?: string }) {
                 onClick={close}
                 className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-muted transition-colors hover:bg-surface hover:text-ink"
               >
-                <span className="w-4 text-center text-brand">{n.icon}</span>
+                <Icon name={n.icon} className="size-4.5 text-brand" />
                 {t(n.label)}
               </Link>
             ))}

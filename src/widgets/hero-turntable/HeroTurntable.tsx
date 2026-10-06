@@ -4,6 +4,7 @@ import { EmbedHost, PlayerCard, usePlayer, watchPlayback } from '@/features/web-
 import { sessionStore } from '@/shared/api'
 import { Trans, useTranslation } from '@/shared/i18n'
 import { cn } from '@/shared/lib'
+import { Icon } from '@/shared/ui'
 import { useSkin } from '@/shared/theme'
 import { LOOKS } from './scene/looks'
 
@@ -69,9 +70,7 @@ export function HeroTurntable({ fallback, loginAction }: { fallback: ReactNode; 
               components={{
                 play: (
                   <span className="mx-0.5 inline-grid size-4 translate-y-0.5 place-items-center rounded-full bg-brand text-canvas">
-                    <svg viewBox="0 0 24 24" className="size-2.5" fill="currentColor" aria-label="play">
-                      <path d="M7 4.5v15l12-7.5z" />
-                    </svg>
+                    <Icon name="play" className="size-2.5" />
                   </span>
                 ),
               }}

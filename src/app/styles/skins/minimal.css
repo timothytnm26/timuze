@@ -9,6 +9,11 @@
 
   :root,
   [data-skin='minimal'] {
+    /* line icons (shared/assets/icons) */
+    --icon-stroke: 1.8;
+    --icon-cap: round;
+    --icon-join: round;
+
     --skin-font-sans: 'Inter', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
     --skin-font-display: 'Bricolage Grotesque', 'Inter', 'Noto Sans JP', ui-sans-serif, sans-serif;
     --skin-font-mono: 'JetBrains Mono', ui-monospace, 'Noto Sans JP', monospace;

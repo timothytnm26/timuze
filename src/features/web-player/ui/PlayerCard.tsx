@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { Trans, useTranslation } from '@/shared/i18n'
 import { cn, formatDuration } from '@/shared/lib'
-import { Cover } from '@/shared/ui'
+import { Cover, Icon } from '@/shared/ui'
 import { dismissPlayerError, skipTrack, togglePlayback, usePlayer } from '../model/player'
 import { iconButton, PlayIcon, SkipIcon } from './icons'
 
@@ -79,9 +79,7 @@ export function PlayerCard({ loginAction, className }: { loginAction?: ReactNode
             components={{
               play: (
                 <span className="mx-0.5 inline-grid size-4 translate-y-0.5 place-items-center rounded-full bg-brand text-canvas">
-                  <svg viewBox="0 0 24 24" className="size-2.5" fill="currentColor" aria-label="play">
-                    <path d="M7 4.5v15l12-7.5z" />
-                  </svg>
+                  <Icon name="play" className="size-2.5" />
                 </span>
               ),
             }}

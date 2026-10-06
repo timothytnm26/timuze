@@ -1,3 +1,4 @@
+import { Icon } from '@/shared/ui'
 import { useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
 import type { AlbumTrack } from '@/entities/album'
 import { useTranslation } from '@/shared/i18n'
@@ -23,16 +24,7 @@ const EDGE_TOP = 110
 const EDGE_BOTTOM = 120
 
 export function GripIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 12 20" className={cn('h-5 w-3', className)} fill="currentColor" aria-hidden>
-      {[3, 10, 17].map((y) => (
-        <g key={y}>
-          <circle cx="3" cy={y} r="1.6" />
-          <circle cx="9" cy={y} r="1.6" />
-        </g>
-      ))}
-    </svg>
-  )
+  return <Icon name="grip" className={cn('h-5 w-3', className)} />
 }
 
 /**
@@ -226,9 +218,7 @@ export function RankList({
                 aria-label={t('remove', { track: track.name })}
                 className="grid size-8 shrink-0 cursor-pointer place-items-center rounded-full text-(--rk-faint) transition-colors hover:bg-(--rk-line) hover:text-(--rk-ink)"
               >
-                <svg viewBox="0 0 12 12" className="size-3" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
-                  <path d="M2 2l8 8M10 2l-8 8" />
-                </svg>
+                <Icon name="close" className="size-3" />
               </button>
               <button
                 type="button"

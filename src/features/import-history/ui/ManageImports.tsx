@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { BrandIcon, Button, Card } from '@/shared/ui'
+import { BrandIcon, Button, Card, Icon } from '@/shared/ui'
 import { cn } from '@/shared/lib'
 import { Trans, useFormatters, useTranslation } from '@/shared/i18n'
 import { playStore, streamHistoryQueries, type StreamHistory, type StreamSource } from '@/entities/stream-history'
@@ -36,15 +36,15 @@ export function ManageImports({
         )}
       >
         <span className="flex min-w-0 items-center gap-3">
-          <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft text-lg text-brand">⇪</span>
+          <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
+            <Icon name="upload" className="size-5" />
+          </span>
           <span className="min-w-0">
             <span className="block font-display text-base font-semibold">{t('manage.summary')}</span>
             <span className="block truncate text-xs text-ink-muted">{t('manage.using', { sources: used.join(', ') })}</span>
           </span>
         </span>
-        <svg viewBox="0 0 10 6" className="size-3 shrink-0 text-ink-muted transition-transform group-open:rotate-180" aria-hidden>
-          <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        </svg>
+        <Icon name="chevron-down" className="size-3 shrink-0 text-ink-muted transition-transform group-open:rotate-180" />
       </summary>
       <div className="flex flex-col gap-4 border-t border-line/60 p-5">
         <Card className="flex flex-col gap-3">

@@ -4,6 +4,11 @@
  */
 @layer base {
   [data-skin='pixel'] {
+    /* line icons (shared/assets/icons) */
+    --icon-stroke: 2.4;
+    --icon-cap: square;
+    --icon-join: miter;
+
     /* VT323 covers Vietnamese; DotGothic16 picks up Japanese */
     --skin-font-sans: 'VT323', 'DotGothic16', ui-monospace, monospace;
     --skin-font-display: 'VT323', 'DotGothic16', ui-monospace, monospace;

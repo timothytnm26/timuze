@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { albumQueries, type SimplifiedAlbum } from '@/entities/album'
 import { useTranslation } from '@/shared/i18n'
 import { cn, useDebounced } from '@/shared/lib'
-import { Cover } from '@/shared/ui'
+import { Cover, Icon } from '@/shared/ui'
 
 /** Search-as-you-type over Spotify's albums; picking a result hands it up and clears the box. */
 export function AlbumSearch({ onSelect, className }: { onSelect: (album: SimplifiedAlbum) => void; className?: string }) {
@@ -16,10 +16,7 @@ export function AlbumSearch({ onSelect, className }: { onSelect: (album: Simplif
   return (
     <div className={className}>
       <label className="panel flex h-13 items-center gap-3 rounded-2xl border-line bg-surface px-4 focus-within:border-brand">
-        <svg viewBox="0 0 24 24" className="size-5 shrink-0 text-ink-faint" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-          <circle cx="11" cy="11" r="7" />
-          <path d="m20 20-3.5-3.5" />
-        </svg>
+        <Icon name="search" className="size-5 text-ink-faint" />
         <span className="sr-only">{t('search.label')}</span>
         <input
           type="search"

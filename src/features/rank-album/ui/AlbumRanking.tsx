@@ -3,7 +3,7 @@ import type { Album, AlbumTrack } from '@/entities/album'
 import { INTL_LOCALE, isLocale, Trans, useTranslation } from '@/shared/i18n'
 import { cn } from '@/shared/lib'
 import { useSkin } from '@/shared/theme'
-import { Cover, LogoMark } from '@/shared/ui'
+import { Cover, Icon, LogoMark } from '@/shared/ui'
 import type { ShareTheme } from '../lib/palette'
 import { themeVars, useShareStyle } from '../model/useShareStyle'
 import { GripIcon, RankList } from './RankList'
@@ -87,9 +87,7 @@ export function AlbumRanking({ album, onChangeAlbum }: { album: Album; onChangeA
             components={{
               grip: <GripIcon className="mx-0.5 inline h-4 w-2.5 -translate-y-px" />,
               x: (
-                <svg viewBox="0 0 12 12" className="mx-0.5 inline size-3 -translate-y-px" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-                  <path d="M2 2l8 8M10 2l-8 8" />
-                </svg>
+                <Icon name="close" className="mx-0.5 inline-block size-3 -translate-y-px" />
               ),
             }}
           />

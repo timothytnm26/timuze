@@ -1,5 +1,6 @@
 import type { SpotifyImage } from '../api/types';
 import { cn } from '../lib/cn';
+import { Icon } from './Icon';
 import { useSkin } from '../theme';
 
 /**
@@ -15,7 +16,7 @@ export function Cover({ images, alt, size = 300, rounded = 'lg', className }: { 
   if (!img)
     return (
       <div className={cn('grid aspect-square place-items-center bg-gradient-to-br from-surface-3 to-surface-2 text-ink-faint', radius, className)} aria-label={alt}>
-        ♪
+        <Icon name="tracks" className="size-2/5" />
       </div>
     );
 

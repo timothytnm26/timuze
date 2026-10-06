@@ -1,19 +1,12 @@
 import { cn } from '@/shared/lib'
+import { Icon } from '@/shared/ui'
 
 export function PlayIcon({ playing }: { playing: boolean }) {
-  return (
-    <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden>
-      {playing ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M7 4.5v15l12-7.5z" />}
-    </svg>
-  )
+  return <Icon name={playing ? 'pause' : 'play'} />
 }
 
 export function SkipIcon({ back }: { back?: boolean }) {
-  return (
-    <svg viewBox="0 0 24 24" className={cn('size-4', back && 'rotate-180')} fill="currentColor" aria-hidden>
-      <path d="M5 5v14l10-7zM16 5h3v14h-3z" />
-    </svg>
-  )
+  return <Icon name="skip" className={cn(back && 'rotate-180')} />
 }
 
 export const iconButton =

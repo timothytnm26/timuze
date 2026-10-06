@@ -1,4 +1,5 @@
 import { createStore, useStore } from '@tanstack/react-store'
+import { iconSvg } from '../assets/icons'
 import { safeStorage } from '../lib/storage'
 import { DEFAULT_SKIN, isSkin, SKIN_MANIFEST, SKINS, type Skin } from './config'
 
@@ -29,11 +30,21 @@ export const loadSkinFonts = (skin: Skin) => {
 /** For live previews – e.g. when the skin menu opens. */
 export const loadAllSkinFonts = () => SKINS.forEach(loadSkinFonts)
 
+/** The tab icon: the skin's own logo drawing on its canvas colour, in its brand colour. */
+const faviconFor = (skin: Skin) => {
+  const inner = /<svg[^>]*>([\s\S]*)<\/svg>/.exec(iconSvg('logo', skin))?.[1] ?? ''
+  const brand = getComputedStyle(document.documentElement).getPropertyValue('--skin-brand').trim() || '#1ed760'
+  const crisp = skin === 'pixel' ? ' shape-rendering="crispEdges"' : ''
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="${skin === 'pixel' ? 0 : 8}" fill="${SKIN_MANIFEST[skin].themeColor}"/><g fill="${brand}"${crisp} transform="translate(4 4)">${inner}</g></svg>`
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`
+}
+
 const applySkin = (skin: Skin) => {
   if (typeof document === 'undefined') return
   loadSkinFonts(skin)
   document.documentElement.dataset.skin = skin
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', SKIN_MANIFEST[skin].themeColor)
+  document.querySelector('link[rel="icon"]')?.setAttribute('href', faviconFor(skin))
 }
 
 applySkin(skinStore.state)

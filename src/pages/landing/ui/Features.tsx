@@ -1,10 +1,11 @@
+import { Icon } from '@/shared/ui'
 import { useId, useLayoutEffect, useRef, useState } from 'react'
 import { useTranslation } from '@/shared/i18n'
 import { cn, Flip, gsap, prefersReducedMotion, ScrollTrigger, useMediaQuery } from '@/shared/lib'
 import { tune } from '@/shared/theme'
 import { FeaturePreview } from './FeaturePreview'
 
-const FEATURE_ICONS = ['✦', '♪', '◫', '▤', '▦', '◎']
+const FEATURE_ICONS = ['artists', 'tracks', 'albums', 'streams', 'heatmap', 'lock'] as const
 
 /**
  * Feature cards. Opening one reveals a preview of its dashboard screen; every layout change is
@@ -96,7 +97,9 @@ export function Features() {
               )}
             >
               <span className="flex w-full items-start justify-between gap-3">
-                <span className="grid size-11 place-items-center rounded-xl bg-brand-soft text-lg text-brand">{FEATURE_ICONS[i]}</span>
+                <span className="grid size-11 place-items-center rounded-xl bg-brand-soft text-brand">
+                  <Icon name={FEATURE_ICONS[i] ?? 'artists'} className="size-5" />
+                </span>
                 <span
                   className={cn(
                     'grid size-8 place-items-center rounded-full border border-line text-ink-muted transition-[transform,color,border-color] duration-300 group-hover:border-brand/50 group-hover:text-brand',
@@ -104,9 +107,7 @@ export function Features() {
                   )}
                   aria-hidden
                 >
-                  <svg viewBox="0 0 12 12" className="size-3" fill="none" stroke="currentColor" strokeWidth="1.6">
-                    <path d="M6 1v10M1 6h10" />
-                  </svg>
+                  <Icon name="plus" className="size-3" />
                 </span>
               </span>
               <h3 className="mt-5 font-display text-xl font-semibold">{feature.title}</h3>

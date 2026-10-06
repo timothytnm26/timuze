@@ -4,6 +4,11 @@
  */
 @layer base {
   [data-skin='retro'] {
+    /* line icons (shared/assets/icons) */
+    --icon-stroke: 2.2;
+    --icon-cap: round;
+    --icon-join: round;
+
     --skin-font-sans: 'Inter', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
     --skin-font-display: 'Fraunces', 'Noto Sans JP', Georgia, serif;
     --skin-font-mono: 'Space Mono', 'Noto Sans JP', ui-monospace, monospace;

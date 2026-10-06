@@ -4,7 +4,7 @@ import { albumQueries, type SimplifiedAlbum } from '@/entities/album'
 import { trackQueries } from '@/entities/track'
 import { AlbumRanking, AlbumSearch } from '@/features/rank-album'
 import { useTranslation } from '@/shared/i18n'
-import { Cover, ErrorState, Skeleton } from '@/shared/ui'
+import { Cover, ErrorState, Icon, Skeleton } from '@/shared/ui'
 import { PageHeader } from '@/widgets/page-header'
 
 /** Albums from the last 50 plays, most recent first, each once. */
@@ -86,10 +86,7 @@ export function RankPage({ albumId, onAlbumChange }: { albumId?: string; onAlbum
     <>
       <PageHeader eyebrow={t('eyebrow')} title={t('title')} description={t('description')} />
       <p role="note" className="mb-6 flex gap-2.5 rounded-2xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-accent">
-        <svg viewBox="0 0 24 24" className="mt-0.5 size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 8v5M12 16.5v.01" />
-        </svg>
+        <Icon name="info" className="mt-0.5 size-4" />
         {t('notice')}
       </p>
       <div className="mx-auto max-w-3xl">

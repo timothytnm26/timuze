@@ -5,7 +5,7 @@ import { LoginLink, LogoutButton } from '@/features/auth'
 import { LocaleMenu } from '@/features/switch-locale'
 import { SkinMenu } from '@/features/switch-skin'
 import { cn } from '@/shared/lib'
-import { LogoMark } from '@/shared/ui'
+import { Icon, LogoMark } from '@/shared/ui'
 import { useTranslation } from '@/shared/i18n'
 import { NowPlaying } from '@/widgets/now-playing'
 import { useAppName, useIdentity } from './model/identity'
@@ -47,7 +47,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-ink-muted transition-colors hover:bg-surface hover:text-ink"
                 activeProps={{ className: 'bg-surface text-ink [&>span]:text-brand' }}
               >
-                <span className="w-4 text-center">{n.icon}</span>
+                <Icon name={n.icon} className="size-4.5" />
                 {t(n.label)}
               </Link>
             ))}
@@ -105,7 +105,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             className="flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-xl py-1.5 text-[10px] text-ink-muted"
             activeProps={{ className: 'text-brand bg-surface-2' }}
           >
-            <span className="text-base leading-none">{n.icon}</span>
+            <Icon name={n.icon} className="size-5" />
             {/* seven tabs on a phone: one line each, cut short rather than wrapped */}
             <span className="max-w-full truncate px-0.5">{t(n.label)}</span>
           </Link>

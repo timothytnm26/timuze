@@ -3,7 +3,7 @@ import type { Album, AlbumTrack } from '@/entities/album'
 import { useTranslation } from '@/shared/i18n'
 import { cn, gsap, prefersReducedMotion } from '@/shared/lib'
 import { tune, useSkin } from '@/shared/theme'
-import { Button, buttonClass } from '@/shared/ui'
+import { Button, buttonClass, Icon } from '@/shared/ui'
 import { renderShareImage, SHARE_HEIGHT, SHARE_WIDTH, type ShareImageLabels } from '../lib/shareImage'
 import type { useShareStyle } from '../model/useShareStyle'
 import { StylePicker } from './StylePicker'
@@ -90,11 +90,7 @@ export function ShareRanking({
   return (
     <>
       <Button onClick={show} disabled={ranked.length === 0 || !theme}>
-        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-          <rect x="3" y="3" width="18" height="18" rx="5" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-        </svg>
+        <Icon name="instagram" className="size-4" />
         {t('share.create')}
       </Button>
 

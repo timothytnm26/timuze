@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { cn } from '@/shared/lib'
-import { LogoMark } from '@/shared/ui'
+import { Icon, LogoMark } from '@/shared/ui'
 
 /**
  * Miniature dashboard screens for the feature cards. Drawn with the skin's own tokens, so they
@@ -151,10 +151,7 @@ const PAGES: ((seed: number) => ReactNode)[] = [
           <Glyphs seed={seed + 2} length={11} className="font-display text-lg font-bold text-ink" />
         </div>
         <span className="grid size-8 place-items-center rounded-full bg-brand-soft text-brand">
-          <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="5" y="11" width="14" height="10" rx="2" />
-            <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-          </svg>
+          <Icon name="lock" className="size-4" />
         </span>
       </div>
       <div className="mt-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">

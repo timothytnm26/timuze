@@ -1,15 +1,6 @@
 import { getLocale, LOCALES, LOCALE_NAMES, setLocale, useTranslation } from '@/shared/i18n'
 import { cn, onRadioGroupKeyDown } from '@/shared/lib'
-import { Island } from '@/shared/ui'
-
-function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={cn('size-4.5 shrink-0', className)} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3Z" />
-    </svg>
-  )
-}
+import { Icon, Island } from '@/shared/ui'
 
 /** Globe pill → island listing each language in its own script. The choice is persisted in localStorage. */
 export function LocaleMenu({
@@ -36,7 +27,7 @@ export function LocaleMenu({
       panelClassName="w-56"
       flyer={
         <>
-          <GlobeIcon />
+          <Icon name="globe" className="size-4.5" />
           <span className="font-mono text-xs max-sm:hidden" aria-hidden>
             {LOCALE_NAMES[locale].short}
           </span>
@@ -76,9 +67,7 @@ export function LocaleMenu({
                 </span>
                 <span className="flex-1">{LOCALE_NAMES[l].native}</span>
                 {l === locale && (
-                  <svg viewBox="0 0 12 10" className="size-3.5 shrink-0 text-brand" aria-hidden>
-                    <path d="M1 5.5l3.5 3L11 1" fill="none" stroke="currentColor" strokeWidth="2" />
-                  </svg>
+                  <Icon name="check" className="size-3.5 shrink-0 text-brand" />
                 )}
               </button>
             ))}

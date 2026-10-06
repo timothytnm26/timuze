@@ -1,6 +1,6 @@
 import { useRef, useState, type DragEvent } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { BrandIcon, brandStyle, Button, Card } from '@/shared/ui'
+import { BrandIcon, brandStyle, Button, Card, Icon } from '@/shared/ui'
 import { cn } from '@/shared/lib'
 import { Trans, useTranslation } from '@/shared/i18n'
 import { playStore, streamHistoryQueries, type StreamSource } from '@/entities/stream-history'
@@ -101,7 +101,8 @@ export function ImportHistory({
         </section>
 
         <section aria-label={t('warningsTitle')} className="rounded-2xl border border-(--src)/30 bg-(--src)/5 p-4">
-          <h4 className="font-display text-sm font-semibold">⚠ {t('warningsTitle')}</h4>
+          <h4 className="font-display text-sm font-semibold"><Icon name="warning" className="mr-1.5 inline-block size-4 -translate-y-px" />
+            {t('warningsTitle')}</h4>
           <ul className="mt-2 flex list-disc flex-col gap-2 pl-5 text-sm text-ink-muted">
             {WARNINGS.map((n) => (
               <li key={`${source}${n}`}>
