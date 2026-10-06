@@ -1,0 +1,18 @@
+{
+  "eyebrow": "Giải trí",
+  "title": "Chơi",
+  "description": "Những trò chơi nhỏ làm từ chính gu nghe nhạc của bạn.",
+  "playNow": "Chơi ngay",
+  "games": {
+    "2048": {
+      "title": "2048",
+      "description": "Gộp các ô giống nhau để lên hạng – mỗi ô là một album hoặc nghệ sĩ trong top của bạn.",
+      "tag1": "Xếp hình",
+      "tag2": "Album / nghệ sĩ"
+    }
+  },
+  "soon": {
+    "title": "Sắp có thêm",
+    "body": "Các trò chơi khác đang được làm."
+  }
+}

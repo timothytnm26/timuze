@@ -23,6 +23,8 @@ export const ICON_NAMES = [
   'check',
   'chevron-down',
   'close',
+  'crown',
+  'gamepad',
   'globe',
   'grip',
   'heatmap',

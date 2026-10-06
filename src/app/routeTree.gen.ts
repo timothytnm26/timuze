@@ -20,6 +20,8 @@ import { Route as AppHistoryRouteImport } from './routes/_app/history'
 import { Route as AppRankRouteImport } from './routes/_app/rank'
 import { Route as AppRecentRouteImport } from './routes/_app/recent'
 import { Route as AppTracksRouteImport } from './routes/_app/tracks'
+import { Route as AppPlayIndexRouteImport } from './routes/_app/play.index'
+import { Route as AppPlay2048RouteImport } from './routes/_app/play.2048'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -75,6 +77,16 @@ const AppTracksRoute = AppTracksRouteImport.update({
   path: '/tracks',
   getParentRoute: () => AppRoute,
 } as any)
+const AppPlayIndexRoute = AppPlayIndexRouteImport.update({
+  id: '/play/',
+  path: '/play/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPlay2048Route = AppPlay2048RouteImport.update({
+  id: '/play/2048',
+  path: '/play/2048',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,6 +99,8 @@ export interface FileRoutesByFullPath {
   '/rank': typeof AppRankRoute
   '/recent': typeof AppRecentRoute
   '/tracks': typeof AppTracksRoute
+  '/play/2048': typeof AppPlay2048Route
+  '/play/': typeof AppPlayIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -99,6 +113,8 @@ export interface FileRoutesByTo {
   '/rank': typeof AppRankRoute
   '/recent': typeof AppRecentRoute
   '/tracks': typeof AppTracksRoute
+  '/play/2048': typeof AppPlay2048Route
+  '/play': typeof AppPlayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -113,6 +129,8 @@ export interface FileRoutesById {
   '/_app/rank': typeof AppRankRoute
   '/_app/recent': typeof AppRecentRoute
   '/_app/tracks': typeof AppTracksRoute
+  '/_app/play/2048': typeof AppPlay2048Route
+  '/_app/play/': typeof AppPlayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -127,6 +145,8 @@ export interface FileRouteTypes {
     | '/rank'
     | '/recent'
     | '/tracks'
+    | '/play/2048'
+    | '/play/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,6 +159,8 @@ export interface FileRouteTypes {
     | '/rank'
     | '/recent'
     | '/tracks'
+    | '/play/2048'
+    | '/play'
   id:
     | '__root__'
     | '/'
@@ -152,6 +174,8 @@ export interface FileRouteTypes {
     | '/_app/rank'
     | '/_app/recent'
     | '/_app/tracks'
+    | '/_app/play/2048'
+    | '/_app/play/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -240,6 +264,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTracksRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/play/': {
+      id: '/_app/play/'
+      path: '/play'
+      fullPath: '/play/'
+      preLoaderRoute: typeof AppPlayIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/play/2048': {
+      id: '/_app/play/2048'
+      path: '/play/2048'
+      fullPath: '/play/2048'
+      preLoaderRoute: typeof AppPlay2048RouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -251,6 +289,8 @@ interface AppRouteChildren {
   AppRankRoute: typeof AppRankRoute
   AppRecentRoute: typeof AppRecentRoute
   AppTracksRoute: typeof AppTracksRoute
+  AppPlay2048Route: typeof AppPlay2048Route
+  AppPlayIndexRoute: typeof AppPlayIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -261,6 +301,8 @@ const AppRouteChildren: AppRouteChildren = {
   AppRankRoute: AppRankRoute,
   AppRecentRoute: AppRecentRoute,
   AppTracksRoute: AppTracksRoute,
+  AppPlay2048Route: AppPlay2048Route,
+  AppPlayIndexRoute: AppPlayIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

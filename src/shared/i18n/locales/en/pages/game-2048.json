@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Just for fun",
+  "title": "2048",
+  "description": "Merge two equal tiles to level up. Each score is one of your top albums (or artists) – the biggest tile is your number one.",
+  "mode": {
+    "label": "Pictures of",
+    "albums": "Albums",
+    "artists": "Artists"
+  },
+  "score": "Score",
+  "best": "Best",
+  "newGame": "New game",
+  "board": "2048 board – use the arrow keys or swipe to slide the tiles",
+  "hint": "Use the arrow keys (or W A S D, or swipe on the board) to slide the tiles.",
+  "legend": {
+    "title": "Who is each tile?",
+    "subtitle": "The higher the score, the higher it sits in your top ({{range}}).",
+    "rank": "No. {{rank}}",
+    "empty": "Not enough data"
+  },
+  "win": {
+    "title": "You reached {{value}}!",
+    "body": "Your number one showed up: {{name}}.",
+    "keepGoing": "Keep going"
+  },
+  "over": {
+    "title": "No moves left",
+    "body": "Your score: {{score}}"
+  },
+  "empty": "Not enough albums or artists to play with. Import more listening history.",
+  "back": "All games"
+}

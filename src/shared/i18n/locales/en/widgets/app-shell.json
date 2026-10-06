@@ -4,7 +4,8 @@
     "mobile": "Navigation",
     "dashboard": "Overview",
     "recent": "Recent",
-    "rank": "Ranking"
+    "rank": "Ranking",
+    "play": "Play"
   },
   "account": "Account",
   "identity": {

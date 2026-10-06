@@ -1,0 +1,7 @@
+export { Board } from './ui/Board'
+export { Legend } from './ui/Legend'
+export { useGame2048 } from './model/useGame'
+export { LEVELS, tierFor, type Tier } from './model/tiers'
+export { WIN_VALUE } from './model/engine'
+export { useTiers, type GameMode } from './model/useTiers'
+export { Game2048Thumbnail } from './ui/Thumbnail'

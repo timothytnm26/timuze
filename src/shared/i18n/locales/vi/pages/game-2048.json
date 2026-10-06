@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Giải trí",
+  "title": "2048",
+  "description": "Gộp hai ô giống nhau để lên hạng. Mỗi mức điểm là một album (hoặc nghệ sĩ) trong top của bạn – ô lớn nhất là số một.",
+  "mode": {
+    "label": "Dùng ảnh của",
+    "albums": "Album",
+    "artists": "Nghệ sĩ"
+  },
+  "score": "Điểm",
+  "best": "Kỷ lục",
+  "newGame": "Ván mới",
+  "board": "Bàn chơi 2048 – dùng phím mũi tên hoặc vuốt để dồn các ô",
+  "hint": "Dùng phím mũi tên (hoặc W A S D, hoặc vuốt trên bàn) để dồn các ô.",
+  "legend": {
+    "title": "Mỗi ô là ai?",
+    "subtitle": "Điểm càng cao, hạng trong top của bạn càng cao ({{range}}).",
+    "rank": "Hạng {{rank}}",
+    "empty": "Chưa đủ dữ liệu"
+  },
+  "win": {
+    "title": "Bạn đạt {{value}}!",
+    "body": "Ô số một của bạn đã xuất hiện: {{name}}.",
+    "keepGoing": "Chơi tiếp"
+  },
+  "over": {
+    "title": "Hết nước đi",
+    "body": "Điểm của bạn: {{score}}"
+  },
+  "empty": "Chưa đủ album hay nghệ sĩ để chơi. Hãy nhập thêm lịch sử nghe.",
+  "back": "Tất cả trò chơi"
+}

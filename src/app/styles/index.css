@@ -156,3 +156,69 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* 2048 tiles: a new tile pops in, a merged one bumps, a swallowed one fades under its survivor */
+@keyframes tile-pop {
+  from {
+    scale: 0;
+  }
+}
+
+@keyframes tile-bump {
+  50% {
+    scale: 1.14;
+  }
+}
+
+@keyframes tile-ghost {
+  to {
+    opacity: 0;
+  }
+}
+
+/* a merge lights the board's glow up, and the gained points float off the score card */
+@keyframes board-glow {
+  from {
+    opacity: 0.75;
+    scale: 1.06;
+  }
+}
+
+@keyframes score-float {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    translate: 0 -26px;
+  }
+}
+
+@keyframes board-ring {
+  from {
+    opacity: 1;
+    scale: 1;
+  }
+
+  to {
+    opacity: 0;
+    scale: 1.04;
+  }
+}
+
+/* tiles beyond 2048 shimmer */
+@keyframes tile-shimmer {
+  from {
+    background-position: 150% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}

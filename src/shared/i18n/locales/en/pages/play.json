@@ -1,0 +1,18 @@
+{
+  "eyebrow": "Just for fun",
+  "title": "Play",
+  "description": "Small games made from your own listening taste.",
+  "playNow": "Play now",
+  "games": {
+    "2048": {
+      "title": "2048",
+      "description": "Merge equal tiles to level up – every tile is one of your top albums or artists.",
+      "tag1": "Puzzle",
+      "tag2": "Albums / artists"
+    }
+  },
+  "soon": {
+    "title": "More on the way",
+    "body": "More games are being made."
+  }
+}

@@ -9,4 +9,5 @@ export const NAV = [
   { to: '/recent', label: 'widgets/app-shell:nav.recent', icon: 'recent' },
   { to: '/history', label: 'common:labels.streams', icon: 'streams' },
   { to: '/rank', label: 'widgets/app-shell:nav.rank', icon: 'rank' },
+  { to: '/play', label: 'widgets/app-shell:nav.play', icon: 'gamepad' },
 ] as const satisfies readonly { to: string; label: string; icon: IconName }[]

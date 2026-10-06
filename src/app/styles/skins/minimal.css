@@ -11,6 +11,9 @@
   [data-skin='minimal'] {
     /* line icons (shared/assets/icons) */
     --icon-stroke: 1.8;
+    /* high tiles in the 2048 game: a soft glow (blur) or a hard ring (spread) per level */
+    --glow-blur: 0px;
+    --glow-spread: 1px;
     --icon-cap: round;
     --icon-join: round;
 

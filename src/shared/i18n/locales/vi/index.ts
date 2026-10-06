@@ -10,6 +10,8 @@ import pagesDashboard from './pages/dashboard.json'
 import pagesHistory from './pages/history.json'
 import pagesLanding from './pages/landing.json'
 import pagesNotFound from './pages/not-found.json'
+import pagesGame2048 from './pages/game-2048.json'
+import pagesPlay from './pages/play.json'
 import pagesRank from './pages/rank.json'
 import pagesRecent from './pages/recent.json'
 import pagesTopAlbums from './pages/top-albums.json'
@@ -38,6 +40,8 @@ export const vi = {
   'pages/history': pagesHistory,
   'pages/landing': pagesLanding,
   'pages/not-found': pagesNotFound,
+  'pages/game-2048': pagesGame2048,
+  'pages/play': pagesPlay,
   'pages/rank': pagesRank,
   'pages/recent': pagesRecent,
   'pages/top-albums': pagesTopAlbums,
