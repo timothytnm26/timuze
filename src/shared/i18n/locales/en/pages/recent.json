@@ -1,5 +1,6 @@
 {
   "eyebrow": "Diary",
   "title": "Recently played",
-  "description": "Your last 50 plays – the maximum the Spotify Web API allows."
+  "description": "Your last 50 plays – the maximum the Spotify Web API allows.",
+  "descriptionLocal": "Your 50 most recent plays from the history you imported."
 }

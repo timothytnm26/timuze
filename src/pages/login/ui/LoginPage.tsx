@@ -42,7 +42,7 @@ export function LoginPage() {
             <SpotifyLoginOptions />
           </section>
 
-          <section aria-labelledby="others-title" className="flex flex-col gap-4">
+          <section aria-labelledby="others-title" className="flex flex-col gap-4 max-lg:order-first">
             <div>
               <h2 id="others-title" className="font-display text-2xl font-bold">
                 {t('login.others.title')}

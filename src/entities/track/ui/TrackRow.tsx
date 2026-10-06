@@ -39,9 +39,11 @@ export function TrackRow({
         <p className="truncate text-sm text-ink-muted">
           {track.artists.map((a) => a.name).join(', ')}
           <span className="hidden md:inline"> · {track.album.name}</span>
+          {/* a phone has no room for it beside the title */}
+          {meta && <span className="text-ink-faint sm:hidden"> · {meta}</span>}
         </p>
       </div>
-      <span className="font-mono text-xs text-ink-faint tabular-nums">{meta ?? formatDuration(track.duration_ms)}</span>
+      <span className={cn('font-mono text-xs text-ink-faint tabular-nums', meta && 'hidden sm:inline')}>{meta ?? formatDuration(track.duration_ms)}</span>
     </a>
   )
 }

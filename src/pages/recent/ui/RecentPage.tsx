@@ -1,3 +1,4 @@
+import { dataMode } from '@/shared/api'
 import { useTranslation } from '@/shared/i18n'
 import { PageHeader } from '@/widgets/page-header'
 import { RecentTimeline } from '@/widgets/recent-timeline'
@@ -10,7 +11,7 @@ export function RecentPage() {
       <PageHeader
         eyebrow={t('eyebrow')}
         title={t('title')}
-        description={t('description')}
+        description={t(dataMode() === 'local' ? 'descriptionLocal' : 'description')}
       />
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
         <RecentTimeline />

@@ -1,5 +1,6 @@
 {
   "eyebrow": "Nhật ký",
   "title": "Nghe gần đây",
-  "description": "50 lượt phát gần nhất – giới hạn tối đa mà Spotify Web API cho phép."
+  "description": "50 lượt phát gần nhất – giới hạn tối đa mà Spotify Web API cho phép.",
+  "descriptionLocal": "50 lượt nghe gần nhất trong lịch sử bạn đã nhập."
 }

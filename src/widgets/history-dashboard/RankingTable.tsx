@@ -44,7 +44,7 @@ const buildColumns = (showArtist: boolean, t: TFunction<['widgets/history-dashbo
       header: showArtist ? t('ranking.name') : t('common:labels.artist'),
       cell: (c) => (
         <div className="min-w-0">
-          <p className="truncate font-medium">{c.getValue()}</p>
+          <p className="line-clamp-2 leading-snug font-medium break-words">{c.getValue()}</p>
           {showArtist && <p className="truncate text-xs text-ink-muted">{c.row.original.artist}</p>}
         </div>
       ),
@@ -63,7 +63,9 @@ const buildColumns = (showArtist: boolean, t: TFunction<['widgets/history-dashbo
     }),
   ])
 
-const align = (id: string) => (id === 'rank' ? 'pr-3 text-center' : id === 'name' ? 'pr-4 text-left' : 'text-right')
+// hours drop out on phones so the name has room
+const align = (id: string) =>
+  id === 'rank' ? 'pr-2 text-center sm:pr-3' : id === 'name' ? 'pr-3 text-left sm:pr-4' : id === 'ms' ? 'hidden text-right sm:table-cell' : 'text-right'
 
 /** Sortable, searchable, paginated ranking built on TanStack Table v9. */
 export function RankingTable({ rows, showArtist }: { rows: Row[]; showArtist: boolean }) {
@@ -97,10 +99,10 @@ export function RankingTable({ rows, showArtist }: { rows: Row[]; showArtist: bo
       <div className="overflow-x-auto">
         <table className="w-full table-fixed text-sm">
           <colgroup>
-            <col className="w-12" />
+            <col className="w-9 sm:w-12" />
             <col />
-            <col className="w-28" />
-            <col className="w-24" />
+            <col className="w-20 sm:w-28" />
+            <col className="hidden w-24 sm:table-column" />
           </colgroup>
           <thead>
             {table.getHeaderGroups().map((g) => (

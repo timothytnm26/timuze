@@ -9,6 +9,7 @@ import { LogoMark } from '@/shared/ui'
 import { useTranslation } from '@/shared/i18n'
 import { NowPlaying } from '@/widgets/now-playing'
 import { useAppName, useIdentity } from './model/identity'
+import { AccountMenu } from './AccountMenu'
 import { SourcesMenu } from './SourcesMenu'
 import { NAV } from './nav'
 
@@ -85,8 +86,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             {loggedIn && <NowPlaying className="hidden sm:flex" />}
             <SkinMenu />
             <LocaleMenu />
-            {identity && <UserAvatar user={identity.user} />}
-            {!loggedIn && <LoginLink size="sm" short variant="outline" />}
+            {identity ? <AccountMenu identity={identity} /> : <LoginLink size="sm" short variant="outline" />}
           </div>
         </header>
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-8 pb-28 sm:px-8 lg:pb-16">{children}</main>

@@ -157,16 +157,16 @@ export function HistoryDashboard({ history }: { history: StreamHistory }) {
           <p className="text-lg text-ink-muted">{t('minutesListened')} · {f.listeningTime(stats.totalMs)}</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {top && (
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs text-ink-muted">{t('topArtist')}</p>
-                <p className="truncate font-display text-2xl font-bold">{top.name}</p>
+                <p className="line-clamp-2 font-display text-2xl font-bold break-words">{top.name}</p>
                 <p className="text-sm text-ink-muted">{t('common:units.streams', { count: top.streams })}</p>
               </div>
             )}
             {topTrack && (
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs text-ink-muted">{t('topTrack')}</p>
-                <p className="truncate font-display text-2xl font-bold">{topTrack.name}</p>
+                <p className="line-clamp-2 font-display text-2xl font-bold break-words">{topTrack.name}</p>
                 <p className="text-sm text-ink-muted">{t('common:units.streams', { count: topTrack.streams })}</p>
               </div>
             )}
