@@ -106,20 +106,16 @@
   },
   "skins": {
     "minimal": {
-      "name": "Minimal",
-      "description": "Black, white & Spotify green – calm, little motion"
+      "name": "Minimal"
     },
     "retro": {
-      "name": "Retro",
-      "description": "Warm browns, mustard and a 70s serif"
+      "name": "Retro"
     },
     "pixel": {
-      "name": "Pixel",
-      "description": "8-bit screen, hard edges, pixelated covers"
+      "name": "Pixel"
     },
     "glass": {
-      "name": "Glass",
-      "description": "Frosted translucent panels over soft color"
+      "name": "Glass"
     }
   },
   "listener": {

@@ -34,19 +34,28 @@ export function LocaleMenu({
       className={className}
       triggerClassName="px-2.5 sm:pr-3"
       panelClassName="w-56"
-      trigger={() => (
+      flyer={
         <>
           <GlobeIcon />
           <span className="font-mono text-xs max-sm:hidden" aria-hidden>
             {LOCALE_NAMES[locale].short}
           </span>
+        </>
+      }
+      trigger={(_, flyer) => (
+        <>
+          {flyer}
           <span className="sr-only">{`${label}: ${LOCALE_NAMES[locale].native}`}</span>
         </>
       )}
     >
-      {() => (
+      {(_, anchor) => (
         <>
-          <p className="px-2 pt-1 text-xs text-ink-faint">{label}</p>
+          {/* the globe and code from the button land here */}
+          <p className="flex items-center gap-2 px-2 pt-1 text-xs text-ink-faint">
+            {anchor()}
+            {label}
+          </p>
           <div role="radiogroup" aria-label={label} onKeyDown={onRadioGroupKeyDown} className="flex flex-col gap-0.5">
             {LOCALES.map((l) => (
               <button

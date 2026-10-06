@@ -53,17 +53,26 @@ export function SkinMenu({
       panelClassName="w-80"
       // fonts for the live previews
       onOpen={loadAllSkinFonts}
-      trigger={() => (
+      flyer={
         <>
           <PaletteIcon />
           <Swatch skin={skin} className="max-sm:hidden" />
+        </>
+      }
+      trigger={(_, flyer) => (
+        <>
+          {flyer}
           <span className="sr-only">{`${label}: ${t(`skins.${skin}.name`)}`}</span>
         </>
       )}
     >
-      {() => (
+      {(_, anchor) => (
         <>
-          <p className="px-2 pt-1 text-xs text-ink-faint">{label}</p>
+          {/* the palette and swatches from the button land here */}
+          <p className="flex items-center gap-2 px-2 pt-1 text-xs text-ink-faint">
+            {anchor()}
+            {label}
+          </p>
           <SkinOptions />
         </>
       )}
@@ -98,7 +107,6 @@ function SkinOptions() {
           </span>
           <span className="min-w-0 flex-1">
             <span className="block font-display font-semibold">{t(`skins.${s}.name`)}</span>
-            <span className="block text-xs leading-snug text-ink-muted">{t(`skins.${s}.description`)}</span>
           </span>
           {s === skin ? (
             <svg viewBox="0 0 12 10" className="size-3.5 shrink-0 text-brand" aria-hidden>

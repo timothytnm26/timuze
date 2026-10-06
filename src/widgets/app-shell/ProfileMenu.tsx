@@ -39,9 +39,10 @@ export function ProfileMenu({ className }: { className?: string }) {
       className={className}
       triggerClassName="pl-0.5 pr-0.5 sm:pr-3"
       panelClassName="w-72"
-      trigger={(open) => (
+      flyer={<UserAvatar user={me} className="size-8" />}
+      trigger={(open, flyer) => (
         <>
-          <UserAvatar user={me} className="size-8" />
+          {flyer}
           <span className="hidden max-w-32 truncate sm:block">{name}</span>
           <svg viewBox="0 0 10 6" className={cn('hidden size-2.5 transition-transform sm:block', open && 'rotate-180')} aria-hidden>
             <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -50,10 +51,11 @@ export function ProfileMenu({ className }: { className?: string }) {
         </>
       )}
     >
-      {(close) => (
+      {(close, anchor) => (
         <>
           <div className="flex items-center gap-3 rounded-2xl bg-surface p-3">
-            <UserAvatar user={me} className="size-11" />
+            {/* the avatar from the pill lands here */}
+            {anchor(<UserAvatar user={me} className="size-11" />)}
             <div className="min-w-0">
               <p className="truncate font-display font-semibold">{name}</p>
               <p className="truncate text-xs text-ink-muted">{t(`identity.${identity.kind}`)}</p>

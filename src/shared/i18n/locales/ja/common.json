@@ -102,20 +102,16 @@
   },
   "skins": {
     "minimal": {
-      "name": "ミニマル",
-      "description": "黒・白・Spotifyグリーン、控えめな動き"
+      "name": "ミニマル"
     },
     "retro": {
-      "name": "レトロ",
-      "description": "温かいブラウンとマスタード、70年代のセリフ体"
+      "name": "レトロ"
     },
     "pixel": {
-      "name": "ピクセル",
-      "description": "8ビット画面、角ばった形、ドット化したジャケット"
+      "name": "ピクセル"
     },
     "glass": {
-      "name": "グラス",
-      "description": "やわらかな色に浮かぶすりガラスのパネル"
+      "name": "グラス"
     }
   },
   "listener": {

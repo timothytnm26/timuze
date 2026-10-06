@@ -102,20 +102,16 @@
   },
   "skins": {
     "minimal": {
-      "name": "Minimal",
-      "description": "Đen, trắng và xanh Spotify – gọn, ít chuyển động"
+      "name": "Minimal"
     },
     "retro": {
-      "name": "Retro",
-      "description": "Nâu ấm, vàng mù tạt, chữ có chân thập niên 70"
+      "name": "Retro"
     },
     "pixel": {
-      "name": "Pixel",
-      "description": "Màn hình 8-bit, góc vuông, ảnh bìa vỡ hạt"
+      "name": "Pixel"
     },
     "glass": {
-      "name": "Glass",
-      "description": "Kính mờ trong suốt trên nền màu loang"
+      "name": "Glass"
     }
   },
   "listener": {
